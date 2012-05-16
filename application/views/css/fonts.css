@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: 'AllerRegular';
-    src: url('../fonts/aller/aller_rg-webfont.eot');
+    src: url('..fonts/aller/aller_rg-webfont.eot');
     src: url('../fonts/aller/aller_rg-webfont.eot?#iefix') format('embedded-opentype'),
          url('../fonts/aller/aller_rg-webfont.woff') format('woff'),
          url('../fonts/aller/aller_rg-webfont.ttf') format('truetype'),

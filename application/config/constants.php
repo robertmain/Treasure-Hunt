@@ -35,7 +35,8 @@ define('FOPEN_WRITE_CREATE',					'ab');
 define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
-define ('APPTITLE', 'My First CodeIgniter App');
+define ('APPTITLE', 'QR Treasure Hunt');
+define ('TEAMNAME', 'Gray-Man Software');
 define ('VIEWPATH', APPPATH . 'views/');
 
 /* End of file constants.php */

@@ -12,8 +12,8 @@ body *{
     line-height: 2em;
 }
 
-body{
-    font-family: 'AllerRegular';
+body, h1,h2,h3,h4,h5,h6{
+    font-family: 'AllerRegular', arial;
     color: #575757;
 }
 

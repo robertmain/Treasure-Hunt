@@ -55,7 +55,7 @@ $autoload['packages'] = array(APPPATH . 'third_party');
   |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
  */
 
-$autoload['libraries'] = array('template');
+$autoload['libraries'] = array('template', 'session', 'database', 'user_agent');
 
 
 /*
@@ -67,7 +67,7 @@ $autoload['libraries'] = array('template');
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = array('url', 'form', 'html');
+$autoload['helper'] = array('url', 'form', 'html', 'perm');
 
 
 /*
@@ -112,7 +112,7 @@ $autoload['language'] = array();
   |
  */
 
-$autoload['model'] = array();
+$autoload['model'] = array('config_model');
 
 
 /* End of file autoload.php */
