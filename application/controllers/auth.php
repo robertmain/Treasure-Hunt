@@ -5,7 +5,6 @@ class Auth extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('pirate_model');
-        $this->load->library('form_validation');
     }
 
     public function index() {
@@ -20,7 +19,7 @@ class Auth extends MY_Controller {
         if (isLoggedIn()) {
             show_404(current_url(), FALSE);
         }
-        if ($user = $this->pirate_model->get_by(array('phone' => $this->input->post('login'), 'password' => hash('sha512', $this->input->post('password'))))) {
+        if ($user = $this->pirate_model->get_by(array('phone' => $this->input->post('login'), 'admin' => '0', 'password' => hash('sha512', $this->input->post('password'))))) {
             if ($this->config_model->get('authorisation')->value == '1') {
                 if ($user->authorised == '1') {
                     $this->session->set_userdata('id', $user->id);

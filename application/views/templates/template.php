@@ -30,7 +30,8 @@
                             <?php if ($this->uri->uri_string() != 'admin/login'): ?>
                                 <?php if (isLoggedIn()): ?>
                                     <?php if (isAdmin()): ?>
-                                        <li class="btn-danger"><?= anchor('admin/home', 'Dashboard') ?></li>
+                                        <li class="admin btn-danger"><?= anchor('admin/home', 'Dashboard') ?></li>
+                                        <li class="admin btn-danger"><?= anchor('admin/treasure', 'Treasure') ?></li>
                                         <li><?= anchor('admin/login/logout', 'Sign Out') ?></li>
                                     <?php else: ?>
                                         <li><?= anchor('treasure', 'My Treasure') ?></li>
@@ -67,7 +68,7 @@
                     <?php //endif; ?>
                 </div>
             </div>
-            <?php if ($this->uri->segment(1) != 'admin'): ?>
+            <?php if ($this->uri->uri_string() != 'admin/login'): ?>
                 <hr>
                 <footer>
                     <p>
