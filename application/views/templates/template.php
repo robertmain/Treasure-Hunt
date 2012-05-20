@@ -27,13 +27,15 @@
                     <a class="brand" href="<?= site_url() ?>"><?= APPTITLE ?></a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <?php if (isLoggedIn()): ?>
-                                <li><?= anchor('treasure', 'My Treasure') ?></li>
-                                <li><?= anchor('logout', 'Sign Out (' . $me->name . ')') ?></li>
-                            <?php else: ?>
-                                <li><?= anchor(site_url(), 'Home') ?></li>
-                                <li><?= anchor(site_url('auth'), 'Sign In/Register') ?></li>
-                            <?php endif; ?>
+                            
+                                <?php if (isLoggedIn()): ?>
+                                    <li><?= anchor('treasure', 'My Treasure') ?></li>
+                                    <li><?= anchor('logout', 'Sign Out') ?></li>
+                                <?php else: ?>
+                                    <li><?= anchor(site_url(), 'Home') ?></li>
+                                    <li><?= anchor(site_url('auth'), 'Sign In/Register') ?></li>
+                                <?php endif; ?>
+                            
                         </ul>
                     </div>
                 </div>
@@ -44,7 +46,7 @@
                 <div class="span12">
                     <?php //if ($this->agent->is_mobile()): ?>
                     <?php if (isLoggedIn()): ?>
-                        <p>My ID:<?= md5($me->name) ?></p>
+                        <p>My ID:<?= md5('USER' . $me->phone) ?></p>
                     <?php endif; ?>
                     <?= $content ?>
                     <?php //else: ?>
@@ -60,14 +62,16 @@
                     <?php //endif; ?>
                 </div>
             </div>
-            <hr>
-            <footer>
-                <p>
-                    Copyright <?= date('Y') ?> &copy; <?= APPTITLE ?><br />
-                    A <?= TEAMNAME ?> Web Application<br />
-                    All Rights Reserved
-                </p>
-            </footer>
+            <?php if ($this->uri->segment(1) != 'admin'): ?>
+                <hr>
+                <footer>
+                    <p>
+                        Copyright <?= date('Y') ?> &copy; <?= APPTITLE ?><br />
+                        A <?= TEAMNAME ?> Web Application<br />
+                        All Rights Reserved
+                    </p>
+                </footer>
+            <?php endif; ?>
         </div>
     </body>
 </html>

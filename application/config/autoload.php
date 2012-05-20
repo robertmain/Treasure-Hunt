@@ -67,7 +67,7 @@ $autoload['libraries'] = array('template', 'session', 'database', 'user_agent');
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = array('url', 'form', 'html', 'perm');
+$autoload['helper'] = array('url', 'form', 'html', 'typography', 'perm');
 
 
 /*

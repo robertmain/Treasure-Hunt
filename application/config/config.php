@@ -94,7 +94,7 @@ $config['charset'] = 'UTF-8';
   | setting this variable to TRUE (boolean).  See the user guide for details.
   |
  */
-$config['enable_hooks'] = TRUE;
+$config['enable_hooks'] = FALSE;
 
 
 /*
@@ -183,7 +183,7 @@ $config['directory_trigger'] = 'd'; // experimental not currently in use
   | your log files will fill up very fast.
   |
  */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;
 
 /*
   |--------------------------------------------------------------------------
@@ -318,7 +318,7 @@ $config['csrf_expire'] = 7200;
   | by the output class.  Do not 'echo' any values with compression enabled.
   |
  */
-$config['compress_output'] = TRUE;
+$config['compress_output'] = FALSE;
 
 /*
   |--------------------------------------------------------------------------

@@ -11,9 +11,9 @@
         <h2>Sign In</h2>
         <?= form_open('auth/authenticate', array('class' => 'form-horizontal')); ?>
         <div class="control-group">
-            <label class="control-label" for="login">E-mail Address</label>
+            <label class="control-label" for="login">Mobile No</label>
             <div class="controls">
-                <?= form_input('login', NULL) ?>
+                <?= form_input('login') ?>
             </div>
         </div>
         <div class="control-group">
@@ -31,35 +31,24 @@
     </div>
     <div class="span6">
         <h2>Register</h2>
-        <?= form_open('auth/createaccount', array('class' => 'form-horizontal')); ?>
-        <div class="control-group">
-            <label for="forename" class="control-label">Forename</label>
-            <div class="controls">
-                <?= form_input('forename'); ?>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="surname" class="control-label">Surname</label>
-            <div class="controls">
-                <?= form_input('surname'); ?>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="email" class="control-label">E-Mail</label>
-            <div class="controls">
-                <?= form_input('email'); ?>
-            </div>
-        </div>
+        <?= validation_errors() ?>
+        <?= form_open('auth/register', array('class' => 'form-horizontal')); ?>
         <div class="control-group">
             <label for="phone" class="control-label">Mobile No</label>
             <div class="controls">
-                <?= form_input('phone'); ?>
+                <?= form_input('phone',set_value('phone'),'maxlength="11"'); ?>
             </div>
         </div>
         <div class="control-group">
             <label for="password" class="control-label">Password</label>
             <div class="controls">
-                <?= form_password('password'); ?>
+                <?= form_password('password',set_value('password')); ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="confirmpassword" class="control-label">Confirm Password</label>
+            <div class="controls">
+                <?= form_password('confirmpassword',set_value('confirmpassword')); ?>
             </div>
         </div>
         <div class="control-group">
