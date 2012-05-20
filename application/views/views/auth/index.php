@@ -13,7 +13,7 @@
         <div class="control-group">
             <label class="control-label" for="login">Mobile No</label>
             <div class="controls">
-                <?= form_input('login') ?>
+                <input name="login" type="tel" maxlength="11" />
             </div>
         </div>
         <div class="control-group">
@@ -36,19 +36,19 @@
         <div class="control-group">
             <label for="phone" class="control-label">Mobile No</label>
             <div class="controls">
-                <?= form_input('phone',set_value('phone'),'maxlength="11"'); ?>
+                <input name="phone" type="tel" maxlength="11" />
             </div>
         </div>
         <div class="control-group">
             <label for="password" class="control-label">Password</label>
             <div class="controls">
-                <?= form_password('password',set_value('password')); ?>
+                <?= form_password('password', set_value('password')); ?>
             </div>
         </div>
         <div class="control-group">
             <label for="confirmpassword" class="control-label">Confirm Password</label>
             <div class="controls">
-                <?= form_password('confirmpassword',set_value('confirmpassword')); ?>
+                <?= form_password('confirmpassword', set_value('confirmpassword')); ?>
             </div>
         </div>
         <div class="control-group">

@@ -27,15 +27,20 @@
                     <a class="brand" href="<?= site_url() ?>"><?= APPTITLE ?></a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            
+                            <?php if ($this->uri->uri_string() != 'admin/login'): ?>
                                 <?php if (isLoggedIn()): ?>
-                                    <li><?= anchor('treasure', 'My Treasure') ?></li>
-                                    <li><?= anchor('logout', 'Sign Out') ?></li>
+                                    <?php if (isAdmin()): ?>
+                                        <li class="btn-danger"><?= anchor('admin/home', 'Dashboard') ?></li>
+                                        <li><?= anchor('admin/login/logout', 'Sign Out') ?></li>
+                                    <?php else: ?>
+                                        <li><?= anchor('treasure', 'My Treasure') ?></li>
+                                        <li><?= anchor('logout', 'Sign Out') ?></li>
+                                    <?php endif; ?>
                                 <?php else: ?>
                                     <li><?= anchor(site_url(), 'Home') ?></li>
                                     <li><?= anchor(site_url('auth'), 'Sign In/Register') ?></li>
                                 <?php endif; ?>
-                            
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -44,21 +49,21 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <?php //if ($this->agent->is_mobile()): ?>
-                    <?php if (isLoggedIn()): ?>
+                    <?php //if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
+                    <?php if (isLoggedIn() && !isAdmin()): ?>
                         <p>My ID:<?= md5('USER' . $me->phone) ?></p>
                     <?php endif; ?>
                     <?= $content ?>
-                    <?php //else: ?>
-                    <!--                        <div class="alert  alert-error">
-                                                <ul class="thumbnails">    
-                                                    <li class="span1"><img class="pull-left" src="<?= base_url() . VIEWPATH ?>img/error.png" /></li>
-                                                    <li class="span10">
-                                                        <h1 class="alert-heading">Error</h1>
-                                                        <p>This Application Is Only Available To Mobile Devices</p>
-                                                    </li>
-                                                </ul>
-                                            </div>-->
+                    <?php // else: ?>
+                    <!--                    <div class="alert  alert-error">
+                                            <ul class="thumbnails">    
+                                                <li class="span1"><img class="pull-left" src="<?= base_url() . VIEWPATH ?>img/error.png" /></li>
+                                                <li class="span10">
+                                                    <h1 class="alert-heading">Error</h1>
+                                                    <p>This Application Is Only Available To Mobile Devices</p>
+                                                </li>
+                                            </ul>
+                                        </div>-->
                     <?php //endif; ?>
                 </div>
             </div>
