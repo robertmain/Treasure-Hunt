@@ -8,9 +8,8 @@ class Treasure_model extends MY_Model {
         $this->before_delete = array('delete_found');
     }
 
-    public function delete_found($row) {
-        //$this->db->delete('found', array('treasure' => $row->id));
-        exit('VALUE IS: ' . $row->id);
+    public function delete_found($id) {
+        $this->db->delete('found', array('treasure' => $id));
     }
 
 }
