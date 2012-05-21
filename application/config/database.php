@@ -41,18 +41,13 @@ if (!defined('BASEPATH'))
   | the active record class
  */
 
-if ($_SERVER['SERVER_NAME'] == 'treasurehunt.pagodabox.com') {
-    $active_group = 'production';
-}
-else {
-    $active_group = 'default';
-}
+$active_group = 'production';
 $active_record = TRUE;
 
-$db['production']['hostname'] = 'localhost';
-$db['production']['username'] = 'treasurehunt';
-$db['production']['password'] = 'treasurehunt';
-$db['production']['database'] = 'treasurehunt';
+$db['production']['hostname'] = $_SERVER["DB1_HOST"];
+$db['production']['username'] = $_SERVER["DB1_USER"];
+$db['production']['password'] = $_SERVER["DB1_PASS"];
+$db['production']['database'] = $_SERVER["DB1_NAME"];
 $db['production']['dbdriver'] = 'mysql';
 $db['production']['dbprefix'] = '';
 $db['production']['pconnect'] = TRUE;
