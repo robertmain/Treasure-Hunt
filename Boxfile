@@ -1,0 +1,16 @@
+web1:
+  php_short_open_tag: "1"
+  php_session_save_handler: memcache
+  php_session_save_path: tcp://tunnel.pagodabox.com:11211
+  php_extensions:
+    - mysql
+    - gd
+    - curl
+    - mcrypt
+    - mysqli
+    - mbstring
+    - memcache
+    - memcached
+    - eaccelerator
+    - zip
+  php_date_timezone: "Europe/London"
