@@ -1,6 +1,6 @@
 <?php
 
-class Admin_login extends Admin_Controller {
+class Admin_login extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
