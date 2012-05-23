@@ -47,5 +47,8 @@ $template['active_template'] = 'default';
 $template['default']['template'] = 'templates/template.php';
 $template['default']['regions'] = array('header','breadcrumbs','content','footer');
 
+$template['live']['template'] = 'templates/live.php';
+$template['live']['regions'] = array('header','breadcrumbs','content','footer');
+
 /* End of file template.php */
 /* Location: ./system/application/config/template.php */
