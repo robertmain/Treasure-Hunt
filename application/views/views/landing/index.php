@@ -1,4 +1,5 @@
-<h1><?= APPTITLE ?></h1>
+<h1>Home</h1>
 <p>
-    <a class="btn btn-primary btn-large" href="<?= site_url('auth') ?>">Login/Sign Up</a>
+    <a class="btn btn-success btn-large" href="<?= site_url('auth/login') ?>">Sign In</a>
+    <a class="btn btn-success btn-large" href="<?= site_url('auth/register') ?>">Sign Up</a>
 </p>

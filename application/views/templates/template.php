@@ -40,7 +40,8 @@
                                     <?php endif; ?>
                                 <?php else: ?>
                                     <li><?= anchor(site_url(), 'Home') ?></li>
-                                    <li><?= anchor(site_url('auth'), 'Sign In/Register') ?></li>
+                                    <li><?= anchor(site_url('auth/login'), 'Sign In') ?></li>
+                                    <li><?= anchor(site_url('auth/register'), 'Register') ?></li>
                                 <?php endif; ?>
                             <?php endif; ?>
                         </ul>

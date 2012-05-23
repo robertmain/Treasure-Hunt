@@ -7,6 +7,6 @@
     </div>
 <?php else: ?>
     <h1>Treasure Found!</h1>
-    <h2>Treasure</h2>
+    <h2><?= $Treasure->title ?></h2>
     <p><?= auto_typography($Treasure->text) ?></p>
 <?php endif; ?>
