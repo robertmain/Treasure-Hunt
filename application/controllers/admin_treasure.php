@@ -36,7 +36,7 @@ class Admin_treasure extends Admin_Controller {
                 'clue' => $this->input->post('clue')
             );
             $newlyAddedTreasure = $this->treasure_model->insert($newTreasure);
-            $this->treasure_model->update_by('id', $newlyAddedTreasure, array('md5' => md5($newlyAddedTreasure)));
+            $this->treasure_model->update_by('id', $newlyAddedTreasure, array('md5' => md5('FDSAfdsa34' . $newlyAddedTreasure)));
             redirect('admin/treasure');
         }
     }

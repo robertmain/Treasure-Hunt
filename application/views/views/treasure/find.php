@@ -1,4 +1,3 @@
-
 <?php if ($found == TRUE): ?>
     <div class="alert">
         <h1 class="alert-heading">Error</h1>
