@@ -7,6 +7,7 @@ class Home extends MY_Controller {
         if (isLoggedIn()) {
             redirect('treasure');
         }
+        $this->load->model(array('mytreasure_model'));
     }
 
     public function index() {

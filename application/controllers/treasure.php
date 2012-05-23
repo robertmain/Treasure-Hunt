@@ -1,6 +1,6 @@
 <?php
 
-class Treasure extends MY_PirateController {
+class Treasure extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -9,6 +9,9 @@ class Treasure extends MY_PirateController {
     }
 
     public function index() {
+        if (!isLoggedIn() && !isAdmin()) {
+            show_404(current_url(), FALSE);
+        }
         $this->data['treasure'] = $this->treasure_model->get_all();
         $this->template->write_view('content', 'views/treasure/index', $this->data);
         $this->template->render();
@@ -25,11 +28,14 @@ class Treasure extends MY_PirateController {
                 }
                 else {
                     $found = FALSE;
-                    $this->mytreasure_model->insert(array(
-                    'pirate' => $this->session->userdata('id'),
-                    'treasure' => $this->data['Treasure']->id,
-                    'time' => time()
-                    ));
+
+                    if (isLoggedIn()) {
+                        $this->mytreasure_model->insert(array(
+                            'pirate' => $this->session->userdata('id'),
+                            'treasure' => $this->data['Treasure']->id,
+                            'time' => time()
+                        ));
+                    }
                 }
                 $this->data['found'] = $found;
                 $this->template->write_view('content', 'views/treasure/find', $this->data);

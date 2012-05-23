@@ -33,8 +33,12 @@
                                         <li class="admin btn-danger"><?= anchor('admin/home', 'Dashboard') ?></li>
                                         <li class="admin btn-danger"><?= anchor('admin/treasure', 'Treasure') ?></li>
                                         <li class="admin btn-danger"><?= anchor('admin/admins', 'Admins') ?></li>
+<<<<<<< HEAD
                                         <li class="admin btn-danger"><?= anchor('admin/pirates/stats', 'Users stats') ?></li>                                        
                                         <li><?= anchor('admin/login/logout', 'Sign Out') ?></li>
+=======
+                                        <li><?= anchor('admin/logout', 'Sign Out') ?></li>
+>>>>>>> 5dedabc0172c66eb252b581024507ad6ee54f699
                                     <?php else: ?>
                                         <li><?= anchor('treasure', 'My Treasure') ?></li>
                                         <li><?= anchor('logout', 'Sign Out') ?></li>
