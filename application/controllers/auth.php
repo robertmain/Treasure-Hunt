@@ -55,7 +55,7 @@ class Auth extends MY_Controller {
                 'phone' => $this->input->post('phone'),
                 'password' => $this->input->post('password')
             );
-            $this->pirate_model->insert();
+            $this->pirate_model->insert($newPirate);
             $this->session->set_flashdata('registerinfo', array('title' => 'Information', 'content' => 'Your account has been created, however for security reasons you must visit the ' . TEAMNAME . ' booth to verify your account. '));
             redirect('auth');
         }
