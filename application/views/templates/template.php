@@ -33,7 +33,7 @@
                                         <li class="admin btn-danger"><?= anchor('admin/home', 'Dashboard') ?></li>
                                         <li class="admin btn-danger"><?= anchor('admin/treasure', 'Treasure') ?></li>
                                         <li class="admin btn-danger"><?= anchor('admin/admins', 'Admins') ?></li>
-                                        <li><?= anchor('admin/login/logout', 'Sign Out') ?></li>
+                                        <li><?= anchor('admin/logout', 'Sign Out') ?></li>
                                     <?php else: ?>
                                         <li><?= anchor('treasure', 'My Treasure') ?></li>
                                         <li><?= anchor('logout', 'Sign Out') ?></li>

@@ -11,7 +11,10 @@
                 <th>Registered Users</th> <td><?= sizeof($registeredUsers) ?></td>
             </tr>
             <tr>
-                <th>Total Codes Found</th> <td><?= sizeof($registeredUsers) ?></td>
+                <th>Total Codes In Database</th> <td><?= sizeof($totalCodesInDatabase) ?></td>
+            </tr>
+            <tr>
+                <th>Total Codes Found</th> <td><?= sizeof($totalFoundCodes) ?></td>
             </tr>
             <tr>
                 <th>Average Codes Found Per User</th> <td><?= sizeof($registeredUsers) ?></td>
