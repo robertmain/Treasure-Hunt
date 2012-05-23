@@ -25,7 +25,11 @@ class Treasure extends MY_PirateController {
                 }
                 else {
                     $found = FALSE;
-                    $this->mytreasure_model->insert(array('pirate' => $this->session->userdata('id'), 'treasure' => $this->data['Treasure']->id));
+                    $this->mytreasure_model->insert(array(
+                    'pirate' => $this->session->userdata('id'),
+                    'treasure' => $this->data['Treasure']->id,
+                    'time' => time()
+                    ));
                 }
                 $this->data['found'] = $found;
                 $this->template->write_view('content', 'views/treasure/find', $this->data);

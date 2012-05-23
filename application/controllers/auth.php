@@ -65,7 +65,8 @@ class Auth extends MY_Controller {
         else {
             $newPirate = array(
                 'phone' => $this->input->post('phone'),
-                'password' => hash('sha512', $this->input->post('password'))
+                'password' => hash('sha512', $this->input->post('password')),
+                'signup' => time()
             );
             $this->pirate_model->insert($newPirate);
             $this->session->set_flashdata('registerinfo', array('title' => 'Information', 'content' => 'Your account has been created, press the button below to sign in and start scanning!<br /> <a href="' . site_url('auth/login') . '" class="btn btn-success">Sign In</a>'));
