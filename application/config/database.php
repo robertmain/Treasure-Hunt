@@ -43,22 +43,22 @@ if (!defined('BASEPATH'))
 
 $active_record = TRUE;
 if ($_SERVER['SERVER_NAME'] == 'treasurehunt.pagodabox.com') {
-    $active_group = 'production';
-    $db['production']['hostname'] = $_SERVER["DB1_HOST"];
-    $db['production']['username'] = $_SERVER["DB1_USER"];
-    $db['production']['password'] = $_SERVER["DB1_PASS"];
-    $db['production']['database'] = $_SERVER["DB1_NAME"];
-    $db['production']['dbdriver'] = 'mysql';
-    $db['production']['dbprefix'] = '';
-    $db['production']['pconnect'] = TRUE;
-    $db['production']['db_debug'] = TRUE;
-    $db['production']['cache_on'] = FALSE;
-    $db['production']['cachedir'] = '';
-    $db['production']['char_set'] = 'utf8';
-    $db['production']['dbcollat'] = 'utf8_general_ci';
-    $db['production']['swap_pre'] = '';
-    $db['production']['autoinit'] = TRUE;
-    $db['production']['stricton'] = FALSE;
+    $active_group = 'default';
+    $db['default']['hostname'] = $_SERVER["DB1_HOST"];
+    $db['default']['username'] = $_SERVER["DB1_USER"];
+    $db['default']['password'] = $_SERVER["DB1_PASS"];
+    $db['default']['database'] = $_SERVER["DB1_NAME"];
+    $db['default']['dbdriver'] = 'mysql';
+    $db['default']['dbprefix'] = '';
+    $db['default']['pconnect'] = TRUE;
+    $db['default']['db_debug'] = TRUE;
+    $db['default']['cache_on'] = FALSE;
+    $db['default']['cachedir'] = '';
+    $db['default']['char_set'] = 'utf8';
+    $db['default']['dbcollat'] = 'utf8_general_ci';
+    $db['default']['swap_pre'] = '';
+    $db['default']['autoinit'] = TRUE;
+    $db['default']['stricton'] = FALSE;
 }
 else {
     $active_group = 'default';
