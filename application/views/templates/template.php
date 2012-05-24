@@ -53,22 +53,22 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <?php //if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
-                    <?php if (isLoggedIn() && !isAdmin()): ?>
-                        <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
+                    <?php if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
+                        <?php if (isLoggedIn() && !isAdmin()): ?>
+                            <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
+                        <?php endif; ?>
+                        <?= $content ?>
+                    <?php else: ?>
+                        <div class="alert  alert-error">
+                            <ul class="thumbnails">    
+                                <li class="span1"><img class="pull-left" src="<?= base_url() . VIEWPATH ?>img/error.png" /></li>
+                                <li class="span10">
+                                    <h1 class="alert-heading">Error</h1>
+                                    <p>This Application Is Only Available To Mobile Devices</p>
+                                </li>
+                            </ul>
+                        </div>
                     <?php endif; ?>
-                    <?= $content ?>
-                    <?php // else: ?>
-                    <!--                    <div class="alert  alert-error">
-                                            <ul class="thumbnails">    
-                                                <li class="span1"><img class="pull-left" src="<?= base_url() . VIEWPATH ?>img/error.png" /></li>
-                                                <li class="span10">
-                                                    <h1 class="alert-heading">Error</h1>
-                                                    <p>This Application Is Only Available To Mobile Devices</p>
-                                                </li>
-                                            </ul>
-                                        </div>-->
-                    <?php //endif; ?>
                 </div>
             </div>
             <?php if ($this->uri->uri_string() != 'admin/login'): ?>

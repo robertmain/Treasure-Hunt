@@ -21,6 +21,7 @@ class Mytreasure_model extends MY_Model {
         $this->db->select('pirates.phone,pirates.signup,count(found.id) as treasures');
         $this->db->from('pirates');
         $this->db->join('found', 'found.pirate = pirates.id', 'left');
+        $this->db->where('pirates.admin', '0');
         $this->db->group_by("pirates.id");
         return $this->db->get()->result();
     }

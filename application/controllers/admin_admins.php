@@ -20,7 +20,8 @@ class Admin_admins extends Admin_Controller {
                 'email' => $this->input->post('email'),
                 'username' => $this->input->post('username'),
                 'password' => $this->input->post('password'),
-                'admin' => '1'
+                'admin' => '1',
+                'signup' => time()
             );
             $this->pirate_model->insert($newAdmin);
             $this->output->set_content_type('application/json')->set_output(json_encode($this->pirate_model->get_many_by('admin', '1')));
@@ -40,7 +41,6 @@ class Admin_admins extends Admin_Controller {
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
-            'admin' => '1'
         );
         if ($this->input->post('password')) {
             $updatedAdmin['password'] = hash('sha512', $this->input->post('password'));
@@ -48,14 +48,14 @@ class Admin_admins extends Admin_Controller {
         $this->pirate_model->update_by('id', $this->input->post('id'), $updatedAdmin);
         redirect('admin/admins');
     }
-    
-    public function delete(){
+
+    public function delete() {
         $this->data['Admin'] = $this->pirate_model->get($this->uri->segment(4));
         $this->template->write_view('content', 'views/admin/admins/delete', $this->data);
         $this->template->render();
     }
-    
-    public function remove(){
+
+    public function remove() {
         $this->pirate_model->delete($this->uri->segment(4));
         redirect('admin/admins');
     }
