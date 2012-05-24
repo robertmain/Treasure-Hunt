@@ -33,12 +33,8 @@
                                         <li class="admin btn-danger"><?= anchor('admin/home', 'Dashboard') ?></li>
                                         <li class="admin btn-danger"><?= anchor('admin/treasure', 'Treasure') ?></li>
                                         <li class="admin btn-danger"><?= anchor('admin/admins', 'Admins') ?></li>
-<<<<<<< HEAD
-                                        <li class="admin btn-danger"><?= anchor('admin/pirates/stats', 'Users stats') ?></li>                                        
-                                        <li><?= anchor('admin/login/logout', 'Sign Out') ?></li>
-=======
+                                        <li class="admin btn-danger"><?= anchor('admin/pirates/stats', 'Pirate Stats') ?></li>                  
                                         <li><?= anchor('admin/logout', 'Sign Out') ?></li>
->>>>>>> 5dedabc0172c66eb252b581024507ad6ee54f699
                                     <?php else: ?>
                                         <li><?= anchor('treasure', 'My Treasure') ?></li>
                                         <li><?= anchor('logout', 'Sign Out') ?></li>
@@ -59,7 +55,7 @@
                 <div class="span12">
                     <?php //if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
                     <?php if (isLoggedIn() && !isAdmin()): ?>
-                        <p>My ID:<?= md5('USER' . $me->phone) ?></p>
+                        <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
                     <?php endif; ?>
                     <?= $content ?>
                     <?php // else: ?>

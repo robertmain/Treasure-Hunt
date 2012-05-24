@@ -18,14 +18,40 @@ class Mytreasure_model extends MY_Model {
     }
 
     public function get_treasure_per_user() {
-               
         $this->db->select('pirates.phone,pirates.signup,count(found.id) as treasures');
         $this->db->from('pirates');
         $this->db->join('found', 'found.pirate = pirates.id', 'left');
         $this->db->group_by("pirates.id");
-             
         return $this->db->get()->result();
     }
-    
+
+    public function get_all_found() {
+        $this->db->select('found.id as f_id, found.pirate, found.treasure, treasure.title');
+        $this->db->from('found');
+        $this->db->join('pirates', 'pirates.id = found.pirate');
+        $this->db->join('treasure', 'treasure.id = found.treasure');
+        $this->db->order_by('found.time');
+        $results = array();
+        foreach ($this->db->get()->result() as $Found) {
+            $Found->pirate = md5(TREASURESALT . $Found->pirate);
+            $results[] = $Found;
+        }
+        return $results;
+    }
+
+    public function get_new_found($id) {
+        $this->db->select('found.id as f_id, found.pirate, found.treasure, treasure.title');
+        $this->db->from('found');
+        $this->db->where('found.id >', $id);
+        $this->db->join('pirates', 'pirates.id = found.pirate');
+        $this->db->join('treasure', 'treasure.id = found.treasure');
+        $this->db->order_by('found.time');
+        $results = array();
+        foreach ($this->db->get()->result() as $Found) {
+            $Found->pirate = md5(TREASURESALT . $Found->pirate);
+            $results[] = $Found;
+        }
+        return $results;
+    }
 
 }

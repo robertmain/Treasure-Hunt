@@ -5,7 +5,7 @@ class Pirate_model extends MY_Model {
     public function __construct() {
         parent::__construct();
         $this->before_delete = array('delete_found');
-        $this->after_get = array('resolve_timestamp');
+        //$this->after_get = array('resolve_timestamp');
     }
 
     public function delete_found($id) {

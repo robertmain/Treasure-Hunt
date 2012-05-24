@@ -19,7 +19,6 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <?php //if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
                     <?php if (isLoggedIn() && !isAdmin()): ?>
                         <p>My ID:<?= md5('USER' . $me->phone) ?></p>
                     <?php endif; ?>

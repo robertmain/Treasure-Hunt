@@ -38,7 +38,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define ('APPTITLE', 'QR Treasure Hunt');
 define ('TEAMNAME', 'Gray-Man Software');
 define ('VIEWPATH', APPPATH . 'views/');
-define('FRIENDLYDATEFORMAT', 'l jS M Y');
-
+define('FRIENDLYDATEFORMAT', 'l jS M Y H:i');
+define('TREASURESALT', sha1('TREASURE'));
+define('PIRATESALT', sha1('USER'));
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
