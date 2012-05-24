@@ -14,13 +14,18 @@ class Admin_live extends MY_Controller {
     }
 
     public function socket() {
-        if ($this->uri->segment(4)) {
-            $response = $this->mytreasure_model->get_new_found($this->uri->segment(4));
+        if ($this->input->is_ajax_request()) {
+            if ($this->uri->segment(4)) {
+                $response = $this->mytreasure_model->get_new_found($this->uri->segment(4));
+            }
+            else {
+                $response = $this->mytreasure_model->get_all_found();
+            }
+            $this->output->set_content_type('application/json')->set_output(json_encode($response));
         }
         else {
-            $response = $this->mytreasure_model->get_all_found();
+            show_404(current_url(), FALSE);
         }
-        $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }
 
 }

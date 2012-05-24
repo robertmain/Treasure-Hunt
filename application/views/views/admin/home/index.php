@@ -8,7 +8,7 @@
     <div class="span6">
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Registered Users</th> <td><?= sizeof($registeredUsers) ?></td>
+                <th>Pirates</th> <td><?= sizeof($registeredUsers) ?></td>
             </tr>
             <tr>
                 <th>Total Codes In Database</th> <td><?= sizeof($totalCodesInDatabase) ?></td>
