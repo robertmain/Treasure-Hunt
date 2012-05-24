@@ -26,21 +26,21 @@ class Mytreasure_model extends MY_Model {
     }
 
     public function get_all_found() {
-        $this->db->select('found.id as f_id, found.pirate, found.treasure, treasure.title');
+        $this->db->select('found.id as f_id, found.treasure, treasure.title, pirates.phone');
         $this->db->from('found');
         $this->db->join('pirates', 'pirates.id = found.pirate');
         $this->db->join('treasure', 'treasure.id = found.treasure');
         $this->db->order_by('found.time');
         $results = array();
         foreach ($this->db->get()->result() as $Found) {
-            $Found->pirate = md5(TREASURESALT . $Found->pirate);
+            $Found->phone = md5(PIRATESALT . $Found->phone);
             $results[] = $Found;
         }
         return $results;
     }
 
     public function get_new_found($id) {
-        $this->db->select('found.id as f_id, found.pirate, found.treasure, treasure.title');
+        $this->db->select('found.id as f_id, found.treasure, treasure.title, pirates.phone');
         $this->db->from('found');
         $this->db->where('found.id >', $id);
         $this->db->join('pirates', 'pirates.id = found.pirate');
@@ -48,7 +48,7 @@ class Mytreasure_model extends MY_Model {
         $this->db->order_by('found.time');
         $results = array();
         foreach ($this->db->get()->result() as $Found) {
-            $Found->pirate = md5(TREASURESALT . $Found->pirate);
+            $Found->phone = md5(PIRATESALT . $Found->phone);
             $results[] = $Found;
         }
         return $results;
