@@ -26,7 +26,6 @@
                 console.log(jqXHR.status + ' ' +errorThrown);
             },
             success: function(response) {
-                
                 for (item in response){
                     var Found = response[item];
                     $('<div class="alert alert-info span3"><h4 class="alert-heading">Treasure Found</h4><p>User: ' + Found.phone + ' Found Treasure: ' + Found.title + '</p></div>').hide().prependTo('.alertcontainer').fadeIn(1500);
