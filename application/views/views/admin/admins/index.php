@@ -1,4 +1,4 @@
-<div id="myModal" class="modal hide fade" style="display: block; ">
+<div id="newAdmin" class="modal hide fade" style="display: block; ">
     <div class="modal-header">
         <a href="#" class="close" data-dismiss="modal">&times;</a>
         <h2>Add Administrator</h2>
@@ -82,7 +82,7 @@
                 <?php endif; ?>
             </tbody>
         </table>
-        <a data-toggle="modal" href="#myModal" class="btn btn-success"><i class="icon-plus icon-white"></i> Add Admin</a>
+        <a data-toggle="modal" href="#newAdmin" class="btn btn-success"><i class="icon-plus icon-white"></i> Add Admin</a>
     </div>
 </div>
 
