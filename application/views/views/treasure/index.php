@@ -2,7 +2,7 @@
 <table class="table table-bordered table-striped table-condensed">
     <thead>
         <tr>
-            <th>Title</th> <th>Location</th> <th>Status</th>
+            <th>Title</th> <th>Status</th>
         </tr>
     </thead>
     <?php if (sizeof($treasure) > 0): ?>
@@ -23,12 +23,7 @@
             <td><?= $Treasure->title ?></td>
             <td>
                 <?php if (isFound($Treasure->id, $me->id)): ?>
-                    <?= $Treasure->location ?>
-                <?php endif; ?>
-            </td>
-            <td>
-                <?php if (isFound($Treasure->id, $me->id)): ?>
-                    <span class="label label-success">Found</span>
+                    <span class="label label-success">Found</span> <?=$Treasure->location?>
                 <?php else: ?>
                     <span class="label">Not Found</span> <a data-toggle="modal" href="#Modal<?=$Treasure->id?>" class="btn btn-info btn-mini">Clue</a>
                 <?php endif; ?>
