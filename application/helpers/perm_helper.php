@@ -20,3 +20,12 @@ function isLoggedIn() {
     }
 }
 
+function isBanned($userID) {
+    $CI = & get_instance();
+    if ($CI->pirate_model->get_by('id', $userID)->banned == '1') {
+        return TRUE;
+    }
+    else {
+        return FALSE;
+    }
+}

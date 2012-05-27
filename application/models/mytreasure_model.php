@@ -18,7 +18,7 @@ class Mytreasure_model extends MY_Model {
     }
 
     public function get_treasure_per_user() {
-        $this->db->select('pirates.phone,pirates.signup,count(found.id) as treasures');
+        $this->db->select('pirates.phone,pirates.signup,count(found.id) as treasures, pirates.id as p_id');
         $this->db->from('pirates');
         $this->db->join('found', 'found.pirate = pirates.id', 'left');
         $this->db->where('pirates.admin', '0');
@@ -53,6 +53,11 @@ class Mytreasure_model extends MY_Model {
             $results[] = $Found;
         }
         return $results;
+    }
+
+    public function strip_treasure($pirateID) {
+        $this->db->where('pirate', $pirateID);
+        return $this->db->delete($this->_table);
     }
 
 }

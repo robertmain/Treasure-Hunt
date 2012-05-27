@@ -30,11 +30,13 @@ class Treasure extends MY_Controller {
                     $found = FALSE;
 
                     if (isLoggedIn()) {
-                        $this->mytreasure_model->insert(array(
-                            'pirate' => $this->session->userdata('id'),
-                            'treasure' => $this->data['Treasure']->id,
-                            'time' => time()
-                        ));
+                        if (!isBanned($this->session->userdata('id'))) {
+                            $this->mytreasure_model->insert(array(
+                                'pirate' => $this->session->userdata('id'),
+                                'treasure' => $this->data['Treasure']->id,
+                                'time' => time()
+                            ));
+                        }
                     }
                 }
                 $this->data['found'] = $found;

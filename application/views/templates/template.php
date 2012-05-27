@@ -46,10 +46,10 @@
                             <?php if ($this->uri->uri_string() != 'admin/login'): ?>
                                 <?php if (isLoggedIn()): ?>
                                     <?php if (isAdmin()): ?>
-                                        <li class="admin btn-danger"><?= anchor('admin/home', 'Dashboard') ?></li>
-                                        <li class="admin btn-danger"><?= anchor('admin/treasure', 'Treasure') ?></li>
-                                        <li class="admin btn-danger"><?= anchor('admin/admins', 'Admins') ?></li>
-                                        <li class="admin btn-danger"><?= anchor('admin/pirates/stats', 'Pirate Stats') ?></li>                  
+                                        <li><?= anchor('admin/home', 'Dashboard') ?></li>
+                                        <li><?= anchor('admin/treasure', 'Treasure') ?></li>
+                                        <li><?= anchor('admin/admins', 'Admins') ?></li>
+                                        <li><?= anchor('admin/pirates', 'Pirates') ?></li>
                                         <li><?= anchor('admin/logout', 'Sign Out') ?></li>
                                     <?php else: ?>
                                         <li><?= anchor('treasure', 'My Treasure') ?></li>
@@ -72,10 +72,21 @@
                     <?php if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
                         <?php if (isLoggedIn() && !isAdmin()): ?>
                             <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
+                            <?php if (isBanned($this->session->userdata('id'))): ?>
+                                <div class="alert">
+                                    <h3 class="alert-heading">Information</h3>
+                                    <p>
+                                        Your account has been suspended. You may still use this application, 
+                                        however you will be unable to find new pieces of treasure and (at the discretion of staff) 
+                                        your existing pieces of treasure may be removed from you. 
+                                        Please contact a member of <?= TEAMNAME ?>
+                                    </p>
+                                </div>
+                            <?php endif; ?>
                         <?php endif; ?>
                         <?= $content ?>
                     <?php else: ?>
-                        <div class="alert  alert-error">
+                        <div class="alert alert-error">
                             <ul class="thumbnails">    
                                 <li class="span1"><img class="pull-left" src="<?= base_url() . VIEWPATH ?>img/error.png" /></li>
                                 <li class="span10">
@@ -121,14 +132,14 @@
                 }
             }
         }
-            
+                                            
         var messageSeen = getCookie("messageSeen");
         if(messageSeen == null){
             $(document).ready(function() {
                 $('#myModal').modal('show')
             });
         }
-            
+                                            
         $('.dismiss').click(function(){
             setCookie("messageSeen",true,365);
             $('#myModal').modal('hide');

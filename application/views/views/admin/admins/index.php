@@ -66,7 +66,7 @@
                             <td><?= $Admin->username ?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i> User <span class="caret"></span></a>
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Admin <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?= site_url('admin/admins/edit/' . $Admin->id) ?>"><i class="icon-pencil"></i> Edit</a></li>
                                         <li><a href="<?= site_url('admin/admins/delete/' . $Admin->id) ?>"><i class="icon-trash"></i> Delete</a></li>
@@ -105,7 +105,7 @@
                 var str = '';
                 for (var item in admins) {
                     var Admin = admins[item];
-                    str += '<tr><td>' + Admin.forename + ' ' + Admin.surname + '</td> <td>' + Admin.username + '</td> <td><div class="btn-group"><a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i> User <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="<?= base_url() ?>admin/admins/edit/' + Admin.id + '"><i class="icon-pencil"></i> Edit</a></li><li><a href="<?= base_url() ?>admin/admins/edit/' + Admins.id + '"><i class="icon-trash"></i> Delete</a></li></ul></div></td></tr>'
+                    str += '<tr><td>' + Admin.forename + ' ' + Admin.surname + '</td> <td>' + Admin.username + '</td> <td><div class="btn-group"><a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i> Admin <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="<?= base_url() ?>admin/admins/edit/' + Admin.id + '"><i class="icon-pencil"></i> Edit</a></li><li><a href="<?= base_url() ?>admin/admins/edit/' + Admins.id + '"><i class="icon-trash"></i> Delete</a></li></ul></div></td></tr>'
                 }
                 $('tbody').append(str);
                 forename.val(null);

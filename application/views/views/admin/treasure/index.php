@@ -20,8 +20,8 @@
                             <td><?= $Treasure->clue ?></td> 
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary" href="<?= site_url('admin/treasure/view/' . $Treasure->id) ?>"><i class="icon-qrcode icon-white"></i> Treasure</a>
-                                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                                    <a class="btn" href="<?= site_url('admin/treasure/view/' . $Treasure->id) ?>"><i class="icon-qrcode"></i> Treasure</a>
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?= site_url('admin/treasure/view/' . $Treasure->id) ?>"><i class="icon-eye-open"></i> View</a></li>
                                         <li class="divider"></li>
@@ -39,7 +39,6 @@
                 <?php endif; ?>
             </tbody>
         </table>
-
         <a class="btn btn-success" href="<?= site_url('admin/treasure/add') ?>"><i class="icon-plus icon-white"></i> Add Treasure</a>
     </div>
 </div>
