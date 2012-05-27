@@ -91,6 +91,7 @@
                 <hr>
                 <footer>
                     <p>
+                        Proudly powered by <?= anchor('http://pagodabox.com', 'Pagoda Box') ?><br />
                         Copyright <?= date('Y') ?> &copy; <?= APPTITLE ?><br />
                         A <?= TEAMNAME ?> Web Application<br />
                         All Rights Reserved
@@ -121,14 +122,14 @@
                 }
             }
         }
-                                            
+                                                    
         var messageSeen = getCookie("messageSeen");
         if(messageSeen == null){
             $(document).ready(function() {
                 $('#myModal').modal('show')
             });
         }
-                                            
+                                                    
         $('.dismiss').click(function(){
             setCookie("messageSeen",true,365);
             $('#myModal').modal('hide');
