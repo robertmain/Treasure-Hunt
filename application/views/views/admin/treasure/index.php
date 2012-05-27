@@ -18,16 +18,20 @@
                             <td><?= $Treasure->title ?></td>
                             <td><?= $Treasure->location ?></td>
                             <td><?= $Treasure->clue ?></td> 
-                            <td colspan="2"><?= $Treasure->found_id ?></td> 
+                            <?php if($Treasure->id):?>
+                            <td colspan="2"><?= $Treasure->id ?> (<?= $Treasure->phone ?>)</td> 
+                            <?php else: ?>
+                            <td colspan="2"> No One Yet</td> 
+                            <?php endif; ?>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn" href="<?= site_url('admin/treasure/view/' . $Treasure->id) ?>"><i class="icon-qrcode"></i> Treasure</a>
+                                    <a class="btn" href="<?= site_url('admin/treasure/view/' . $Treasure->treasure_id) ?>"><i class="icon-qrcode"></i> Treasure</a>
                                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?= site_url('admin/treasure/view/' . $Treasure->id) ?>"><i class="icon-eye-open"></i> View</a></li>
+                                        <li><a href="<?= site_url('admin/treasure/view/' . $Treasure->treasure_id) ?>"><i class="icon-eye-open"></i> View</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="<?= site_url('admin/treasure/edit/' . $Treasure->id) ?>"><i class="icon-pencil"></i> Edit</a></li>
-                                        <li><a href="<?= site_url('admin/treasure/delete/' . $Treasure->id) ?>"><i class="icon-trash"></i> Delete</a></li>
+                                        <li><a href="<?= site_url('admin/treasure/edit/' . $Treasure->treasure_id) ?>"><i class="icon-pencil"></i> Edit</a></li>
+                                        <li><a href="<?= site_url('admin/treasure/delete/' . $Treasure->treasure_id) ?>"><i class="icon-trash"></i> Delete</a></li>
                                     </ul>
                                 </div>
                             </td>
