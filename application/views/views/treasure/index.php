@@ -1,4 +1,15 @@
 <h1>My Treasure</h1>
+<?php if ((isBanned($this->session->userdata('id'))) && (isLoggedIn())): ?>
+    <div class="alert">
+        <h3 class="alert-heading">Information</h3>
+        <p>
+            Your account has been suspended. You may still use this application, 
+            however you will be unable to find new pieces of treasure and (at the discretion of staff) 
+            your existing pieces of treasure may be removed from you. 
+            Please contact a member of <?= TEAMNAME ?> for more information.
+        </p>
+    </div>
+<?php endif; ?>
 <table class="table table-bordered table-striped table-condensed">
     <thead>
         <tr>
@@ -9,7 +20,7 @@
         <tbody>
             <?php foreach ($treasure as $Treasure): ?>
                 <tr>
-            <div id="Modal<?=$Treasure->id?>" class="modal hide fade" style="display: none; ">
+            <div id="Modal<?= $Treasure->id ?>" class="modal hide fade" style="display: none; ">
                 <div class="modal-header">
                     <h3>Clue For <?= $Treasure->title ?></h3>
                 </div>
@@ -23,9 +34,9 @@
             <td><?= $Treasure->title ?></td>
             <td>
                 <?php if (isFound($Treasure->id, $me->id)): ?>
-                    <span class="label label-success">Found</span> <?=$Treasure->location?>
+                    <span class="label label-success">Found</span> <?= $Treasure->location ?>
                 <?php else: ?>
-                    <span class="label">Not Found</span> <a data-toggle="modal" href="#Modal<?=$Treasure->id?>" class="btn btn-info btn-mini">Clue</a>
+                    <span class="label">Not Found</span> <a data-toggle="modal" href="#Modal<?= $Treasure->id ?>" class="btn btn-info btn-mini">Clue</a>
                 <?php endif; ?>
             </td>
         </tr>

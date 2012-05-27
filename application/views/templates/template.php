@@ -72,17 +72,6 @@
                     <?php if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
                         <?php if (isLoggedIn() && !isAdmin()): ?>
                             <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
-                            <?php if (isBanned($this->session->userdata('id'))): ?>
-                                <div class="alert">
-                                    <h3 class="alert-heading">Information</h3>
-                                    <p>
-                                        Your account has been suspended. You may still use this application, 
-                                        however you will be unable to find new pieces of treasure and (at the discretion of staff) 
-                                        your existing pieces of treasure may be removed from you. 
-                                        Please contact a member of <?= TEAMNAME ?>
-                                    </p>
-                                </div>
-                            <?php endif; ?>
                         <?php endif; ?>
                         <?= $content ?>
                     <?php else: ?>

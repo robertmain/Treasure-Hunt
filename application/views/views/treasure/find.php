@@ -1,4 +1,15 @@
 <h1>Treasure Found</h1>
+<?php if ((isBanned($this->session->userdata('id'))) && (isLoggedIn())): ?>
+    <div class="alert">
+        <h3 class="alert-heading">Information</h3>
+        <p>
+            Your account has been suspended. You may still use this application, 
+            however you will be unable to find new pieces of treasure and (at the discretion of staff) 
+            your existing pieces of treasure may be removed from you. 
+            Please contact a member of <?= TEAMNAME ?> for more information.
+        </p>
+    </div>
+<?php endif; ?>
 <?php if ($found == TRUE): ?>
     <div class="alert">
         <a href="#" data-dismiss="alert" class="close">&times;</a>
