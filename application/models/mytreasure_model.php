@@ -76,8 +76,8 @@ class Mytreasure_model extends MY_Model {
     }
     
     public function treasure_per_pirate(){
-        $this->db->simple_query('SELECT AVG(pirate_treasure) FROM ( SELECT count(id) as pirate_treasure FROM `found` GROUP BY pirate) temp');
-        return $this->db->get()->result();
+        return $this->db->query('SELECT AVG(temp.pirate_treasure) FROM (SELECT count(id) as pirate_treasure FROM `found` GROUP BY pirate) as temp')->result();
+         
     }
 
 }
