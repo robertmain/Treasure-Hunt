@@ -11,5 +11,17 @@ class Treasure_model extends MY_Model {
     public function delete_found($id) {
         $this->db->delete('found', array('treasure' => $id));
     }
+    public function get_all_and_last() {
+        $query='
+SELECT * 
+FROM (SELECT treasure.title, found.pirate, treasure.location, treasure.clue, treasure.id AS id, found.id AS found_id, treasure.text, treasure.md5
+FROM treasure
+LEFT JOIN found ON found.treasure = treasure.id
+ORDER BY found.time DESC
+) AS temp_table
+GROUP BY temp_table.id';
+        
+        return $this->db->query($query)->result();
+    }
 
 }

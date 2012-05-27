@@ -8,7 +8,7 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Title</th> <th>Location</th> <th>Clue</th>
+                    <th>Title</th> <th>Location</th> <th>Clue</th><th>Last Found By</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,7 +17,8 @@
                         <tr>
                             <td><?= $Treasure->title ?></td>
                             <td><?= $Treasure->location ?></td>
-                            <td colspan="2"><?= $Treasure->clue ?></td> 
+                            <td><?= $Treasure->clue ?></td> 
+                            <td colspan="2"><?= $Treasure->found_id ?></td> 
                             <td>
                                 <div class="btn-group">
                                     <a class="btn" href="<?= site_url('admin/treasure/view/' . $Treasure->id) ?>"><i class="icon-qrcode"></i> Treasure</a>

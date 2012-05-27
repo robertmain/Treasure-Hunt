@@ -8,7 +8,7 @@ class Admin_treasure extends Admin_Controller {
     }
 
     public function index() {
-        $this->data['allTreasure'] = $this->treasure_model->get_all();
+        $this->data['allTreasure'] = $this->treasure_model->get_all_and_last();
         $this->template->write_view('content', 'views/admin/treasure/index', $this->data);
         $this->template->render();
     }

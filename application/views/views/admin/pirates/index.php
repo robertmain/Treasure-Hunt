@@ -19,12 +19,13 @@
 <table class="table table-bordered table-striped"> 
     <thead> 
         <tr>
-            <th>Pirate</th> <th>Treasure Found</th> <th colspan="2">Joined</th>
+            <th>ID</th> <th>Pirate</th> <th>Treasure Found</th> <th colspan="2">Joined</th>
         </tr> 
     </thead> 
     <tbody> 
         <?php foreach ($mytreasures as $Mytreasure): ?>
             <tr id="pirate<?= $Mytreasure->p_id ?>"> 
+                <td> <?=$Mytreasure->p_id ?> </td>
                 <td class="phone">
                     <?= $Mytreasure->phone ?>
                     <?php if (isBanned($Mytreasure->p_id)): ?>
