@@ -69,7 +69,9 @@
                                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Admin <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?= site_url('admin/admins/edit/' . $Admin->id) ?>"><i class="icon-pencil"></i> Edit</a></li>
-                                        <li><a href="<?= site_url('admin/admins/delete/' . $Admin->id) ?>"><i class="icon-trash"></i> Delete</a></li>
+                                        <?php if (sizeof($admins) > 1): ?>
+                                            <li><a href="<?= site_url('admin/admins/delete/' . $Admin->id) ?>"><i class="icon-trash"></i> Delete</a></li>
+                                        <?php endif; ?>
                                     </ul>
                                 </div>
                             </td>

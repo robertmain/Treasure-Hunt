@@ -18,7 +18,9 @@
 <h1>Pirates</h1>
 <table class="table table-bordered table-striped"> 
     <thead> 
-        <tr> <th>Pirate</th> <th>Treasure Found</th> <th colspan="2">Joined</th> </tr> 
+        <tr>
+            <th>Pirate</th> <th>Treasure Found</th> <th colspan="2">Joined</th>
+        </tr> 
     </thead> 
     <tbody> 
         <?php foreach ($mytreasures as $Mytreasure): ?>
