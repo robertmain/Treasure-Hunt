@@ -94,9 +94,11 @@
         var surname = $('.surname');
         var email = $('.email');
         var password= $('.password');
+        var username= $('.username');
+        $("#newAdmin").find('input').val(null);
         $.ajax({
             url: '<?= site_url('admin/admins/create') ?>',
-            data: 'forename=' + forename.val() + '&surname=' + surname.val() + '&password=' + password.val() + '&email=' + email.val() + '&<?= $this->security->get_csrf_token_name() . "=" . $this->security->get_csrf_hash() ?>',
+            data: 'forename=' + forename.val() + '&surname=' + surname.val() + '&password=' + password.val() + '&email=' + email.val() + '&username=' + username.val() + '&<?= $this->security->get_csrf_token_name() . "=" . $this->security->get_csrf_hash() ?>',
             type:'POST',
             dataType:'json',
             error: function(jqXHR, error, errorThrown) {

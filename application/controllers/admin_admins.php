@@ -56,7 +56,7 @@ class Admin_admins extends Admin_Controller {
     }
 
     public function remove() {
-        if (sizeof($this->pirate_model->get_many_by(array('admin', '0'))) > 1) {
+        if (sizeof($this->pirate_model->get_many_by(array('admin' => '0'))) > 1) {
             $this->pirate_model->delete($this->uri->segment(4));
         }
         redirect('admin/admins');

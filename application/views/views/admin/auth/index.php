@@ -14,7 +14,7 @@
         <div class="control-group">
             <label for="username" class="control-label">Username</label>
             <div class="controls">
-                <?= form_input('username') ?>
+                <?= form_input('username', NULL, 'autofocus="autofocus" ') ?>
             </div>
         </div>
         <div class="control-group">
