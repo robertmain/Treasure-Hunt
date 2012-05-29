@@ -46,9 +46,6 @@ class Auth extends MY_Controller {
     }
 
     public function register() {
-        if (isLoggedIn()) {
-            show_404(current_url(), FALSE);
-        }
         $this->template->write_view('content', 'views/auth/register');
         $this->template->render();
     }
