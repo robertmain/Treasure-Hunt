@@ -4,14 +4,19 @@ class Treasure extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        if(isAdmin()){
+            redirect('admin/home');
+        }
         $this->load->helper(array('treasure_helper'));
         $this->load->model(array('mytreasure_model'));
     }
 
     public function index() {
-        if (!isLoggedIn() && !isAdmin()) {
+        if (!isLoggedIn() | isAdmin()) {
             show_404(current_url(), FALSE);
         }
+        $this->data['found']->title = $this->config_model->get_by('key', 'completetitle')->value;
+        $this->data['found']->message = $this->config_model->get_by('key', 'completemessage')->value;
         $this->data['treasure'] = $this->treasure_model->get_all();
         $this->template->write_view('content', 'views/treasure/index', $this->data);
         $this->template->render();
@@ -28,7 +33,6 @@ class Treasure extends MY_Controller {
                 }
                 else {
                     $found = FALSE;
-
                     if (isLoggedIn()) {
                         if (!isBanned($this->session->userdata('id'))) {
                             $this->mytreasure_model->insert(array(

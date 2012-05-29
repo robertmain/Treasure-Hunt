@@ -10,6 +10,22 @@
         </p>
     </div>
 <?php endif; ?>
+<?php if (foundAll($this->session->userdata('id'))): ?>
+    <div id="foundAllModal" class="modal hide fade" style="display: none; ">
+        <div class="modal-header">
+            <h3><?=$found->title?></h3>
+        </div>
+        <div class="modal-body">
+            <p><?=$found->message?></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#foundAllModal').modal('show');
+    </script>
+<?php endif; ?>
 <table class="table table-bordered table-striped table-condensed">
     <thead>
         <tr>
@@ -44,7 +60,7 @@
     </tbody>
 <?php else: ?>
     <tr>
-        <td colspan="3"><p class="center"><em>There Is Currently No Treasure In The Database</em></p></td>
+        <td colspan="2"><p class="center"><em>There Is Currently No Treasure In The Database</em></p></td>
     </tr>
 <?php endif; ?>
 </table>

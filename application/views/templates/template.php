@@ -15,6 +15,7 @@
                     window.scrollTo(0, 1);
                 }, 0);
             });
+<?= file_get_contents(base_url() . APPPATH . 'views/js/cookie.js'); ?>
         </script>
     </head>
     <body>
@@ -69,22 +70,10 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <?php if (($this->agent->is_mobile()) | ($this->uri->segment(1) == 'admin')): ?>
-                        <?php if (isLoggedIn() && !isAdmin()): ?>
-                            <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
-                        <?php endif; ?>
-                        <?= $content ?>
-                    <?php else: ?>
-                        <div class="alert alert-error">
-                            <ul class="thumbnails">    
-                                <li class="span1"><img class="pull-left" src="<?= base_url() . VIEWPATH ?>img/error.png" /></li>
-                                <li class="span10">
-                                    <h1 class="alert-heading">Error</h1>
-                                    <p>This Application Is Only Available To Mobile Devices</p>
-                                </li>
-                            </ul>
-                        </div>
+                    <?php if (isLoggedIn() && !isAdmin()): ?>
+                        <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
                     <?php endif; ?>
+                    <?= $content ?>
                 </div>
             </div>
             <?php if ($this->uri->uri_string() != 'admin/login'): ?>
@@ -100,39 +89,15 @@
             <?php endif; ?>
         </div>
     </body>
-</html>
-<?php if ($this->agent->is_mobile()): ?>
-    <script type="text/javascript">
-        function setCookie(c_name,value,exdays){
-            var exdate=new Date();
-            exdate.setDate(exdate.getDate() + exdays);
-            var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-            document.cookie=c_name + "=" + c_value;
-        }
-        function getCookie(c_name){
-            var i,x,y,ARRcookies=document.cookie.split(";");
-            for (i=0;i<ARRcookies.length;i++)
-            {
-                x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
-                y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
-                x=x.replace(/^\s+|\s+$/g,"");
-                if (x==c_name)
-                {
-                    return unescape(y);
-                }
-            }
-        }
-                                                        
-        var messageSeen = getCookie("messageSeen");
-        if(messageSeen == null){
-            $(document).ready(function() {
+    <script type="text/javascript">                                                                            
+        if(!getCookie("messageSeen")){
+            $(document).ready(function(){
                 $('#myModal').modal('show')
             });
         }
-                                                        
         $('.dismiss').click(function(){
             setCookie("messageSeen",true,365);
-            $('#myModal').modal('hide');
+            $(this).parent().parent().modal('hide');
         });
     </script>
-<?php endif; ?>
+</html>
