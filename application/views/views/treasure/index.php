@@ -72,7 +72,7 @@
     </tbody>
 <?php else: ?>
     <tr>
-        <td colspan="2"><p class="center"><em>There Is Currently No Treasure In The Database</em></p></td>
+        <td colspan="2"><p class="center"><em>There Are Currently No Treasure In The Database</em></p></td>
     </tr>
 <?php endif; ?>
 </table>
