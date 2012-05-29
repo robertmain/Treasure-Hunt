@@ -16,7 +16,7 @@ class Treasure extends MY_Controller {
             show_404(current_url(), FALSE);
         }
         $this->data['found']->title = $this->config_model->get_by('key', 'completetitle')->value;
-        $this->data['found']->message = $this->config_model->get_by('key', 'completemessage')->value;
+        $this->data['found']->message = str_replace('%n', sizeof($this->treasure_model->get_all()), str_replace('%TEAMNAME', TEAMNAME, $this->config_model->get_by('key', 'completemessage')->value));
         $this->data['treasure'] = $this->treasure_model->get_all();
         $this->template->write_view('content', 'views/treasure/index', $this->data);
         $this->template->render();

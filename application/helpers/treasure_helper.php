@@ -4,7 +4,7 @@
  *
  * @param Integer $treasure
  * @param Integer $pirate
- * @return type Boolean
+ * @return Boolean
  */
 function isFound($treasure, $pirate) {
     $CI = & get_instance();
@@ -24,7 +24,7 @@ function isFound($treasure, $pirate) {
 function foundAll($pirate) {
     $CI = & get_instance();
     $CI->load->model('myreasure_model', 'treasure_model');
-    if (sizeof($CI->mytreasure_model->get_by(array('pirate' => $pirate))) == sizeof($CI->treasure_model->get_all())) {
+    if (sizeof($CI->mytreasure_model->get_many_by(array('pirate' => $pirate))) == sizeof($CI->treasure_model->get_all())) {
         return TRUE;
     }
     else {

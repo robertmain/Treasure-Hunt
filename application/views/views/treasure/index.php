@@ -10,20 +10,20 @@
         </p>
     </div>
 <?php endif; ?>
-<?php if (foundAll($this->session->userdata('id'))): ?>
-    <div id="foundAllModal" class="modal hide fade" style="display: none; ">
-        <div class="modal-header">
-            <h3><?= $found->title ?></h3>
-        </div>
-        <div class="modal-body">
-            <p><?= $found->message ?></p>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
-        </div>
+<div id="foundAllModal" class="modal hide fade" style="display: none; ">
+    <div class="modal-header">
+        <h3><?= $found->title ?></h3>
     </div>
+    <div class="modal-body">
+        <p><?= $found->message ?></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
+    </div>
+</div>
+<?php if (foundAll($this->session->userdata('id'))): ?>
     <script type="text/javascript">
-        if(!getCookie("foundMessageSeen")){
+        if((!getCookie("foundMessageSeen")) | (getCookie('foundMessageSeen') == undefined)){
             $(document).ready(function(){
                 $('#foundAllModal').modal('show');
             });
@@ -32,6 +32,10 @@
             setCookie("foundMessageSeen",true,365);
             $(this).parent().parent().modal('hide');
         });
+    </script>
+<?php else: ?>
+    <script type="text/javascript">
+        delCookie("foundMessageSeen");
     </script>
 <?php endif; ?>
 <table class="table table-bordered table-striped table-condensed">
