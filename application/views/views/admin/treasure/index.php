@@ -39,7 +39,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="3"><p class="center"><em>No Treasure In Database</em></p></td>
+                        <td colspan="4"><p class="center"><em>No Treasure In Database</em></p></td>
                     </tr>
                 <?php endif; ?>
             </tbody>
