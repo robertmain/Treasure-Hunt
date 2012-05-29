@@ -4,6 +4,9 @@ class Treasure extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        if(!isLoggedIn()){
+            redirect('');
+        }
         if (isAdmin()) {
             redirect('admin/home');
         }

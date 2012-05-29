@@ -1,7 +1,7 @@
 <h1>Register</h1>
 <div class="row">
     <?php if ($this->session->flashdata('registerinfo')): ?>
-        <div class="span6">
+        <div class="span12">
             <div class="alert alert-success">
                 <?php $alert = $this->session->flashdata('registerinfo') ?>
                 <h3 class="alert-heading"><?= $alert['title'] ?></h3>

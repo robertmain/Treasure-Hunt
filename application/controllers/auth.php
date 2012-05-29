@@ -8,7 +8,7 @@ class Auth extends MY_Controller {
     }
 
     public function index() {
-        redirect('auth/login');
+        redirect('login');
     }
 
     public function login() {
@@ -31,7 +31,7 @@ class Auth extends MY_Controller {
                 }
                 else {
                     $this->session->set_flashdata('autherror', array('title' => 'Error', 'content' => 'Your Account Is Not Yet Authoriseed. <br />To Authorise Your Account Please Visit The ' . TEAMNAME . ' Booth And Ask To Get Your Device Activated'));
-                    redirect('auth/login');
+                    redirect('login');
                 }
             }
             else {
@@ -41,7 +41,7 @@ class Auth extends MY_Controller {
         }
         else {
             $this->session->set_flashdata('autherror', array('title' => 'Authentication Error', 'content' => 'Username/Password Not Found'));
-            redirect('auth/login');
+            redirect('login');
         }
     }
 
@@ -68,8 +68,9 @@ class Auth extends MY_Controller {
                 'password' => hash('sha512', $this->input->post('password')),
                 'signup' => time()
             );
-            $this->pirate_model->insert($newPirate);
-            $this->session->set_flashdata('registerinfo', array('title' => 'Information', 'content' => 'Your account has been successfully created.<br /> <a href="' . site_url('auth/login') . '" class="btn btn-large btn-success">Sign In and Start Scanning</a>'));
+            $newPirateID = $this->pirate_model->insert($newPirate);
+            $this->session->set_userdata('id', $newPirateID);
+            $this->session->set_flashdata('registerinfo', array('title' => 'Information', 'content' => 'Your account has been successfully created and you have been logged in.<br /> <a href="' . site_url('') . '" class="btn btn-large btn-success">Go To Dashboard</a>'));
             redirect('auth/register');
         }
     }
