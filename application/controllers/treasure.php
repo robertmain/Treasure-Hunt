@@ -4,7 +4,7 @@ class Treasure extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        if(isAdmin()){
+        if (isAdmin()) {
             redirect('admin/home');
         }
         $this->load->helper(array('treasure_helper'));
@@ -35,11 +35,13 @@ class Treasure extends MY_Controller {
                     $found = FALSE;
                     if (isLoggedIn()) {
                         if (!isBanned($this->session->userdata('id'))) {
-                            $this->mytreasure_model->insert(array(
-                                'pirate' => $this->session->userdata('id'),
-                                'treasure' => $this->data['Treasure']->id,
-                                'time' => time()
-                            ));
+                            if (!isAdmin()) {
+                                $this->mytreasure_model->insert(array(
+                                    'pirate' => $this->session->userdata('id'),
+                                    'treasure' => $this->data['Treasure']->id,
+                                    'time' => time()
+                                ));
+                            }
                         }
                     }
                 }
