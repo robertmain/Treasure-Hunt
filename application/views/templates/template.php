@@ -89,7 +89,7 @@
             <?php endif; ?>
         </div>
     </body>
-    <script type="text/javascript">                                                                            
+    <script type="text/javascript">
         if(!getCookie("messageSeen")){
             $(document).ready(function(){
                 $('#myModal').modal('show')
