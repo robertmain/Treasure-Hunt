@@ -59,10 +59,15 @@
                     <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
                 </div>
             </div>
-            <td><?= $Treasure->title ?></td>
+            <td>
+                <?= $Treasure->title ?>
+                <?php if (isFound($Treasure->id, $me->id)): ?>
+                    <em><?= $Treasure->location ?></em>
+                <?php endif; ?>
+            </td>
             <td>
                 <?php if (isFound($Treasure->id, $me->id)): ?>
-                    <span class="label label-success">Found</span> <?= $Treasure->location ?>
+                    <span class="label label-success">Found</span>
                 <?php else: ?>
                     <span class="label">Not Found</span> <a data-toggle="modal" href="#Modal<?= $Treasure->id ?>" class="btn btn-info btn-mini">Clue</a>
                 <?php endif; ?>

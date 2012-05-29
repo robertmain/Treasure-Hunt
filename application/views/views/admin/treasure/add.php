@@ -10,13 +10,13 @@
         <div class="control-group">
             <label for="title" class="control-label">Treasure Title</label>
             <div class="controls">
-                <?= form_input('title') ?>
+                <?= form_input('title', NULL, 'maxlength="23"') ?>
             </div>
         </div>
         <div class="control-group">
             <label for="location" class="control-label">Location</label>
             <div class="controls">
-                <?= form_input('location') ?>
+                <?= form_input('location', NULL, 'maxlength="23"') ?>
             </div>
         </div>
         <div class="control-group">

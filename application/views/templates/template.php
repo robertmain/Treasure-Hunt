@@ -28,8 +28,8 @@
                     By clicking "Dismiss" and continuing to use this application, we assume that you are happy for us to continue to use cookies in this manner</p>
             </div>
             <div class="modal-footer">
-                <a href="#" class="btn btn-success dismiss">Dismiss</a>
-                <a href="http://www.google.com" class="btn btn-danger">Leave Application</a>
+                <a href="#" class="btn btn-success dismiss">I Agree. Dismiss</a>
+                <a href="http://www.google.com" class="btn btn-danger">I Do Not Agree.</a>
             </div>
         </div>
 
