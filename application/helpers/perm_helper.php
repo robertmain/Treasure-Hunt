@@ -12,11 +12,11 @@ function isAdmin() {
 
 function isLoggedIn() {
     $CI = & get_instance();
-    if (($CI->session->userdata('id')) == '') {
-        return FALSE;
+    if (($CI->session->userdata('id')) && ($CI->pirate_model->get_by('id', $CI->session->userdata('id')))) {
+        return TRUE;
     }
     else {
-        return TRUE;
+        return FALSE;
     }
 }
 
