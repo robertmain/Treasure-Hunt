@@ -19,9 +19,6 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <?php if (isLoggedIn() && !isAdmin()): ?>
-                        <p>My ID:<?= md5('USER' . $me->phone) ?></p>
-                    <?php endif; ?>
                     <?= $content ?>
                 </div>
             </div>
