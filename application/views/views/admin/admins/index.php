@@ -93,9 +93,9 @@
         var forename = $('.forename');
         var surname = $('.surname');
         var email = $('.email');
-        var password= $('.password');
         var username= $('.username');
-        $("#newAdmin").find('input').val(null);
+        var password= $('.password');
+        console.log('Forename is: ' + forename.text());
         $.ajax({
             url: '<?= site_url('admin/admins/create') ?>',
             data: 'forename=' + forename.val() + '&surname=' + surname.val() + '&password=' + password.val() + '&email=' + email.val() + '&username=' + username.val() + '&<?= $this->security->get_csrf_token_name() . "=" . $this->security->get_csrf_hash() ?>',
@@ -106,15 +106,16 @@
             },
             success: function(admins) {
                 $('tbody').empty();
-                var str = '';
+                //var str = '';
                 for (var item in admins) {
                     var Admin = admins[item];
-                    str += '<tr><td>' + Admin.forename + ' ' + Admin.surname + '</td> <td>' + Admin.username + '</td> <td><div class="btn-group"><a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"></i> Admin <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="<?= base_url() ?>admin/admins/edit/' + Admin.id + '"><i class="icon-pencil"></i> Edit</a></li><li><a href="<?= base_url() ?>admin/admins/edit/' + Admins.id + '"><i class="icon-trash"></i> Delete</a></li></ul></div></td></tr>'
+                    $('<tr><td>' + Admin.forename + ' ' + Admin.surname + '</td> <td>' + Admin.username + '</td> <td><div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Admin <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="<?= base_url() ?>admin/admins/edit/' + Admin.id + '"><i class="icon-pencil"></i> Edit</a></li><li><a href="<?= base_url() ?>admin/admins/edit/' + Admin.id + '"><i class="icon-trash"></i> Delete</a></li></ul></div></td></tr>').hide().appendTo('tbody').fadeIn('1500');
                 }
-                $('tbody').append(str);
+                //$('tbody').append(str);
                 forename.val(null);
                 surname.val(null);
                 email.val(null);
+                username.val(null);
                 password.val(null);
             }
         });

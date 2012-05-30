@@ -19,12 +19,16 @@ class Admin_admins extends Admin_Controller {
                 'surname' => $this->input->post('surname'),
                 'email' => $this->input->post('email'),
                 'username' => $this->input->post('username'),
-                'password' => $this->input->post('password'),
+                'password' => hash('sha512',$this->input->post('password')),
                 'admin' => '1',
                 'signup' => time()
             );
             $this->pirate_model->insert($newAdmin);
-            $this->output->set_content_type('application/json')->set_output(json_encode($this->pirate_model->get_many_by('admin', '1')));
+            $admins = $this->pirate_model->get_many_by('admin', '1');
+            foreach($admins as $Admin){
+                unset($Admin->password, $Admin->email, $Admin->signup);
+            }
+            $this->output->set_content_type('application/json')->set_output(json_encode($admins));
         }
     }
 
@@ -40,7 +44,6 @@ class Admin_admins extends Admin_Controller {
             'surname' => $this->input->post('surname'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password'),
         );
         if ($this->input->post('password')) {
             $updatedAdmin['password'] = hash('sha512', $this->input->post('password'));
@@ -56,7 +59,7 @@ class Admin_admins extends Admin_Controller {
     }
 
     public function remove() {
-        if (sizeof($this->pirate_model->get_many_by(array('admin' => '0'))) > 1) {
+        if (sizeof($this->pirate_model->get_many_by(array('admin' => '1'))) > 1) {
             $this->pirate_model->delete($this->uri->segment(4));
         }
         redirect('admin/admins');

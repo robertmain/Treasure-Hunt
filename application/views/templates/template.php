@@ -5,16 +5,20 @@
         <?= link_tag(base_url() . VIEWPATH . 'css/style.css') ?>
         <script type="text/javascript" src="<?= base_url() . VIEWPATH . 'js/jquery.min.js' ?>"></script>
         <script type="text/javascript" src="<?= base_url() . VIEWPATH . 'js/bootstrap.min.js' ?>"></script>
-        <meta name="viewport" content="user-scalable=no, width=device-width" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <title><?= APPTITLE ?></title>
+        <?php if ($this->agent->is_mobile()): ?>
+            <meta name="viewport" content="user-scalable=no, width=device-width" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+            <script type="text/javascript">
+                window.addEventListener("load",function() {
+                    setTimeout(function(){
+                        window.scrollTo(0, 1);
+                    }, 0);
+                });
+            </script>
+        <?php endif; ?>
         <script type="text/javascript">
-            window.addEventListener("load",function() {
-                setTimeout(function(){
-                    window.scrollTo(0, 1);
-                }, 0);
-            });
 <?= file_get_contents(base_url() . APPPATH . 'views/js/cookie.js'); ?>
         </script>
     </head>
