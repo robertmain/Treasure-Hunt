@@ -85,9 +85,7 @@
             <?php if ($this->uri->uri_string() != 'admin/login'): ?>
                 <hr>
                 <footer>
-                    <p class="pull-right">Server Time: <?= date(FRIENDLYDATEFORMAT) ?></p>
                     <p>
-                        Copyright <?= date('Y') ?> &copy; <?= APPTITLE ?><br />
                         A <?= TEAMNAME ?> Web Application<br />
                         All Rights Reserved<br />
                         <?= img(APPPATH . 'views/img/hostedby.png') ?>
