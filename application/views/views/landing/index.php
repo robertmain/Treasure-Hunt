@@ -7,7 +7,7 @@
     <div class="modal-body">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#findingtreasure" data-toggle="tab">Finding Treasure</a></li>
-            <li><a href="#completingthehunt" data-toggle="tab">Completing</a></li>
+            <li><a href="#completingthehunt" data-toggle="tab">Completion</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="findingtreasure">
