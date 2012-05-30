@@ -42,7 +42,7 @@
                     <div class="control-group">
                         <label for="completemessage" class="control-label">Message</label>
                         <div class="controls">
-                            <div class="input completemessage span4" name="completemessage" contenteditable="true"><?= $config[2]->value ?></div>
+                            <div class="input completemessage span4" name="completemessage" contenteditable="true"><?= auto_typography($config[2]->value) ?></div>
                         </div>
                     </div>
                     <div class="control-group">
@@ -70,9 +70,6 @@
                 </table>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="dropdown1">
-        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
     </div>
     <div class="tab-pane fade" id="eucookiecompliancy">
         <h3>EU Cookie Law Compliancy</h3>

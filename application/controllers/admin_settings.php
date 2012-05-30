@@ -17,7 +17,6 @@ class Admin_settings extends Admin_Controller {
     public function update() {
         if ($this->input->is_ajax_request()) {
             $this->config_model->update_by('key', $this->input->post('key'), array('value' => $this->input->post('value')));
-            $this->output->set_content_type('application/json')->set_output(json_encode($this->config_model->get_by('key', $this->input->post('key'))));
         }
         else {
             show_404(current_url(), FALSE);

@@ -15,7 +15,7 @@
         <h3><?= $found->title ?></h3>
     </div>
     <div class="modal-body">
-        <p><?= $found->message ?></p>
+        <p><?= auto_typography($found->message) ?></p>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
