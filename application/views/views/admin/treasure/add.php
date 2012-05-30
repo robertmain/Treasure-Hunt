@@ -22,13 +22,13 @@
         <div class="control-group">
             <label for="location" class="control-label">Text</label>
             <div class="controls">
-                <div class="input clue span4" name="text" contenteditable="true"></div>
+                <?= form_textarea('text', NULL, 'class="text span4"') ?>
             </div>
         </div>
         <div class="control-group">
             <label for="location" class="control-label">Clue</label>
             <div class="controls">
-                <div class="input clue span4" name="clue" contenteditable="true"></div>
+                <?= form_textarea('clue', NULL, 'class="clue span4"') ?>
             </div>
         </div>
         <div class="form-actions">
@@ -37,12 +37,3 @@
         <?= form_close() ?>
     </div>
 </div>
-
-<script type="text/javascript">
-    var form = $('form');
-    $('form').submit(function(event){
-        $('div.input').each(function (){ 
-            $(form).append('<input type="hidden" name="' + $(this).attr('name') + '" value="' + $(this).html() + '">');
-        });
-    });
-</script>
