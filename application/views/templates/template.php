@@ -81,10 +81,10 @@
                 <hr>
                 <footer>
                     <p>
-                        Proudly Powered By <?= anchor('http://pagodabox.com', 'Pagoda Box') ?><br />
                         Copyright <?= date('Y') ?> &copy; <?= APPTITLE ?><br />
                         A <?= TEAMNAME ?> Web Application<br />
-                        All Rights Reserved
+                        All Rights Reserved<br />
+                        <?= img(APPPATH . 'views/img/hostedby.png') ?>
                     </p>
                 </footer>
             <?php endif; ?>

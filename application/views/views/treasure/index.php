@@ -60,10 +60,12 @@
                 </div>
             </div>
             <td>
-                <?= $Treasure->title ?>
-                <?php if (isFound($Treasure->id, $me->id)): ?>
-                    <em><?= $Treasure->location ?></em>
-                <?php endif; ?>
+                <span>
+                    <?= $Treasure->title ?><br />
+                    <?php if (isFound($Treasure->id, $me->id)): ?>
+                        <em><?= $Treasure->location ?></em>
+                    <?php endif; ?>
+                </span>
             </td>
             <td>
                 <?php if (isFound($Treasure->id, $me->id)): ?>
