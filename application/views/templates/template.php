@@ -19,20 +19,21 @@
         </script>
     </head>
     <body>
-        <div class="modal fade hide in out" id="myModal">
-            <div class="modal-header">
-                <h3>Cookies On <?= APPTITLE ?></h3>
+        <?php if ($cookielaw == '1'): ?>
+            <div class="modal fade hide in out" id="myModal">
+                <div class="modal-header">
+                    <h3>Cookies On <?= APPTITLE ?></h3>
+                </div>
+                <div class="modal-body">
+                    <p><?= APPTITLE ?> uses cookies to keep your login session active.
+                        By clicking "Dismiss" and continuing to use this application, we assume that you are happy for us to continue to use cookies in this manner</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-success dismiss">I Agree. Dismiss</a>
+                    <a href="http://www.google.com" class="btn btn-danger">I Do Not Agree.</a>
+                </div>
             </div>
-            <div class="modal-body">
-                <p><?= APPTITLE ?> uses cookies to keep your login session active.
-                    By clicking "Dismiss" and continuing to use this application, we assume that you are happy for us to continue to use cookies in this manner</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-success dismiss">I Agree. Dismiss</a>
-                <a href="http://www.google.com" class="btn btn-danger">I Do Not Agree.</a>
-            </div>
-        </div>
-
+        <?php endif; ?>
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
@@ -90,15 +91,17 @@
             <?php endif; ?>
         </div>
     </body>
-    <script type="text/javascript">
-        if(!getCookie("messageSeen")){
-            $(document).ready(function(){
-                $('#myModal').modal('show')
+    <?php if ($cookielaw == '1'): ?>
+        <script type="text/javascript">
+            if(!getCookie("messageSeen")){
+                $(document).ready(function(){
+                    $('#myModal').modal('show')
+                });
+            }
+            $('.dismiss').click(function(){
+                setCookie("messageSeen",true,365);
+                $(this).parent().parent().modal('hide');
             });
-        }
-        $('.dismiss').click(function(){
-            setCookie("messageSeen",true,365);
-            $(this).parent().parent().modal('hide');
-        });
-    </script>
+        </script>
+    <?php endif; ?>
 </html>
