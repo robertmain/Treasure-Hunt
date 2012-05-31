@@ -28,7 +28,7 @@
         <div class="control-group">
             <label for="location" class="control-label">Clue</label>
             <div class="controls">
-                <?= form_textarea('clue', NULL, 'class="clue span4"') ?>
+                <?= form_textarea('clue', NULL, 'class="clue span4" maxlength="107"') ?>
             </div>
         </div>
         <div class="form-actions">

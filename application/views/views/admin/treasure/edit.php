@@ -29,7 +29,7 @@
         <div class="control-group">
             <label for="location" class="control-label">Clue</label>
             <div class="controls">
-                <?=form_textarea('clue',$Treasure->clue, 'class="text span4"')?>
+                <?=form_textarea('clue',$Treasure->clue, 'class="text span4" maxlength="107"')?>
             </div>
         </div>
         <div class="form-actions">
