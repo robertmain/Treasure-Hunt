@@ -25,7 +25,7 @@
     <tbody> 
         <?php foreach ($mytreasures as $Mytreasure): ?>
             <tr id="pirate<?= $Mytreasure->p_id ?>"> 
-                <td> <?=$Mytreasure->p_id ?> </td>
+                <td> <?= $Mytreasure->p_id ?> </td>
                 <td class="phone">
                     <?= $Mytreasure->phone ?>
                     <?php if (isBanned($Mytreasure->p_id)): ?>
@@ -44,6 +44,8 @@
                                 <li><a href="" data-id="<?= $Mytreasure->p_id ?>" class="ban"><i class="icon-ban-circle"></i> Ban</a></li>
                             <?php endif; ?>
                             <li><a href="#stripTreasureModal" class="striptreasure1" data-id="<?= $Mytreasure->p_id ?>"  data-toggle="modal"><i class="icon-gift"></i> Strip Treasure</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<?= site_url('admin/pirates/manage/' . $Mytreasure->p_id) ?>"><i class="icon-edit"></i> Manage Pirate</a></li>
                         </ul>
                     </div>
                 </td>
