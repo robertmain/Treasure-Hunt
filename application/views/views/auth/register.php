@@ -8,6 +8,18 @@
                 <p><?= $alert['content'] ?></p>
             </div>
         </div>
+        <script type="text/javascript">
+            var start = 10;
+            $('.seconds').html(start);
+            var interval = setInterval(function() {
+                start--;
+                $('.seconds').html(start);
+                if (start == 0) {
+                    window.location = '<?= site_url('treasure') ?>'
+                    clearInterval(interval);
+                }
+            }, 1000);
+        </script>
     <?php else: ?>
         <div class="span6">
             <?= validation_errors() ?>

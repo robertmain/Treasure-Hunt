@@ -67,7 +67,7 @@ class Auth extends MY_Controller {
             );
             $newPirateID = $this->pirate_model->insert($newPirate);
             $this->session->set_userdata('id', $newPirateID);
-            $this->session->set_flashdata('registerinfo', array('title' => 'Information', 'content' => 'Your account has been successfully created and you have been logged in.<br /> <a href="' . site_url('') . '" class="btn btn-large btn-success">Go To Dashboard</a>'));
+            $this->session->set_flashdata('registerinfo', array('title' => 'Information', 'content' => 'Your account has been successfully created and you have been logged in.<br /> <a href="' . site_url('') . '" class="btn btn-large btn-success">Go To Dashboard (Redirecting in <span class="seconds"></span>) </a>'));
             redirect('auth/register');
         }
     }
