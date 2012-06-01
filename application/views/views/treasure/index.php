@@ -76,6 +76,7 @@
                         $('#Click<?= $Treasure->id ?>').click(function(){
                             $('.modal').modal('hide');
                             $('#ClueModal<?=$Treasure->id?>').modal('show');
+                            window.scrollTo(0, 1);
                         });
                     </script>
                 <?php endif; ?>

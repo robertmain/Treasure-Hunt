@@ -44,7 +44,7 @@ $route['login'] = 'auth/login';
 $route['admin/logout'] = 'admin_login/logout';
 $route['admin/(:any)/(:any)'] = 'admin_$1/$2';
 $route['admin/(:any)'] = 'admin_$1';
-$route['404_override'] = '';
+$route['404_override'] = 'error/notfound';
 
 
 /* End of file routes.php */
