@@ -48,7 +48,7 @@
         <tbody>
             <?php foreach ($treasure as $Treasure): ?>
                 <tr>
-            <div id="Modal<?= $Treasure->id ?>" class="modal hide fade" style="display: none; ">
+            <div id="ClueModal<?= $Treasure->id ?>" class="modal hide fade cluemodal">
                 <div class="modal-header">
                     <h3>Clue For <?= $Treasure->title ?></h3>
                 </div>
@@ -71,7 +71,13 @@
                 <?php if (isFound($Treasure->id, $me->id)): ?>
                     <span class="label label-success">Found</span>
                 <?php else: ?>
-                    <span class="label">Not Found</span> <a data-toggle="modal" href="#Modal<?= $Treasure->id ?>" class="btn btn-info btn-mini">Clue</a>
+                    <span class="label">Not Found</span> <a data-toggle="modal" id="Click<?= $Treasure->id ?>" data-id="<?= $Treasure->id ?>" class="btn btn-info btn-mini">Clue</a>
+                    <script type="text/javascript">
+                        $('#Click<?= $Treasure->id ?>').click(function(){
+                            $('.modal').modal('hide');
+                            $('#ClueModal<?=$Treasure->id?>').modal('show');
+                        });
+                    </script>
                 <?php endif; ?>
             </td>
         </tr>
