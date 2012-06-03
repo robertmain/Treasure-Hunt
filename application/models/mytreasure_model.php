@@ -61,15 +61,15 @@ class Mytreasure_model extends MY_Model {
     }
 
     public function getAnalyticsData() {
-        $this->db->select('COUNT(treasure) as "treasure_found", HOUR(FROM_UNIXTIME(time)) as "hour", DAY(FROM_UNIXTIME(time)) as day, time,found.pirate');
+        $this->db->select('COUNT(treasure) as "treasure_found", MINUTE(FROM_UNIXTIME(time)) as "minute", HOUR(FROM_UNIXTIME(time)) as "hour", DAY(FROM_UNIXTIME(time)) as day, time,found.pirate');
         $this->db->from('found');
         $this->db->join('pirates', 'pirates.id = found.pirate', 'LEFT');
         $this->db->join('treasure', 'treasure.id = found.treasure', 'LEFT');
-        $this->db->group_by("hour");
+        $this->db->group_by("minute");
         $this->db->order_by('time', 'ASC');
         $analytics = array();
         foreach ($this->db->get()->result() as $Analytic) {
-            unset($Analytic->hour, $Analytic->day, $Analytic->pirate);
+            unset($Analytic->day, $Analytic->pirate);
             $analytics[] = $Analytic;
         }
         return $analytics;
