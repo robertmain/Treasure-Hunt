@@ -10,7 +10,7 @@ Username: foobar
 Password: fubar
 
 ##Managing The Application
-To add other administrators, or peices of treasure, simply visit:
+To add other administrators, or pieces of treasure, simply visit:
 http://servername/admin/login
 and sign in with the Administrator account listed above. Adding other Administrators will give them access to this area of the application. If you installed this application in a subdirectory named "treasurehunt" on the server domain.com, you should use the following URL:
 http://domain.com/treasurehunt/admin/login
