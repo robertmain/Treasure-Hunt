@@ -10,17 +10,19 @@
         </p>
     </div>
 <?php endif; ?>
-<div id="foundAllModal" class="modal hide fade" style="display: none; ">
-    <div class="modal-header">
-        <h3><?= $found->title ?></h3>
+<?php if (sizeof($Treasure) > 0): ?>
+    <div id="foundAllModal" class="modal hide fade" style="display: none; ">
+        <div class="modal-header">
+            <h3><?= $found->title ?></h3>
+        </div>
+        <div class="modal-body">
+            <p><?= auto_typography($found->message) ?></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
+        </div>
     </div>
-    <div class="modal-body">
-        <p><?= auto_typography($found->message) ?></p>
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
-    </div>
-</div>
+<?php endif; ?>
 <?php if (foundAll($this->session->userdata('id'))): ?>
     <script type="text/javascript">
         if((!getCookie("foundMessageSeen")) | (getCookie('foundMessageSeen') == undefined)){
@@ -75,7 +77,7 @@
                     <script type="text/javascript">
                         $('#Click<?= $Treasure->id ?>').click(function(){
                             $('.modal').modal('hide');
-                            $('#ClueModal<?=$Treasure->id?>').modal('show');
+                            $('#ClueModal<?= $Treasure->id ?>').modal('show');
                             window.scrollTo(0, 1);
                         });
                     </script>
