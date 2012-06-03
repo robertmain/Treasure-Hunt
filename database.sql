@@ -35,7 +35,7 @@ CREATE TABLE `config` (
 
 LOCK TABLES `config` WRITE;
 /*!40000 ALTER TABLE `config` DISABLE KEYS */;
-INSERT INTO `config` VALUES ('authorisation','0');
+INSERT INTO `config` VALUES ('authorisation','0'),('completetitle','Congratulations'),('completemessage','<p><span  26px; \">You have found all %NCODES QR Codes and have been entered into our prize draw. Please Visit The %TEAMNAME booth for more information.</span><br></p>'),('cookielaw','1');
 /*!40000 ALTER TABLE `config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,8 @@ CREATE TABLE `pirates` (
   `authorised` tinyint(1) NOT NULL DEFAULT '0',
   `admin` int(1) NOT NULL DEFAULT '0',
   `username` varchar(255) DEFAULT NULL,
-  `signup` int(11) DEFAULT '0',
+  `signup` int(11) DEFAULT NULL,
+  `banned` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -92,7 +93,7 @@ CREATE TABLE `pirates` (
 
 LOCK TABLES `pirates` WRITE;
 /*!40000 ALTER TABLE `pirates` DISABLE KEYS */;
-INSERT INTO `pirates` VALUES (1,NULL,NULL,'01536478832',NULL,'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86',0,0,NULL,0),(2,'Foo','Bar',NULL,'foo.bar@gmail.com','24057942a277ba9f4be7ee806ecb9c63b1845677d501031367fb67ec273366e9d6edd7e37f1ed30d690fe8ce92a63e944d81658ca49ca70d1f76a386b9e41c13',0,1,'foobar',0);
+INSERT INTO `pirates` VALUES (1,NULL,NULL,'01536478832',NULL,'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86',0,0,NULL,NULL,0),(2,'Foo','Bar',NULL,'foo.bar@gmail.com','24057942a277ba9f4be7ee806ecb9c63b1845677d501031367fb67ec273366e9d6edd7e37f1ed30d690fe8ce92a63e944d81658ca49ca70d1f76a386b9e41c13',0,1,'foobar',NULL,0);
 /*!40000 ALTER TABLE `pirates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,13 +106,13 @@ DROP TABLE IF EXISTS `treasure`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `treasure` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
+  `title` varchar(23) DEFAULT NULL,
   `text` longtext,
   `md5` varchar(255) NOT NULL,
-  `location` varchar(255) DEFAULT NULL,
+  `location` varchar(23) DEFAULT NULL,
   `clue` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +121,6 @@ CREATE TABLE `treasure` (
 
 LOCK TABLES `treasure` WRITE;
 /*!40000 ALTER TABLE `treasure` DISABLE KEYS */;
-INSERT INTO `treasure` VALUES (1,'Example Treasure','This is some example treasure','baaf451ee36a7c85ab407112998ef4ee','Hidden','You\'ll never find me');
 /*!40000 ALTER TABLE `treasure` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-26 17:45:07
+-- Dump completed on 2012-06-03  3:06:42
