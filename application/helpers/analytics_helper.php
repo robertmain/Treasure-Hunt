@@ -14,7 +14,7 @@ function activityToGraph($foundTreasure) {
 
 function signupToGraph($allPirates) {
     $data = Array();
-    $data[] = Array("Time", "Sign-Ups");
+    $data[] = Array("Time", "Registrations");
     foreach ($allPirates as $Pirate) {
         if ($Pirate->minute < 10) {
             $Pirate->minute = '0' . $Pirate->minute;

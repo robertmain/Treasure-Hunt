@@ -24,24 +24,20 @@
     </div>
     <div class="span6">
         <h3>User Registration</h3>
-        <?php if (sizeof($signupData) > 0): ?>
+        <?php if (sizeof(@$signupData) > 0): ?>
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
                 google.setOnLoadCallback(drawChart);
                 function drawChart() {
-                    var data = google.visualization.arrayToDataTable(
-                        <?= signupToGraph($signupData) ?>
-        );
-                        
-            var options = {
-                legend:{position: 'none'},
-                vAxis:{'title': 'Treasure Found'},
-                hAxis:{'title': 'Time'},
-                curveType: 'function'
-            };
-            var chart = new google.visualization.LineChart(document.getElementById('signup_div'));
-            chart.draw(data, options);
-        }
+                    var data = google.visualization.arrayToDataTable(<?= signupToGraph($signupData) ?>);
+                    var options = {
+                        vAxis:{'title': 'Treasure Found'},
+                        hAxis:{'title': 'Time'},
+                        curveType: 'function'
+                    };
+                    var chart = new google.visualization.LineChart(document.getElementById('signup_div'));
+                    chart.draw(data, options);
+                }
             </script>
             <div id="signup_div"></div>
         <?php else: ?>
@@ -52,24 +48,20 @@
 <div class="row">
     <div class="span12">
         <h3><?= APPTITLE ?> Activity</h3>
-        <?php if (sizeof($treasureFoundData) > 0): ?>
+        <?php if (sizeof(@$treasureFoundData) > 0): ?>
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
                 google.setOnLoadCallback(drawChart);
                 function drawChart() {
-                    var data = google.visualization.arrayToDataTable(
-    <?= activityToGraph($treasureFoundData) ?>
-        );
-                        
-            var options = {
-                legend:{position: 'none'},
-                vAxis:{'title': 'Treasure Found'},
-                hAxis:{'title': 'Time'},
-                curveType: 'function'
-            };
-            var chart = new google.visualization.LineChart(document.getElementById('found_div'));
-            chart.draw(data, options);
-        }
+                    var data = google.visualization.arrayToDataTable(<?= activityToGraph($treasureFoundData) ?>); 
+                    var options = {
+                        vAxis:{'title': 'Treasure Found'},
+                        hAxis:{'title': 'Time'},
+                        curveType: 'function'
+                    };
+                    var chart = new google.visualization.LineChart(document.getElementById('found_div'));
+                    chart.draw(data, options);
+                }
             </script>
             <div id="found_div"></div>
         <?php else: ?>
