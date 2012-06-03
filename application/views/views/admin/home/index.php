@@ -36,7 +36,8 @@
             var options = {
                 legend:{position: 'none'},
                 vAxis:{'title': 'Treasure Found'},
-                hAxis:{'title': 'Time'}
+                hAxis:{'title': 'Time'},
+                curveType: 'function'
             };
             var chart = new google.visualization.LineChart(document.getElementById('signup_div'));
             chart.draw(data, options);
@@ -63,7 +64,8 @@
             var options = {
                 legend:{position: 'none'},
                 vAxis:{'title': 'Treasure Found'},
-                hAxis:{'title': 'Time'}
+                hAxis:{'title': 'Time'},
+                curveType: 'function'
             };
             var chart = new google.visualization.LineChart(document.getElementById('found_div'));
             chart.draw(data, options);
