@@ -7,7 +7,7 @@ class Admin_home extends Admin_Controller {
         if (!isLoggedIn()) {
             redirect('admin/login');
         }
-        $this->load->model(array('mytreasure_model'));
+        $this->load->model(array('mytreasure_model', 'pirate_model'));
         $this->load->helper(array('analytics'));
     }
 
@@ -16,7 +16,8 @@ class Admin_home extends Admin_Controller {
         $this->data['totalCodesInDatabase'] = $this->treasure_model->get_all();
         $this->data['totalFoundCodes'] = $this->mytreasure_model->get_all();
         $this->data['treasure_per_pirate'] = $this->mytreasure_model->treasure_per_pirate();
-        $this->data['analytics'] = $this->mytreasure_model->getAnalyticsData();
+        $this->data['treasureFoundData'] = $this->mytreasure_model->getTreasureFoundAnalytics();
+        $this->data['signupData'] = $this->pirate_model->getSignupAnalytics();
         $this->template->write_view('content', 'views/admin/home/index', $this->data);
         $this->template->render();
     }

@@ -60,7 +60,7 @@ class Mytreasure_model extends MY_Model {
         return $this->db->delete($this->_table);
     }
 
-    public function getAnalyticsData() {
+    public function getTreasureFoundAnalytics() {
         $this->db->select('COUNT(treasure) as "treasure_found", MINUTE(FROM_UNIXTIME(time)) as "minute", HOUR(FROM_UNIXTIME(time)) as "hour", DAY(FROM_UNIXTIME(time)) as day, time,found.pirate');
         $this->db->from('found');
         $this->db->join('pirates', 'pirates.id = found.pirate', 'LEFT');
