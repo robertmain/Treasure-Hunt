@@ -19,4 +19,4 @@ http://domain.com/treasurehunt/admin/login
 Also included with this application is a mysqldump of a working database. Please upload this to your database server and ensure the database credentials in application/config/database.php match those of your database.
 
 ##EU Cookie Compliancy
-Since this applicaiton was developed within the EU it is fully compliant with EU cookie laws. If you wish to remove this functionality, the JavaScript can be found in application/views/templates/template.php
+Since this applicaiton was developed within the EU it is fully compliant with EU cookie laws. If you wish to remove this functionality, then you can also turn it off in the Admin Panel - however - the JavaScript can be found in application/views/templates/template.php 
