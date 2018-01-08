@@ -4,12 +4,12 @@
 
 ### Normal User
 
-Phone Number(used as username):01536478832
-Password:password
+Phone Number(used as username): `01536478832`  
+Password: password
 
 ### Administrator
 
-Username: foobar
+Username: foobar  
 Password: fubar
 
 ## Managing The Application
