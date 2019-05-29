@@ -1,85 +1,110 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title><?=$this->e($title)?></title>
-
-    <style type="text/css">
-
-    ::selection { background-color: #E13300; color: white; }
-    ::-moz-selection { background-color: #E13300; color: white; }
-
-    body {
-        background-color: #fff;
-        margin: 40px;
-        font: 13px/20px normal Helvetica, Arial, sans-serif;
-        color: #4F5155;
-    }
-
-    a {
-        color: #003399;
-        background-color: transparent;
-        font-weight: normal;
-    }
-
-    h1 {
-        color: #444;
-        background-color: transparent;
-        border-bottom: 1px solid #D0D0D0;
-        font-size: 19px;
-        font-weight: normal;
-        margin: 0 0 14px 0;
-        padding: 14px 15px 10px 15px;
-    }
-
-    code {
-        font-family: Consolas, Monaco, Courier New, Courier, monospace;
-        font-size: 12px;
-        background-color: #f9f9f9;
-        border: 1px solid #D0D0D0;
-        color: #002166;
-        display: block;
-        margin: 14px 0 14px 0;
-        padding: 12px 10px 12px 10px;
-    }
-
-    #body {
-        margin: 0 15px 0 15px;
-    }
-
-    .footer {
-        text-align: right;
-        font-size: 11px;
-        border-top: 1px solid #D0D0D0;
-        line-height: 32px;
-        padding: 0 10px 0 10px;
-        margin: 20px auto 0 auto;
-        width: 920px;
-    }
-
-    #container {
-        margin: 10px;
-        border: 1px solid #D0D0D0;
-        box-shadow: 0 0 8px #D0D0D0;
-        margin: 0 auto;
-        width: 920px;
-    }
-    </style>
-</head>
-<body>
-
-<div id="container">
-    <h1><?=$this->e($title)?></h1>
-    <div id="body">
-        <?=$this->section('content')?>
-    </div>
-</div>
-
-<div class="footer">
-    <?php echo  (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>'.CI_VERSION.'</strong>' : '' ?></p>
-</div>
-
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <?= link_tag(base_url() . VIEWPATH . 'css/style.css') ?>
+        <script type="text/javascript" src="<?= base_url() . VIEWPATH . 'js/jquery.min.js' ?>"></script>
+        <script type="text/javascript" src="<?= base_url() . VIEWPATH . 'js/bootstrap.min.js' ?>"></script>
+        <title><?= APPTITLE ?></title>
+        <?php if ($this->agent->is_mobile()): ?>
+            <meta name="viewport" content="user-scalable=no, width=device-width" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+            <script type="text/javascript">
+                window.addEventListener("load",function() {
+                    setTimeout(function(){
+                        window.scrollTo(0, 1);
+                    }, 0);
+                });
+            </script>
+        <?php endif; ?>
+        <script type="text/javascript">
+<?= file_get_contents(base_url() . APPPATH . 'views/js/cookie.js'); ?>
+        </script>
+    </head>
+    <body>
+        <?php if ($cookielaw == '1'): ?>
+            <div class="modal fade hide in out" id="myModal">
+                <div class="modal-header">
+                    <h3>Cookies On <?= APPTITLE ?></h3>
+                </div>
+                <div class="modal-body">
+                    <p><?= APPTITLE ?> uses cookies to keep your login session active.
+                        By clicking "Dismiss" and continuing to use this application, we assume that you are happy for us to continue to use cookies in this manner</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-success dismiss">I Agree. Dismiss</a>
+                    <a href="http://www.google.com" class="btn btn-danger">I Do Not Agree.</a>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="<?= site_url() ?>"><?= APPTITLE ?></a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <?php if ($this->uri->uri_string() != 'admin/login'): ?>
+                                <?php if (isLoggedIn()): ?>
+                                    <?php if (isAdmin()): ?>
+                                        <li><?= anchor('admin/home', 'Dashboard') ?></li>
+                                        <li><?= anchor('admin/treasure', 'Treasure') ?></li>
+                                        <li><?= anchor('admin/admins', 'Admins') ?></li>
+                                        <li><?= anchor('admin/pirates', 'Pirates') ?></li>
+                                        <li><?= anchor('admin/settings', 'Application Settings') ?></li>
+                                        <li><?= anchor('admin/logout', 'Sign Out') ?></li>
+                                    <?php else: ?>
+                                        <li><?= anchor('treasure', 'My Treasure') ?></li>
+                                        <li><?= anchor('logout', 'Sign Out') ?></li>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <li><?= anchor(site_url(), 'Home') ?></li>
+                                    <li><?= anchor(site_url('login'), 'Sign In') ?></li>
+                                    <li><?= anchor(site_url('auth/register'), 'Register') ?></li>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <?php if (isLoggedIn() && !isAdmin()): ?>
+                        <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
+                    <?php endif; ?>
+                    <?= $content ?>
+                </div>
+            </div>
+            <?php if ($this->uri->uri_string() != 'admin/login'): ?>
+                <hr>
+                <footer>
+                    <p>
+                        A <?= TEAMNAME ?> Web Application<br />
+                        All Rights Reserved<br />
+                        <?= img(APPPATH . 'views/img/hostedby.png') ?>
+                    </p>
+                </footer>
+            <?php endif; ?>
+        </div>
+    </body>
+    <?php if ($cookielaw == '1'): ?>
+        <script type="text/javascript">
+            if(!getCookie("messageSeen")){
+                $(document).ready(function(){
+                    $('#myModal').modal('show')
+                });
+            }
+            $('.dismiss').click(function(){
+                setCookie("messageSeen",true,365);
+                $(this).parent().parent().modal('hide');
+            });
+        </script>
+    <?php endif; ?>
 </html>
