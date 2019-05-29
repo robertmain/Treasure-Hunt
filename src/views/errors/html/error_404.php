@@ -57,8 +57,28 @@ p {
 </head>
 <body>
     <div id="container">
-        <h1><?php echo $heading; ?></h1>
-        <?php echo $message; ?>
+        <div class="row">
+            <div class="span2">
+                <?= img(VIEWPATH . 'img/tb_sign1.png') ?>
+            </div>
+            <div class="span10">
+                <h1><?php echo $heading; ?></h1>
+                <?php echo $message; ?>
+                <p>
+                    This page you requested could not be found. This could be
+                    due to one of several reasons:
+                </p>
+                <ol>
+                    <li>The page no longer exists</li>
+                    <li>It was eaten by a tumblrbeast (see left)</li>
+                    <li>The page was removed by a government conspiracy</li>
+                </ol>
+                <h3>What You Can Do</h3>
+                <p>
+                    Try using the back button in your browser or try again later.
+                </p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
