@@ -101,3 +101,5 @@ define('APPTITLE', 'QR Treasure Hunt');
 define('TEAMNAME', 'Gray-Man Software');
 define('TREASURESALT', sha1('TREASURE'));
 define('PIRATESALT', sha1('USER'));
+
+define('ASSET_PATH', dirname($_SERVER['SCRIPT_NAME']) . '/src/assets/');
