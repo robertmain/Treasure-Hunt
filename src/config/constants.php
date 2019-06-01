@@ -96,3 +96,8 @@ defined('EXIT__AUTO_MAX') or define('EXIT__AUTO_MAX', 125);         // Highest a
 */
 define('MYSQL_DATETIME', 'Y-m-d H:i:s');   // 2018-02-05 00:36:15
 define('LONG_DATETIME', 'l, jS M Y H:i');  // Monday, 5th Feb 2018 00:36
+
+define('APPTITLE', 'QR Treasure Hunt');
+define('TEAMNAME', 'Gray-Man Software');
+define('TREASURESALT', sha1('TREASURE'));
+define('PIRATESALT', sha1('USER'));
