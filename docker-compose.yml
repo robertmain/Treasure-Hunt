@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  web:
+    build:
+      context: './docker/php'
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+    links:
+      - database
+  database:
+    image: mariadb:latest
+    ports:
+      - "3333:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_USER}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+volumes:
+  mysql_data:
