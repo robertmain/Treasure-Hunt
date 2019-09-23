@@ -1,6 +1,10 @@
 <?php
 
-class Pirate_model extends MY_Model {
+namespace App\Models;
+
+use App\Core\Model;
+
+class Pirate extends Model {
 
     public function __construct() {
         parent::__construct();

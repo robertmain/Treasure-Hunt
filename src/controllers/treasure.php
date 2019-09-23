@@ -11,7 +11,7 @@ class Treasure extends MY_Controller {
             redirect('admin/home');
         }
         $this->load->helper(array('treasure_helper'));
-        $this->load->model(array('mytreasure_model'));
+        $this->load->model(array('Mytreasure'));
     }
 
     public function index() {

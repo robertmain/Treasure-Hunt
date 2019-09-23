@@ -13,14 +13,28 @@ use Exceptions\Http\HttpException;
  */
 abstract class Controller extends \CI_Controller
 {
+    public $data = [];
+
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->model(['Pirate', 'Config']);
+        $this->data['cookielaw'] = $this->Config->get_by([
+            'key' => 'cookielaw'
+        ])->value;
+        if (isLoggedIn()) {
+            $this->data['me'] = $this->Pirate->get($this->session->userdata('id'));
+        }
 
         set_exception_handler([self::class, 'handle_http_exception']);
 
         $this->templates = new Engine(VIEWPATH);
 
+        $this->templates->addData([
+            'CI' => get_instance(),
+        ]);
+        $this->templates->addData($this->data);
         $this->templates->addFolder('layouts', VIEWPATH . 'layouts');
         $this->templates->addFolder('partials', VIEWPATH . 'partials');
     }

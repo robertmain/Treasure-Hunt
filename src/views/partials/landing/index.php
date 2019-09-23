@@ -1,3 +1,5 @@
+<?php $this->layout('layouts/default') ?>
+
 <h1>Home</h1>
 <div class="modal fade hide in out" id="helpModal">
     <div class="modal-header">

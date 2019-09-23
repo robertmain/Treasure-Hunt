@@ -1,11 +1,15 @@
 <?php
 
-class Mytreasure_model extends MY_Model {
+namespace App\Models;
+
+use App\Core\Model;
+
+class Mytreasure extends Model {
 
     public function __construct() {
         parent::__construct();
         $this->_table = 'found';
-        $this->load->model(array('treasure_model', 'pirate_model'));
+        $this->load->model(array('Treasure', 'Pirate'));
         $this->after_get = array('get_treasure', 'get_pirate');
     }
 
@@ -74,10 +78,10 @@ class Mytreasure_model extends MY_Model {
         }
         return $analytics;
     }
-    
+
     public function treasure_per_pirate(){
         return $this->db->query('SELECT AVG(temp.pirate_treasure) FROM (SELECT count(id) as pirate_treasure FROM `found` GROUP BY pirate) as temp')->result();
-         
+
     }
 
 }

@@ -1,6 +1,10 @@
 <?php
 
-class Admin_Controller extends MY_Controller {
+namespace App\Core;
+
+use App\Core\Controller;
+
+class Admin_Controller extends Controller {
 
     public function __construct() {
         parent::__construct();

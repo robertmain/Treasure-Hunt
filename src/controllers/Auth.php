@@ -1,22 +1,24 @@
 <?php
 
-class Auth extends MY_Controller {
+use App\Core\Controller;
+
+class Auth extends Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('pirate_model');
+        $this->load->model('Pirate');
     }
 
     public function index() {
-        redirect('login');
+        redirect('auth/login');
     }
 
     public function login() {
         if (isLoggedIn()) {
             show_404(current_url(), FALSE);
         }
-        $this->template->write_view('content', 'views/auth/login');
-        $this->template->render();
+
+        $this->render('partials::auth/login');
     }
 
     public function authenticate() {
