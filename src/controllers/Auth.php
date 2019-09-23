@@ -25,8 +25,13 @@ class Auth extends Controller {
         if (isLoggedIn()) {
             show_404(current_url(), FALSE);
         }
-        if ($user = $this->pirate_model->get_by(array('phone' => $this->input->post('login'), 'admin' => '0', 'password' => hash('sha512', $this->input->post('password'))))) {
-            if ($this->config_model->get('authorisation')->value == '1') {
+        $user = $this->Pirate->get_by([
+            'phone' => $this->input->post('login'),
+            'admin' => '0',
+            'password' => hash('sha512', $this->input->post('password')),
+        ]);
+        if ($user) {
+            if ($this->Config->get_by(['key' => 'authorisation'])->value == '1') {
                 if ($user->authorised == '1') {
                     $this->session->set_userdata('id', $user->id);
                     redirect('home');
@@ -43,13 +48,12 @@ class Auth extends Controller {
         }
         else {
             $this->session->set_flashdata('autherror', array('title' => 'Authentication Error', 'content' => 'Username/Password Not Found'));
-            redirect('login');
+            redirect('auth/login');
         }
     }
 
     public function register() {
-        $this->template->write_view('content', 'views/auth/register');
-        $this->template->render();
+        $this->render('partials::auth/register');
     }
 
     public function create() {

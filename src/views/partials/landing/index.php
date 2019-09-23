@@ -14,9 +14,9 @@
         <div class="tab-content">
             <div class="tab-pane active" id="findingtreasure">
                 <h4>Finding Treasure</h4>
-                When you find a piece of &quot;Treasure&quot;, scan the QR Code with your Smart phone or 
+                When you find a piece of &quot;Treasure&quot;, scan the QR Code with your Smart phone or
                 device and you will be prompted to open a link where you will be rewarded with a Factoid.
-                The app will then display the treasure you have found as well as 
+                The app will then display the treasure you have found as well as
                 clues to other pieces of treasure
             </div>
             <div class="tab-pane" id="completingthehunt">
@@ -34,12 +34,14 @@
 <h3>Welcome to <?= APPTITLE ?></h3>
 <h3>Getting Started</h3>
 <p>
-    This application uses a smart phone or device to scan QR (Quick Response) 
+    This application uses a smart phone or device to scan QR (Quick Response)
     codes to link to a web application. Register your account by clicking &quot;Register&quot;
     and entering your mobile number and a password... it's quick and easy!
 </p>
 <div class="btn-group">
-    <a class="btn btn-success btn-large" href="<?= site_url('login') ?>"><i class="icon-white icon-lock"></i> Sign In</a>
-    <a class="btn btn-success btn-large" href="<?= site_url('auth/register') ?>"><i class="icon-white icon-plus"></i> Register</a>
+    <?php if(!isLoggedIn()): ?>
+        <a class="btn btn-success btn-large" href="<?= site_url('auth/login') ?>"><i class="icon-white icon-lock"></i> Sign In</a>
+        <a class="btn btn-success btn-large" href="<?= site_url('auth/register') ?>"><i class="icon-white icon-plus"></i> Register</a>
+    <?php endif; ?>
     <a class="btn btn-warning btn-large"  data-toggle="modal" href="#helpModal"><i class="icon-white icon-question-sign"></i> Help</a>
 </div>

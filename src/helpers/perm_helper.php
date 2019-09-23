@@ -1,31 +1,34 @@
 <?php
 
-function isAdmin() {
+function isAdmin(): bool {
     $CI = & get_instance();
-    if ($CI->pirate_model->get_by('id', $CI->session->userdata('id'))->admin == '1') {
-        return TRUE;
+    if ($CI->Pirate->get_by(['id' => $CI->session->userdata('id')])->admin == '1') {
+        return true;
     }
     else {
-        return FALSE;
+        return false;
     }
 }
 
-function isLoggedIn() {
+function isLoggedIn(): bool {
     $CI = & get_instance();
-    if (($CI->session->userdata('id')) && ($CI->pirate_model->get_by('id', $CI->session->userdata('id')))) {
-        return TRUE;
+    if (
+        ($CI->session->userdata('id'))
+        && ($CI->Pirate->get_by(['id' => $CI->session->userdata('id')]))
+    ) {
+        return true;
     }
     else {
-        return FALSE;
+        return false;
     }
 }
 
-function isBanned($userID) {
+function isBanned($userID): bool {
     $CI = & get_instance();
-    if ($CI->pirate_model->get_by('id', $userID)->banned == '1') {
-        return TRUE;
+    if ($CI->Pirate->get_by(['id' => $userID])->banned == '1') {
+        return true;
     }
     else {
-        return FALSE;
+        return false;
     }
 }
