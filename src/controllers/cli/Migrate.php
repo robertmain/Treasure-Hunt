@@ -1,6 +1,7 @@
 <?php
 
 use Exceptions\Operation\InvalidOperationException;
+use Exceptions\Http\Client\ForbiddenException;
 
 /**
  * Migration CLI controller
@@ -15,7 +16,7 @@ class Migrate extends CI_Controller
         parent::__construct();
         $this->load->library('migration');
         if (!$this->input->is_cli_request()) {
-            show_error('Forbidden', 403);
+            throw new ForbiddenException('You do not have permission to execute migrations');
             exit(EXIT_ERROR);
         }
     }
