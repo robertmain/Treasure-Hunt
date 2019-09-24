@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <?= link_tag(base_url() . VIEWPATH . 'css/live.css') ?>
-        <script type="text/javascript" src="<?= base_url() . VIEWPATH . 'js/jquery.min.js' ?>"></script>
-        <script type="text/javascript" src="<?= base_url() . VIEWPATH . 'js/bootstrap.min.js' ?>"></script>
+        <?= link_tag(base_url(ASSET_PATH . 'css/style.css')) ?>
+        <script type="text/javascript" src="<?= base_url('src/assets/js/jquery.min.js') ?>"></script>
+        <script type="text/javascript" src="<?= base_url('src/assets/js/bootstrap.min.js') ?>"></script>
         <meta name="viewport" content="user-scalable=no, width=device-width" />
         <title><?= APPTITLE ?></title>
         <script type="text/javascript">
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <?= $content ?>
+                    <?= $this->section('content') ?>
                 </div>
             </div>
         </div>

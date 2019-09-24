@@ -1,38 +1,27 @@
+<?php $this->layout('layouts/live') ?>
+
 <div class="alertcontainer"></div>
 <script type="text/javascript">
-    var lastId = 0;
-    $.ajax({
-        url: '<?= site_url('admin/live/socket') ?>',
-        type:'GET',
-        dataType:'json',
-        error: function(jqXHR, error, errorThrown) {
-            console.log(jqXHR.status + ' ' +errorThrown);
-        },
-        success: function(response) {
-            for (item in response){
-                var Found = response[item];
-                $('<div class="alert alert-info span3"><h4 class="alert-heading">Treasure Found</h4><p>User: ' + Found.phone + ' Found Treasure: ' + Found.title + '</p></div>').hide().prependTo('.alertcontainer').fadeIn(1500);
-                lastId = Found.f_id ++;
-                lastId ++;
-            }
-        }
-    });
-    function longPoll(){
-        $.ajax({
-            url: '<?= site_url('admin/live/socket') ?>/' + lastId,
-            type:'GET',
-            dataType:'json',
-            error: function(jqXHR, error, errorThrown) {
-                console.log(jqXHR.status + ' ' +errorThrown);
-            },
-            success: function(response) {
-                for (item in response){
-                    var Found = response[item];
-                    $('<div class="alert alert-info span3"><h4 class="alert-heading">Treasure Found</h4><p>User: ' + Found.phone + ' Found Treasure: ' + Found.title + '</p></div>').hide().prependTo('.alertcontainer').fadeIn(1500);
-                    lastId = Found.f_id;
-                }
-            }
+    let lastId;
+    const treasure = [];
+
+    setInterval(async() => {
+        const response = await fetch(`<?= current_url() ?>/socket/${(lastId > 0) ? lastId: ''}`)
+        const body = await response.json();
+
+        const newTreasure = body.filter(({ f_id }) =>
+            !treasure.map((existing) => existing.f_id).includes(f_id));
+
+        treasure.push(...newTreasure);
+
+        ([{f_id: lastId}] = treasure.slice(-1));
+
+        newTreasure.forEach(({ phone, title, f_id }) => {
+            $(`<div><h4 class="alert-heading">Treasure Found</h4><p>User: ${phone}<br />Found Treasure: ${title}</p></div>`)
+                .addClass('alert alert-info span3')
+                .hide()
+                .prependTo('.alertcontainer')
+                .fadeIn(1500);
         });
-    }
-    setInterval(longPoll, 1000);
-</script> 
+    }, 2000);
+</script>
