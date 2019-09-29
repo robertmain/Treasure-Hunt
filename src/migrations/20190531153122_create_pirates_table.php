@@ -50,10 +50,9 @@ class Migration_create_pirates_table extends Migration
                 'default' => 0,
               ],
               'admin' => [
-                'type' => 'TINYINT',
-                'constraint' => 1,
+                'type' => 'BOOLEAN',
                 'null' => false,
-                'default' => 0,
+                'default' => false,
               ],
               'username' => [
                 'type' => 'VARCHAR',
@@ -68,10 +67,9 @@ class Migration_create_pirates_table extends Migration
                 'default' => null,
               ],
               'banned' => [
-                'type' => 'TINYINT',
-                'constraint' => 1,
+                'type' => 'BOOLEAN',
                 'null' => false,
-                'default' => 0,
+                'default' => false,
               ],
           ]);
           $this->dbforge->add_field($this->date_stamps);
@@ -86,7 +84,7 @@ class Migration_create_pirates_table extends Migration
             'surname' => 'Bar',
             'email' => 'foo.bar@gmail.com',
             'password' => '24057942a277ba9f4be7ee806ecb9c63b1845677d501031367fb67ec273366e9d6edd7e37f1ed30d690fe8ce92a63e944d81658ca49ca70d1f76a386b9e41c13',
-            'admin' => '1',
+            'admin' => true,
           ]);
       }
 
