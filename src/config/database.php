@@ -75,13 +75,12 @@ $active_group = 'default';
 $query_builder = true;
 
 $db['default'] = [
-    'dsn'      => getenv('DB_DSN'),
-    'hostname' => getenv('DB_HOST'),
+    'dsn'      => 'mysql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_NAME'),
     'port'     => getenv('DB_PORT'),
     'username' => getenv('DB_USER'),
     'password' => getenv('DB_PASSWORD'),
     'database' => getenv('DB_NAME'),
-    'dbdriver' => getenv('DB_DRIVER'),
+    'dbdriver' => 'pdo',
     'dbprefix' => '',
     'pconnect' => false,
     'db_debug' => (ENVIRONMENT !== 'production'),
@@ -92,7 +91,7 @@ $db['default'] = [
     'swap_pre' => '',
     'encrypt'  => false,
     'compress' => false,
-    'stricton' => false,
+    'stricton' => true,
     'failover' => [],
     'save_queries' => true,
 ];
