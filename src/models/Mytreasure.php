@@ -8,17 +8,27 @@ class Mytreasure extends Model {
 
     public function __construct() {
         parent::__construct();
-        $this->_table = 'found';
+        $this->table = 'found';
         $this->load->model(array('Treasure', 'Pirate'));
-        $this->after_get = array('get_treasure', 'get_pirate');
+        $this->after_get = [
+            'format_record_metadata',
+            'get_treasure',
+            'get_pirate'
+        ];
     }
 
     public function get_treasure($row) {
-        @$row->treasure = $this->treasure_model->get($row->treasure);
+        if($row){
+            $row->treasure = $this->Treasure->get($row->treasure);
+        }
+        return $row;
     }
 
     public function get_pirate($row) {
-        @$row->pirate = $this->pirate_model->get($row->pirate);
+        if($row){
+            $row->pirate = $this->Pirate->get($row->pirate);
+        }
+        return $row;
     }
 
     public function get_treasure_per_user() {

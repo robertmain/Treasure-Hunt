@@ -1,29 +1,31 @@
+<?php $this->layout('layouts/default') ?>
+
 <h1>My Treasure</h1>
-<?php if ((isBanned($this->session->userdata('id'))) && (isLoggedIn())): ?>
+<?php if (isBanned($me->id) && isLoggedIn()): ?>
     <div class="alert">
         <h3 class="alert-heading">Information</h3>
         <p>
-            Your account has been suspended. You may still use this application, 
-            however you will be unable to find new pieces of treasure and (at the discretion of staff) 
-            your existing pieces of treasure may be removed from you. 
+            Your account has been suspended. You may still use this application,
+            however you will be unable to find new pieces of treasure and (at the discretion of staff)
+            your existing pieces of treasure may be removed from you.
             Please contact a member of <?= TEAMNAME ?> for more information.
         </p>
     </div>
 <?php endif; ?>
-<?php if (sizeof($Treasure) > 0): ?>
+<?php if (sizeof($treasure) > 0): ?>
     <div id="foundAllModal" class="modal hide fade" style="display: none; ">
         <div class="modal-header">
-            <h3><?= $found->title ?></h3>
+            <h3><?= $foundAllTitle ?></h3>
         </div>
         <div class="modal-body">
-            <p><?= auto_typography($found->message) ?></p>
+            <p><?= auto_typography($foundAllMessage) ?></p>
         </div>
         <div class="modal-footer">
             <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
         </div>
     </div>
 <?php endif; ?>
-<?php if (foundAll($this->session->userdata('id'))): ?>
+<?php if (foundAll($me->id)): ?>
     <script type="text/javascript">
         if((!getCookie("foundMessageSeen")) | (getCookie('foundMessageSeen') == undefined)){
             $(document).ready(function(){

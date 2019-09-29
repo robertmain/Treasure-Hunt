@@ -23,7 +23,7 @@ function isLoggedIn(): bool {
     }
 }
 
-function isBanned($userID): bool {
+function isBanned(int $userID): bool {
     $CI = & get_instance();
     if ($CI->Pirate->get_by(['id' => $userID])->banned == '1') {
         return true;
