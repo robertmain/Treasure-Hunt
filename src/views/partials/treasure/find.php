@@ -1,5 +1,7 @@
+<?php $this->layout('layouts/default'); ?>
+
 <h1>Treasure Found</h1>
-<?php if ((isBanned($this->session->userdata('id'))) && (isLoggedIn())): ?>
+<?php if (isBanned($me->id) && isLoggedIn()): ?>
     <div class="alert">
         <h3 class="alert-heading">Information</h3>
         <p>
@@ -30,8 +32,8 @@
     </div>
 <?php endif; ?>
 
-<h2><?= $Treasure->title ?></h2>
+<h2><?= $treasure->title ?></h2>
 <div class="alert alert-info">
     <h3 class="alert-heading">Did you know...</h3>
-    <p><?= auto_typography($Treasure->text) ?></p>
+    <p><?= auto_typography($treasure->text) ?></p>
 </div>

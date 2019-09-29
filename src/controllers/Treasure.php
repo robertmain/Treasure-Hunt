@@ -12,8 +12,8 @@ class Treasure extends Controller {
         if (isAdmin()) {
             redirect('admin/home');
         }
-        $this->load->helper(array('treasure_helper'));
-        $this->load->model(array('Mytreasure'));
+        $this->load->helper(['treasure_helper']);
+        $this->load->model(['Mytreasure', 'Treasure']);
     }
 
     public function index() {
@@ -28,36 +28,26 @@ class Treasure extends Controller {
         $this->render('partials::treasure/index', $this->data);
     }
 
-    public function find() {
-        if (!$this->uri->segment(3)) {
-            show_404(current_url(), FALSE);
-        }
-        else {
-            if ($this->data['Treasure'] = $this->treasure_model->get_by('md5', $this->uri->segment(3))) {
-                if (isFound($this->data['Treasure']->id, $this->session->userdata('id'))) {
-                    $found = TRUE;
+    public function find($hash) {
+        $treasure = $this->Treasure->get_by(['md5' => $hash]);
+        if ($treasure) {
+            if (isFound($treasure->id, $this->data['me']->id)) {
+                $found = true;
+            } else {
+                $found = false;
+                if (!isBanned($this->data['me']->id) && !isAdmin()) {
+                    $this->Mytreasure->save([
+                        'pirate' => $this->data['me']->id,
+                        'treasure' => $treasure->id,
+                        'time' => time()
+                    ]);
                 }
-                else {
-                    $found = FALSE;
-                    if (isLoggedIn()) {
-                        if (!isBanned($this->session->userdata('id'))) {
-                            if (!isAdmin()) {
-                                $this->mytreasure_model->insert(array(
-                                    'pirate' => $this->session->userdata('id'),
-                                    'treasure' => $this->data['Treasure']->id,
-                                    'time' => time()
-                                ));
-                            }
-                        }
-                    }
-                }
-                $this->data['found'] = $found;
-                $this->template->write_view('content', 'views/treasure/find', $this->data);
-                $this->template->render();
             }
-            else {
-                show_404(current_url(), FALSE);
-            }
+            $this->data['found'] = $found;
+            $this->data['treasure'] = $treasure;
+            $this->render('partials::treasure/find', $this->data);
+        } else {
+            show_404();
         }
     }
 
