@@ -62,16 +62,14 @@ class Auth extends Controller {
         $this->form_validation->set_rules('confirmpassword', 'Confirm Password', 'trim|required');
         $this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
         if ($this->form_validation->run() == FALSE) {
-            $this->template->write_view('content', 'views/auth/register');
-            $this->template->render();
+            $this->render('partials::auth/register');
         }
         else {
-            $newPirate = array(
+            $newPirateID = $this->Pirate->save([
                 'phone' => $this->input->post('phone'),
                 'password' => hash('sha512', $this->input->post('password')),
-                'signup' => time()
-            );
-            $newPirateID = $this->pirate_model->insert($newPirate);
+                'signup' => time(),
+            ]);
             $this->session->set_userdata('id', $newPirateID);
             $this->session->set_flashdata('registerinfo', array('title' => 'Information', 'content' => 'Your account has been successfully created and you have been logged in.<br /> <a href="' . site_url('') . '" class="btn btn-large btn-success">Go To Dashboard (Redirecting in <span class="seconds"></span>) </a>'));
             redirect('auth/register');
@@ -84,7 +82,7 @@ class Auth extends Controller {
             return FALSE;
         }
         else {
-            if (sizeof($this->pirate_model->get_by('phone', $str))) {
+            if ($this->Pirate->get_by(['phone' => $str])) {
                 $this->form_validation->set_message('mobile_check', 'Mobile number is already in use, please enter another mobile number.');
                 return FALSE;
             }

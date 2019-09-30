@@ -1,9 +1,11 @@
+<?php $this->layout('layouts/default'); ?>
+
 <h1>Register</h1>
 <div class="row">
-    <?php if ($this->session->flashdata('registerinfo')): ?>
+    <?php if ($CI->session->flashdata('registerinfo')): ?>
         <div class="span12">
             <div class="alert alert-success">
-                <?php $alert = $this->session->flashdata('registerinfo') ?>
+                <?php $alert = $CI->session->flashdata('registerinfo') ?>
                 <h3 class="alert-heading"><?= $alert['title'] ?></h3>
                 <p><?= $alert['content'] ?></p>
             </div>
