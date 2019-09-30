@@ -1,3 +1,5 @@
+<?php $this->layout('layouts/default'); ?>
+
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <div class="row">
     <div class="span12">
@@ -53,7 +55,7 @@
                 google.load("visualization", "1", {packages:["corechart"]});
                 google.setOnLoadCallback(drawChart);
                 function drawChart() {
-                    var data = google.visualization.arrayToDataTable(<?= activityToGraph($treasureFoundData) ?>); 
+                    var data = google.visualization.arrayToDataTable(<?= activityToGraph($treasureFoundData) ?>);
                     var options = {
                         vAxis:{'title': 'Treasure Found'},
                         hAxis:{'title': 'Time'},

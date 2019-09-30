@@ -1,21 +1,23 @@
 <?php
 
-class Admin_login extends MY_Controller {
+use App\Core\Controller;
+
+class Admin_login extends Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model(['Pirate']);
     }
 
     public function index() {
         if (isLoggedIn()) {
             redirect('admin/home');
         }
-        $this->template->write_view('content', 'views/admin/auth/index');
-        $this->template->render();
+        $this->render('partials::admin/auth/index');
     }
 
     public function auth() {
-        if ($user = $this->pirate_model->get_by(array('username' => $this->input->post('username'), 'password' => hash('sha512', $this->input->post('password')), 'admin' => 1))) {
+        if ($user = $this->Pirate->get_by(array('username' => $this->input->post('username'), 'password' => hash('sha512', $this->input->post('password')), 'admin' => 1))) {
             $this->session->set_userdata('id', $user->id);
             redirect('admin/home');
         }

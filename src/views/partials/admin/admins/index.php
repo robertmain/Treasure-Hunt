@@ -1,3 +1,5 @@
+<?php $this->template('layouts/default'); ?>
+
 <div id="newAdmin" class="modal hide fade">
     <div class="modal-header">
         <a href="#" class="close" data-dismiss="modal">&times;</a>

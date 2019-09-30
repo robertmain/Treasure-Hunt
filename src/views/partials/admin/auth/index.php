@@ -1,11 +1,13 @@
+<?php $this->layout('layouts/default'); ?>
+
 <?= form_open('admin/login/auth', array('class' => 'form-horizontal')) ?>
 <div id="Modal" class="modal">
     <div class="modal-header">
         <h1>Authentication Required</h1>
     </div>
     <div class="modal-body">
-        <?php if ($this->session->flashdata('autherror')): ?>
-            <?php $Alert = $this->session->flashdata('autherror') ?>
+        <?php if ($CI->session->flashdata('autherror')): ?>
+            <?php $Alert = $CI->session->flashdata('autherror') ?>
             <div class="alert alert-error">
                 <h1 class="alert-heading"><?= $Alert['title'] ?></h1>
                 <p><?= $Alert['content'] ?></p>
