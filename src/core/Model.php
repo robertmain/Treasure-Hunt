@@ -102,7 +102,7 @@ abstract class Model extends CI_Model
      *
      * @return boolean Indication of the success of the update
      */
-    protected function update($primary_value, $data) : \boolean
+    protected function update($primary_value, $data) : bool
     {
         $data = $this->run_before_callbacks('update', [$data, $primary_value]);
 
@@ -232,7 +232,7 @@ abstract class Model extends CI_Model
      * @param int  $primary_value The primary key value of the row to delete
      * @param bool $soft          Soft delete(enabled by default)
     */
-    public function delete($primary_value, $soft = true) : boolean
+    public function delete($primary_value, $soft = true) : bool
     {
         $this->run_before_callbacks('delete', [$primary_value]);
 

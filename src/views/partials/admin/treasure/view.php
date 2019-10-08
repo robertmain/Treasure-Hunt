@@ -1,3 +1,4 @@
+<?php $this->layout('layouts/default'); ?>
 <div class="row">
     <div class="span12">
         <h1>Treasure <small>View Treasure</small></h1>
@@ -18,10 +19,10 @@
 <script type="text/javascript">
     var form = $('form');
     $('form').submit(function(event){
-        $('div.input').each(function (){ 
+        $('div.input').each(function (){
             $(form).append('<input type="hidden" name="' + $(this).attr('name') + '" value="' + $(this).html() + '">');
         });
     });
-    
+
     $('.span2').html('<img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=<?= site_url('treasure/find/' . $Treasure->md5) ?>" class="thumbnail" alt="<?= $Treasure->title ?>">');
 </script>

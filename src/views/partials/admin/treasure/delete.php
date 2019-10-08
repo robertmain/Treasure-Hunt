@@ -1,3 +1,4 @@
+<?php $this->layout('layouts/default'); ?>
 <div class="row">
     <div class="span12">
         <h1>Treasure <small>Delete Treasure</small></h1>

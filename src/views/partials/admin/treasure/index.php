@@ -1,3 +1,4 @@
+<?php $this->layout('layouts/default'); ?>
 <div class="row">
     <div class="span12">
         <h1>Treasure</h1>
@@ -17,11 +18,11 @@
                         <tr>
                             <td><?= $Treasure->title ?></td>
                             <td><?= $Treasure->location ?></td>
-                            <td><?= $Treasure->clue ?></td> 
+                            <td><?= $Treasure->clue ?></td>
                             <?php if($Treasure->id):?>
-                            <td colspan="2"><?= $Treasure->id ?> (<?= $Treasure->phone ?>)</td> 
+                            <td colspan="2"><?= $Treasure->id ?> (<?= $Treasure->phone ?>)</td>
                             <?php else: ?>
-                            <td colspan="2"> No One Yet</td> 
+                            <td colspan="2"> No One Yet</td>
                             <?php endif; ?>
                             <td>
                                 <div class="btn-group">
