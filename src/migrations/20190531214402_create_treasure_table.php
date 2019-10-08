@@ -25,7 +25,8 @@ class Migration_create_treasure_table extends Migration
             'md5' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-                'null'       => false,
+                'null'       => true,
+                'default'    => null,
             ],
             'location' => [
                 'type' => 'VARCHAR',
