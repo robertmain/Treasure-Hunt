@@ -2,6 +2,8 @@
 
 use App\Core\Migration;
 
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 class Migration_create_config_table extends Migration
 {
     private $table = 'config';
@@ -39,7 +41,8 @@ class Migration_create_config_table extends Migration
           ],
           [
             'key' => 'completemessage',
-            'value' => '<p><span  26px; \">You have found all %NCODES QR Codes and have been entered into our prize draw. Please Visit The %TEAMNAME booth for more information.</span><br></p>',
+            // phpcs:disable Generic.Files.LineLength.TooLong
+            'value' => 'You have found all %NCODES QR Codes and have been entered into our prize draw. Please Visit The %TEAMNAME booth for more information.',
           ],
           [
             'key' => 'cookielaw',
