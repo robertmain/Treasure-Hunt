@@ -6,10 +6,12 @@
  *
  * @ignore
  */
+
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 class Test_bootstrap extends CI_Controller
 {
     public function index() : void
     {
-
     }
 }

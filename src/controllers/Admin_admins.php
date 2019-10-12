@@ -1,25 +1,31 @@
 <?php
 
 use App\Core\Admin_Controller;
+use Exceptions\Http\Client\NotFoundException;
 
-class Admin_admins extends Admin_Controller {
-    public function index() {
+//phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+//phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+class Admin_admins extends Admin_Controller
+{
+    public function index()
+    {
         $this->data['admins'] = $this->Pirate->get_many_by(array('admin' => '1'));
         $this->render('partials::admin/admins/index', $this->data);
     }
 
-    public function create() {
+    public function create()
+    {
         if ($this->input->is_ajax_request()) {
             $this->Pirate->save([
                 'forename' => $this->input->post('forename'),
                 'surname' => $this->input->post('surname'),
                 'email' => $this->input->post('email'),
                 'username' => $this->input->post('username'),
-                'password' => hash('sha512',$this->input->post('password')),
+                'password' => hash('sha512', $this->input->post('password')),
                 'admin' => '1',
                 'signup' => time(),
             ]);
-            $admins = array_map(function($admin){
+            $admins = array_map(function ($admin) {
                 unset($admin->password, $admin->email, $admin->signup);
                 return $admin;
             }, $this->Pirate->get_many_by(['admin' => true]));
@@ -27,12 +33,14 @@ class Admin_admins extends Admin_Controller {
         }
     }
 
-    public function edit($user_id) {
+    public function edit($user_id)
+    {
         $this->data['Admin'] = $this->Pirate->get($user_id);
         $this->render('partials::admin/admins/edit', $this->data);
     }
 
-    public function update() {
+    public function update()
+    {
         $updatedAdmin = array(
             'forename' => $this->input->post('forename'),
             'surname' => $this->input->post('surname'),
@@ -46,17 +54,18 @@ class Admin_admins extends Admin_Controller {
         redirect('admin/admins');
     }
 
-    public function delete($user_id) {
+    public function delete($user_id)
+    {
         $this->data['Admin'] = $this->Pirate->get($user_id);
 
         $this->render('partials::admin/admins/delete', $this->data);
     }
 
-    public function remove($user_id) {
+    public function remove($user_id)
+    {
         if (sizeof($this->Pirate->get_many_by(array('admin' => '1'))) > 1) {
             $this->Pirate->delete($user_id);
         }
         redirect('admin/admins');
     }
-
 }

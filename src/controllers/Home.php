@@ -4,7 +4,9 @@ use App\Core\Controller;
 
 /**
  * Starter controller to give a basic introduction and example of how controlelrs work in CodeIgniter
+ *
  */
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
 class Home extends Controller
 {
     /**

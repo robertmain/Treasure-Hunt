@@ -2,11 +2,15 @@
 
 use App\Core\Controller;
 
-class Treasure extends Controller {
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+class Treasure extends Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
-        if(!isLoggedIn()){
+        if (!isLoggedIn()) {
             redirect('');
         }
         if (isAdmin()) {
@@ -16,19 +20,24 @@ class Treasure extends Controller {
         $this->load->model(['Mytreasure', 'Treasure']);
     }
 
-    public function index() {
+    public function index()
+    {
         if (!isLoggedIn() | isAdmin()) {
-            show_404(current_url(), FALSE);
+            show_404(current_url(), false);
         }
         $this->data['foundAllTitle'] = $this->Config->get_by(['key' => 'completetitle'])->value;
         $find = array('%NCODES', '%TEAMNAME');
         $replace = array(sizeof($this->Treasure->get_all()), TEAMNAME);
-        $this->data['foundAllMessage'] = str_replace($find, $replace, $this->Config->get_by(['key' => 'completemessage'])->value);
+        $foundMessageTemplate = $this->Config->get_by([
+            'key' => 'completemessage'
+        ])->value;
+        $this->data['foundAllMessage'] = str_replace($find, $replace, $foundMessageTemplate);
         $this->data['treasure'] = $this->Treasure->get_all();
         $this->render('partials::treasure/index', $this->data);
     }
 
-    public function find($hash) {
+    public function find($hash)
+    {
         $treasure = $this->Treasure->get_by(['md5' => $hash]);
         if ($treasure) {
             if (isFound($treasure->id, $this->data['me']->id)) {
@@ -50,5 +59,4 @@ class Treasure extends Controller {
             show_404();
         }
     }
-
 }

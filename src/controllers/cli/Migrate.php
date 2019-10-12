@@ -9,6 +9,9 @@ use Exceptions\Http\Client\ForbiddenException;
  * Used for running migrations from the CLI (for example, from a composer script)
  * @ignore
  */
+
+//phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+//phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 class Migrate extends CI_Controller
 {
     public function __construct()

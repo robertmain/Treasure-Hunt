@@ -2,9 +2,13 @@
 
 use App\Core\Admin_Controller;
 
-class Admin_home extends Admin_Controller {
+//phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+//phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+class Admin_home extends Admin_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         if (!isLoggedIn()) {
             redirect('admin/login');
@@ -13,7 +17,8 @@ class Admin_home extends Admin_Controller {
         $this->load->helper(array('analytics'));
     }
 
-    public function index() {
+    public function index()
+    {
         $this->data['registeredUsers'] = $this->Pirate->get_many_by('admin', '0');
         $this->data['totalCodesInDatabase'] = $this->Treasure->get_all();
         $this->data['totalFoundCodes'] = $this->Mytreasure->get_all();
@@ -22,5 +27,4 @@ class Admin_home extends Admin_Controller {
         $this->data['signupData'] = $this->Pirate->getSignupAnalytics();
         $this->render('partials::admin/home/index', $this->data);
     }
-
 }
