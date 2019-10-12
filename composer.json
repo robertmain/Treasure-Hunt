@@ -24,7 +24,8 @@
             "composer install --no-dev --quiet",
             "composer archive --format=zip --file app",
             "composer install --quiet"
-        ]
+        ],
+        "lint": "phpcs src --standard=PSR2 --colors -s"
     },
     "require": {
         "php": ">=7.2",
@@ -49,7 +50,8 @@
         "phpdocumentor/phpdocumentor": "dev-master",
         "phpunit/phpunit": "^8.1",
         "limedeck/phpunit-detailed-printer": "^5.0",
-        "mockery/mockery": "^1.0"
+        "mockery/mockery": "^1.0",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "archive": {
         "exclude": [
