@@ -1,3 +1,5 @@
+<?php $this->layout('layouts/default'); ?>
+
 <h1>Pirates <small>Manage Pirate</small></h1>
 
 <?= form_open('admin/pirates/update', array('class' => 'form-horizontal')) ?>

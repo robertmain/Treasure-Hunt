@@ -1,3 +1,5 @@
+<?php $this->layout('layouts/default'); ?>
+
 <div id="stripTreasureModal" class="modal hide fade">
     <div class="modal-header">
         <h2><?= APPTITLE ?> <small>Strip Pirate Treasure</small></h2>
@@ -16,24 +18,24 @@
     </div>
 </div>
 <h1>Pirates</h1>
-<table class="table table-bordered table-striped"> 
-    <thead> 
+<table class="table table-bordered table-striped">
+    <thead>
         <tr>
             <th>ID</th> <th>Pirate</th> <th>Treasure Found</th> <th colspan="2">Joined</th>
-        </tr> 
-    </thead> 
-    <tbody> 
+        </tr>
+    </thead>
+    <tbody>
         <?php foreach ($mytreasures as $Mytreasure): ?>
-            <tr id="pirate<?= $Mytreasure->p_id ?>"> 
+            <tr id="pirate<?= $Mytreasure->p_id ?>">
                 <td> <?= $Mytreasure->p_id ?> </td>
                 <td class="phone">
                     <?= $Mytreasure->phone ?>
                     <?php if (isBanned($Mytreasure->p_id)): ?>
                         <span class="label label-important">Banned</span>
                     <?php endif; ?>
-                </td> 
+                </td>
                 <td class="treasure"><?= $Mytreasure->treasures ?></td>
-                <td><?= date(FRIENDLYDATEFORMAT, $Mytreasure->signup) ?></td> 
+                <td><?= DateTime::createFromFormat(MYSQL_DATETIME, $Mytreasure->created_at)->format(LONG_DATETIME) ?></td>
                 <td>
                     <div class="btn-group">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Pirate <span class="caret"></span></a>
@@ -82,7 +84,7 @@
         });
         event.preventDefault();
     });
-    
+
     $('tr').on('click', '.striptreasure1', function(event){
         var clicked = $(this);
         $.ajax({
@@ -96,7 +98,7 @@
         });
         event.preventDefault();
     });
-    
+
     $('.striptreasure2').click(function(event){
         var clicked = $(this);
         $.ajax({

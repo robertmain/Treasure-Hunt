@@ -1,38 +1,38 @@
 <?php
 
+use App\Core\Admin_Controller;
+
 class Admin_pirates extends Admin_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('mytreasure_model', 'pirate_model', 'config_model'));
+        $this->load->model(['Mytreasure', 'Pirate', 'Config']);
     }
 
     /* =======NON-AJAX ACTIONS======= */
 
     public function index() {
-        $this->data['registeredUsers'] = $this->pirate_model->get_all();
-        $this->data['mytreasures'] = $this->mytreasure_model->get_treasure_per_user();
-        $this->template->write_view('content', 'views/admin/pirates/index', $this->data);
-        $this->template->render();
+        $this->data['registeredUsers'] = $this->Pirate->get_all();
+        $this->data['mytreasures'] = $this->Mytreasure->get_treasure_per_user();
+        $this->render('partials::admin/pirates/index', $this->data);
     }
 
-    public function manage() {
-        $this->data['authorisationEnabled'] = $this->config_model->get_by('key', 'authorisation');
-        $this->data['Pirate'] = $this->pirate_model->get($this->uri->segment(4));
-        $this->template->write_view('content', 'views/admin/pirates/manage', $this->data);
-        $this->template->render();
+    public function manage($user_id) {
+        $this->data['authorisationEnabled'] = $this->Config->get_by(['key' => 'authorisation']);
+        $this->data['Pirate'] = $this->Pirate->get($user_id);
+        $this->render('partials::admin/pirates/manage', $this->data);
     }
-    
+
     public function update(){
         $updatedPirate = array(
             'phone'=>$this->input->post('phone')
         );
-        
+
         if($this->input->post('password')){
             $updatedPirate['password'] = hash('sha512', $this->input->post('password'));
         }
-        
-        $this->pirate_model->update_by('id', $this->input->post('id'), $updatedPirate);
+
+        $this->Pirate->update_by('id', $this->input->post('id'), $updatedPirate);
         redirect('admin/pirates');
     }
 
@@ -42,10 +42,10 @@ class Admin_pirates extends Admin_Controller {
 
     /* =======AJAX ACTIONS======= */
 
-    public function get() {
+    public function get($user_id) {
         if ($this->input->is_ajax_request()) {
-            if ($this->uri->segment(4)) {
-                $pirate = $this->pirate_model->get($this->uri->segment(4));
+            if ($user_id) {
+                $pirate = $this->Pirate->get($user_id);
                 unset($pirate->admin, $pirate->authorised, $pirate->email, $pirate->forename, $pirate->password, $pirate->phone, $pirate->signup, $pirate->surname, $pirate->username, $pirate->banned);
                 $this->output->set_content_type('application/json')->set_output(json_encode($pirate));
             }
@@ -58,10 +58,10 @@ class Admin_pirates extends Admin_Controller {
         }
     }
 
-    public function ban() {
+    public function ban($user_id) {
         if ($this->input->is_ajax_request()) {
-            if ($this->uri->segment(4)) {
-                $this->pirate_model->update_by('id', $this->uri->segment(4), array('banned' => '1'));
+            if ($user_id) {
+                $this->Pirate->save(['banned' => true], $user_id);
             }
             else {
                 show_error(400, FALSE);
@@ -72,10 +72,12 @@ class Admin_pirates extends Admin_Controller {
         }
     }
 
-    public function unban() {
+    public function unban($user_id) {
         if ($this->input->is_ajax_request()) {
-            if ($this->uri->segment(4)) {
-                $this->pirate_model->update_by('id', $this->uri->segment(4), array('banned' => '0'));
+            if ($user_id) {
+                $this->Pirate->save([
+                    'banned' => false,
+                ], $user_id);
             }
             else {
                 show_error(400, FALSE);
@@ -86,24 +88,12 @@ class Admin_pirates extends Admin_Controller {
         }
     }
 
-    public function authorise() {
+    public function authorise($user_id) {
         if ($this->input->is_ajax_request()) {
-            if ($this->uri->segment(4)) {
-                $this->pirate_model->update_by('id', $this->uri->segment(4), array('authorised' => '1'));
-            }
-            else {
-                show_error(400, FALSE);
-            }
-        }
-        else {
-            show_404(current_url(), FALSE);
-        }
-    }
-    
-    public function deauthorise() {
-        if ($this->input->is_ajax_request()) {
-            if ($this->uri->segment(4)) {
-                $this->pirate_model->update_by('id', $this->uri->segment(4), array('authorised' => '0'));
+            if ($user_id) {
+                $this->Pirate->save([
+                    'authorised' => true
+                ], $user_id);
             }
             else {
                 show_error(400, FALSE);
@@ -114,11 +104,27 @@ class Admin_pirates extends Admin_Controller {
         }
     }
 
-    public function strip_treasure() {
+    public function deauthorise($user_id) {
         if ($this->input->is_ajax_request()) {
-            if ($this->uri->segment(4)) {
-                $this->mytreasure_model->strip_treasure($this->uri->segment(4));
-                $pirate = $this->pirate_model->get($this->uri->segment(4));
+            if ($user_id) {
+                $this->Pirate->save([
+                    'authorised' => false
+                ], $user_id);
+            }
+            else {
+                show_error(400, FALSE);
+            }
+        }
+        else {
+            show_404(current_url(), FALSE);
+        }
+    }
+
+    public function strip_treasure($user_id) {
+        if ($this->input->is_ajax_request()) {
+            if ($user_id) {
+                $this->Mytreasure->strip_treasure($user_id);
+                $pirate = $this->Pirate->get($user_id);
                 $this->output->set_content_type('application/json')->set_output(json_encode($pirate));
             }
             else {
