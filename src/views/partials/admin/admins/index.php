@@ -1,4 +1,4 @@
-<?php $this->template('layouts/default'); ?>
+<?php $this->layout('layouts/default'); ?>
 
 <div id="newAdmin" class="modal hide fade">
     <div class="modal-header">
@@ -100,7 +100,7 @@
         console.log('Forename is: ' + forename.text());
         $.ajax({
             url: '<?= site_url('admin/admins/create') ?>',
-            data: 'forename=' + forename.val() + '&surname=' + surname.val() + '&password=' + password.val() + '&email=' + email.val() + '&username=' + username.val() + '&<?= $this->security->get_csrf_token_name() . "=" . $this->security->get_csrf_hash() ?>',
+            data: 'forename=' + forename.val() + '&surname=' + surname.val() + '&password=' + password.val() + '&email=' + email.val() + '&username=' + username.val() + '&<?= $CI->security->get_csrf_token_name() . "=" . $CI->security->get_csrf_hash() ?>',
             type:'POST',
             dataType:'json',
             error: function(jqXHR, error, errorThrown) {

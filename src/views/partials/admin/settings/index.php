@@ -29,7 +29,7 @@
             <div class="span6">
                 <h3>Treasure Hunt Completion</h3>
                 <p>
-                    You can customise the message that will be shown to the user when they complete the treasure hunt and find all the codes. 
+                    You can customise the message that will be shown to the user when they complete the treasure hunt and find all the codes.
                     See the table on the right for automatic variable substitutions
                 </p>
                 <form action="#" class="form-horizontal">
@@ -103,8 +103,8 @@
             }
         });
     });
-    
-    
+
+
     $('.updatemessage').click(function(){
         $(this).attr('disabled', 'disabled');
         $.ajax({
@@ -124,15 +124,15 @@
             }
         });
     });
-    
+
     $('.completetitle').keyup(function(){
         $('.updatemessage').removeAttr('disabled');
     });
-    
+
     $('.completemessage').keyup(function(){
         $('.updatemessage').removeAttr('disabled');
     });
-    
+
     $('.eucookielaw').click(function(){
         var pressed = $(this);
         $.ajax({
