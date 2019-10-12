@@ -1,3 +1,4 @@
+<?php $this->layout('layouts/default'); ?>
 <h1>Application Settings</h1>
 
 <ul class="nav nav-tabs settings-tabs">
@@ -97,7 +98,7 @@
         $.ajax({
             url: '<?= site_url('admin/settings/update') ?>',
             type:'POST',
-            data: 'key=authorisation&value=' + pressed.attr('data-status') + '&<?= $this->security->get_csrf_token_name() ?>=<?= $this->security->get_csrf_hash() ?>',
+            data: 'key=authorisation&value=' + pressed.attr('data-status') + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
             error: function(jqXHR, error, errorThrown) {
                 console.log(jqXHR.status + ' ' +errorThrown);
             }
@@ -110,7 +111,7 @@
         $.ajax({
             url: '<?= site_url('admin/settings/update') ?>',
             type:'POST',
-            data: 'key=completetitle&value=' + $('.completetitle').val() + '&<?= $this->security->get_csrf_token_name() ?>=<?= $this->security->get_csrf_hash() ?>',
+            data: 'key=completetitle&value=' + $('.completetitle').val() + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
             error: function(jqXHR, error, errorThrown) {
                 console.log(jqXHR.status + ' ' +errorThrown);
             }
@@ -118,7 +119,7 @@
         $.ajax({
             url: '<?= site_url('admin/settings/update') ?>',
             type:'POST',
-            data: 'key=completemessage&value=' + $('.completemessage').html() + '&<?= $this->security->get_csrf_token_name() ?>=<?= $this->security->get_csrf_hash() ?>',
+            data: 'key=completemessage&value=' + $('.completemessage').html() + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
             error: function(jqXHR, error, errorThrown) {
                 console.log(jqXHR.status + ' ' +errorThrown);
             }
@@ -138,7 +139,7 @@
         $.ajax({
             url: '<?= site_url('admin/settings/update') ?>',
             type:'POST',
-            data: 'key=cookielaw&value=' + pressed.attr('data-status') + '&<?= $this->security->get_csrf_token_name() ?>=<?= $this->security->get_csrf_hash() ?>',
+            data: 'key=cookielaw&value=' + pressed.attr('data-status') + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
             error: function(jqXHR, error, errorThrown) {
                 console.log(jqXHR.status + ' ' +errorThrown);
             }
