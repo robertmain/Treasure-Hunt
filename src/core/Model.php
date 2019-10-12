@@ -65,7 +65,7 @@ abstract class Model extends CI_Model
     /**
      * @var \array<string> Lifecycle callback run prior to record retrieval
     */
-    protected $after_get = ['format_record_metadata'];
+    protected $after_get = ['formatRecordMetadata'];
 
     /**
      * @var \array<string> Lifecycle callback run prior to record deletion
@@ -104,12 +104,12 @@ abstract class Model extends CI_Model
      */
     protected function update($primary_value, $data) : bool
     {
-        $data = $this->run_before_callbacks('update', [$data, $primary_value]);
+        $data = $this->runBeforeCallbacks('update', [$data, $primary_value]);
 
         $result = $this->db->where(static::PRIMARY_KEY, $primary_value)
                            ->update($this->table, $data);
 
-        $this->run_after_callbacks('update', [$data, $primary_value, $result]);
+        $this->runAfterCallbacks('update', [$data, $primary_value, $result]);
 
         return $result;
     }
@@ -123,12 +123,12 @@ abstract class Model extends CI_Model
     */
     protected function insert($data) : int
     {
-        $data = $this->run_before_callbacks('create', [$data]);
+        $data = $this->runBeforeCallbacks('create', [$data]);
 
         $this->db->insert($this->table, $data);
         $insert_id = $this->db->insert_id();
 
-        $this->run_after_callbacks('create', [$data, $insert_id]);
+        $this->runAfterCallbacks('create', [$data, $insert_id]);
 
         return $insert_id;
     }
@@ -141,15 +141,13 @@ abstract class Model extends CI_Model
      *
      * @return mixed
      */
-    private function run_before_callbacks($type, $params = [])
+    private function runBeforeCallbacks($type, $params = [])
     {
         $name = 'before_' . $type;
         $data = (isset($params[0])) ? $params[0] : false;
 
-        if (!empty($this->$name))
-        {
-            foreach ($this->$name as $method)
-            {
+        if (!empty($this->$name)) {
+            foreach ($this->$name as $method) {
                 $data += call_user_func_array(array($this, $method), $params);
             }
         }
@@ -165,15 +163,13 @@ abstract class Model extends CI_Model
      *
      * @return mixed
      */
-    private function run_after_callbacks($type, $params = [])
+    private function runAfterCallbacks($type, $params = [])
     {
         $name = 'after_' . $type;
         $data = (isset($params[0])) ? $params[0] : false;
 
-        if (!empty($this->$name))
-        {
-            foreach ($this->$name as $method)
-            {
+        if (!empty($this->$name)) {
+            foreach ($this->$name as $method) {
                 $data = call_user_func_array(array($this, $method), $params);
             }
         }
@@ -187,7 +183,7 @@ abstract class Model extends CI_Model
      * @param object $row Database row
      * @param object $row Database row
     */
-    protected function format_record_metadata($row)
+    protected function formatRecordMetadata($row)
     {
         foreach ([static::CREATED, static::UPDATED, static::DELETED] as $field) {
             if (isset($row->{$field})) {
@@ -215,7 +211,7 @@ abstract class Model extends CI_Model
 
         if ($id) {
             $success = $this->update($id, $data);
-            if($success) {
+            if ($success) {
                 return $id;
             } else {
                 return false;
@@ -234,7 +230,7 @@ abstract class Model extends CI_Model
     */
     public function delete($primary_value, $soft = true) : bool
     {
-        $this->run_before_callbacks('delete', [$primary_value]);
+        $this->runBeforeCallbacks('delete', [$primary_value]);
 
         if ($soft) {
             $result = $this->db->where([static::PRIMARY_KEY => $primary_value])
@@ -243,7 +239,7 @@ abstract class Model extends CI_Model
             $result = $this->db->delete($this->table, [static::PRIMARY_KEY => $primary_value]);
         }
 
-        $this->run_after_callbacks('delete', [$primary_value, $result]);
+        $this->runAfterCallbacks('delete', [$primary_value, $result]);
 
         return $result;
     }
@@ -267,9 +263,10 @@ abstract class Model extends CI_Model
      *
      * @return object|null The object matching the specified query(if any)
     */
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function get_by($where, $include_deleted = false)
     {
-        $this->run_before_callbacks('get');
+        $this->runBeforeCallbacks('get');
 
         if (!$include_deleted) {
             $this->db->where([static::DELETED => null]);
@@ -279,7 +276,7 @@ abstract class Model extends CI_Model
                         ->get($this->table)
                         ->row();
 
-        return $this->run_after_callbacks('get', [$row]);
+        return $this->runAfterCallbacks('get', [$row]);
     }
 
     /**
@@ -290,6 +287,7 @@ abstract class Model extends CI_Model
      *
      * @return \array<stdObject> An array of objects matching the query
     */
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function get_many_by($where, $include_deleted = false) : array
     {
         $this->db->where($where);
@@ -303,9 +301,10 @@ abstract class Model extends CI_Model
      *
      * @return \array<stdObject> An array of objects representing the records in the database
      */
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function get_all($include_deleted = false) : array
     {
-        $this->run_before_callbacks('get');
+        $this->runBeforeCallbacks('get');
 
         if (!$include_deleted) {
             $this->db->where([static::DELETED => null]);
@@ -315,7 +314,7 @@ abstract class Model extends CI_Model
                            ->result();
 
         return array_map(function ($row) {
-            return $this->run_after_callbacks('get', [$row]);
+            return $this->runAfterCallbacks('get', [$row]);
         }, $result);
     }
 }

@@ -4,13 +4,15 @@ namespace App\Core;
 
 use App\Core\Controller;
 
-class Admin_Controller extends Controller {
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+class Admin_Controller extends Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
-        if(!isAdmin()){
+        if (!isAdmin()) {
             redirect('admin/login');
         }
     }
-
 }

@@ -11,7 +11,7 @@ class Mytreasure extends Model {
         $this->table = 'found';
         $this->load->model(array('Treasure', 'Pirate'));
         $this->after_get = [
-            'format_record_metadata',
+            'formatRecordMetadata',
             'get_treasure',
             'get_pirate'
         ];

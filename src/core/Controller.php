@@ -63,11 +63,13 @@ abstract class Controller extends \CI_Controller
     /**
      * Exception handler to allow the extension of CodeIgniter's exception handling.
      *
-     * Other exceptions that do not extend {@link HTTPException} will simply be allowed to bubble to the default CodeIgniter
+     * Other exceptions that do not extend {@link HTTPException} will simply be
+     * allowed to bubble to the default CodeIgniter
      * exception handler
      *
      * @internal
      */
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public static function handle_http_exception($exception)
     {
         if (is_subclass_of($exception, HttpException::class)) {
