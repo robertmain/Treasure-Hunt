@@ -18,7 +18,7 @@ class Admin_pirates extends Admin_Controller
     public function index()
     {
         $this->data['registeredUsers'] = $this->Pirate->get_all();
-        $this->data['mytreasures'] = $this->Mytreasure->get_treasure_per_user();
+        $this->data['mytreasures'] = $this->Mytreasure->getTreasurePerUser();
         $this->render('partials::admin/pirates/index', $this->data);
     }
 
@@ -139,7 +139,7 @@ class Admin_pirates extends Admin_Controller
     {
         if ($this->input->is_ajax_request()) {
             if ($user_id) {
-                $this->Mytreasure->strip_treasure($user_id);
+                $this->Mytreasure->stripTreasure($user_id);
                 $pirate = $this->Pirate->get($user_id);
                 $this->output->set_content_type('application/json')->set_output(json_encode($pirate));
             } else {

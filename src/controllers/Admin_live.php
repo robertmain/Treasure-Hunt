@@ -21,9 +21,9 @@ class Admin_live extends Controller
     public function socket()
     {
         if ($this->uri->segment(4)) {
-            $response = $this->Mytreasure->get_new_found($this->uri->segment(4));
+            $response = $this->Mytreasure->getNewFound($this->uri->segment(4));
         } else {
-            $response = $this->Mytreasure->get_all_found();
+            $response = $this->Mytreasure->getAllFound();
         }
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }

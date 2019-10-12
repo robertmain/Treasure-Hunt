@@ -15,7 +15,7 @@ class Admin_treasure extends Admin_Controller
 
     public function index()
     {
-        $this->data['allTreasure'] = $this->Treasure->get_all_and_last();
+        $this->data['allTreasure'] = $this->Treasure->getAllAndLast();
         $this->render('partials::admin/treasure/index', $this->data);
     }
 

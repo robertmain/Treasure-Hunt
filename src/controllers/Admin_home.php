@@ -22,7 +22,7 @@ class Admin_home extends Admin_Controller
         $this->data['registeredUsers'] = $this->Pirate->get_many_by('admin', '0');
         $this->data['totalCodesInDatabase'] = $this->Treasure->get_all();
         $this->data['totalFoundCodes'] = $this->Mytreasure->get_all();
-        $this->data['treasure_per_pirate'] = $this->Mytreasure->treasure_per_pirate();
+        $this->data['treasure_per_pirate'] = $this->Mytreasure->treasurePerPirate();
         $this->data['treasureFoundData'] = $this->Mytreasure->getTreasureFoundAnalytics();
         $this->data['signupData'] = $this->Pirate->getSignupAnalytics();
         $this->render('partials::admin/home/index', $this->data);
