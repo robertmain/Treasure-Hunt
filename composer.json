@@ -1,0 +1,64 @@
+{
+    "name": "robertmain/codeigniter-starter",
+    "authors": [
+        {
+            "name": "Robert Main"
+        }
+    ],
+    "license": "MIT",
+    "scripts": {
+        "post-install-cmd": "cp .env.example .env",
+        "migrate:latest": "php index.php cli/migrate latest",
+        "migrate:flush": [
+            "php index.php cli/migrate drop",
+            "@migrate:latest"
+        ],
+        "docs": "phpdoc -d src/core -d src/controllers -d src/models -t docs && rm -rf docs/phpdoc-cache-*",
+        "test": [
+            "@test:models",
+            "@test:controllers"
+        ],
+        "test:models": "phpunit --testsuite models --coverage-html tests/coverage",
+        "test:controllers": "phpunit --testsuite controllers --coverage-html tests/coverage",
+        "build": [
+            "composer install --no-dev --quiet",
+            "composer archive --format=zip --file app",
+            "composer install --quiet"
+        ]
+    },
+    "require": {
+        "php": ">=7.2",
+        "codeigniter/framework": "^3.1",
+        "league/plates": "^3.3",
+        "vlucas/phpdotenv": "^3.3",
+        "crazycodr/standard-exceptions": "^2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "vendor/codeigniter/framework/system"
+        ],
+        "psr-4": {
+            "App\\": "src",
+            "App\\Controllers\\": "src/controllers",
+            "App\\Models\\": "src/models",
+            "App\\Core\\": "src/core",
+            "App\\Migrations\\": "src/migrations"
+        }
+    },
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "dev-master",
+        "phpunit/phpunit": "^8.1",
+        "limedeck/phpunit-detailed-printer": "^5.0",
+        "mockery/mockery": "^1.0"
+    },
+    "archive": {
+        "exclude": [
+            "*.*",
+            "!.env",
+            "!.htaccess",
+            "!index.php",
+            "!src/",
+            "!vendor/"
+        ]
+    }
+}
