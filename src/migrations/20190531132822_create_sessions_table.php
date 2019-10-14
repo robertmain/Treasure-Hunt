@@ -2,6 +2,8 @@
 
 use App\Core\Migration;
 
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 class Migration_create_sessions_table extends Migration
 {
     private $table = 'ci_sessions';

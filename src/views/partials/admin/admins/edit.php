@@ -6,7 +6,7 @@
 </div>
 <div class="row">
     <div class="span12">
-        <?= form_open('admin/admins/update', array('class' => 'form-horizontal')) ?>
+        <?= form_open('admin/admins/update', ['class' => 'form-horizontal']) ?>
         <?= form_hidden('id', $Admin->id) ?>
         <h3>Personal Data</h3>
         <div class="control-group">
@@ -37,12 +37,18 @@
         <div class="control-group">
             <label for="password" class="control-label">Password</label>
             <div class="controls">
-                <?= form_password('password', NULL, 'class="password"') ?>
+                <?= form_password('password', null, 'class="password"') ?>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <button class="btn btn-primary" id="addadmin" type="submit"><i class="icon-refresh icon-white"></i> Update Admin</button>
+                <button
+                    class="btn btn-primary"
+                    id="addadmin"
+                    type="submit"
+                >
+                    <i class="icon-refresh icon-white"></i> Update Admin
+                </button>
             </div>
         </div>
         <?= form_close() ?>

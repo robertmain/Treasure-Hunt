@@ -5,6 +5,8 @@ use Exceptions\IO\Filesystem\FileNotFoundException;
 /**
  * Extends CodeIgniter's default loader to support model namespaces
  */
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 class MY_Loader extends CI_Loader
 {
 
@@ -46,10 +48,10 @@ class MY_Loader extends CI_Loader
             }
             array_push($this->_ci_models, $name);
 
-            try{
-                $instance  = $this->load_class($this->models_dir . $model . '.php', 'App\\Models\\' . $model);
+            try {
+                $instance  = $this->loadClass($this->models_dir . $model . '.php', 'App\\Models\\' . $model);
                 $this->CI->{$name} = $instance;
-            } catch(FileNotFoundException $e){
+            } catch (FileNotFoundException $e) {
                 throw new RuntimeException('Unable to locate the model you have specified: ' . $model);
             }
 
@@ -66,7 +68,7 @@ class MY_Loader extends CI_Loader
      * @return object
      * @throws Exceptions\IO\Filesystem\FileNotFoundException
     */
-    private function load_class($path, $class_name)
+    private function loadClass($path, $class_name)
     {
         if (file_exists($path)) {
             $instance = new $class_name();

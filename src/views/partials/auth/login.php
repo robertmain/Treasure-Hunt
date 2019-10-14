@@ -2,14 +2,14 @@
 <h1>Sign In</h1>
 <div class="row">
     <div class="span12">
-        <?php if($CI->session->flashdata('autherror')): ?>
+        <?php if ($CI->session->flashdata('autherror')) : ?>
             <div class="alert alert-error">
                 <?php $error = $CI->session->flashdata('autherror') ?>
                 <h3 class="alert-heading"><?= $error['title'] ?></h3>
                 <p><?= $error['content'] ?></p>
             </div>
         <?php endif; ?>
-        <?= form_open('auth/authenticate', array('class' => 'form-horizontal')); ?>
+        <?= form_open('auth/authenticate', ['class' => 'form-horizontal']); ?>
         <div class="control-group">
             <label class="control-label" for="login">Mobile No</label>
             <div class="controls">

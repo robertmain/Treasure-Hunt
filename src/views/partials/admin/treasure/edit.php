@@ -7,7 +7,7 @@
 </div>
 <div class="row">
     <div class="span12">
-        <?= form_open('admin/treasure/update', array('class' => 'form-horizontal')) ?>
+        <?= form_open('admin/treasure/update', ['class' => 'form-horizontal']) ?>
         <?= form_hidden('id', $Treasure->id) ?>
         <?= validation_errors() ?>
         <div class="control-group">
@@ -25,13 +25,13 @@
         <div class="control-group">
             <label for="location" class="control-label">Text</label>
             <div class="controls">
-                <?=form_textarea('text',$Treasure->text, 'class="text span4"')?>
+                <?=form_textarea('text', $Treasure->text, 'class="text span4"')?>
             </div>
         </div>
         <div class="control-group">
             <label for="location" class="control-label">Clue</label>
             <div class="controls">
-                <?=form_textarea('clue',$Treasure->clue, 'class="text span4" maxlength="107"')?>
+                <?=form_textarea('clue', $Treasure->clue, 'class="text span4" maxlength="107"')?>
             </div>
         </div>
         <div class="form-actions">

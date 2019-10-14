@@ -8,13 +8,19 @@
         <div class="alert alert-danger">
             <h3 class="alert-heading">Warning</h3>
             <p>You are about to remove all treasure found by this pirate.</p>
-            <p><strong>This cannot be un-done, cancelled or taken back after this point</strong></p>
+            <p>
+                <strong>
+                    This cannot be un-done, cancelled or taken back after this point
+                </strong>
+            </p>
             <p>Are you sure you want to continue?</p>
         </div>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn btn-success" data-dismiss="modal">No - Go Back</a>
-        <a href="#" class="btn btn-danger striptreasure2"><i class="icon-white icon-warning-sign"></i> Yes - Strip This Pirate's Treasure</a>
+        <a href="#" class="btn btn-danger striptreasure2">
+            <i class="icon-white icon-warning-sign"></i> Yes - Strip This Pirate's Treasure
+        </a>
     </div>
 </div>
 <h1>Pirates</h1>
@@ -25,29 +31,74 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($mytreasures as $Mytreasure): ?>
+        <?php foreach ($mytreasures as $Mytreasure) : ?>
             <tr id="pirate<?= $Mytreasure->p_id ?>">
                 <td> <?= $Mytreasure->p_id ?> </td>
                 <td class="phone">
                     <?= $Mytreasure->phone ?>
-                    <?php if (isBanned($Mytreasure->p_id)): ?>
+                    <?php if (isBanned($Mytreasure->p_id)) : ?>
                         <span class="label label-important">Banned</span>
                     <?php endif; ?>
                 </td>
                 <td class="treasure"><?= $Mytreasure->treasures ?></td>
-                <td><?= DateTime::createFromFormat(MYSQL_DATETIME, $Mytreasure->created_at)->format(LONG_DATETIME) ?></td>
+                <td>
+                    <?=
+                        DateTime::createFromFormat(
+                            MYSQL_DATETIME,
+                            $Mytreasure->created_at
+                        )->format(LONG_DATETIME)
+                    ?>
+                </td>
                 <td>
                     <div class="btn-group">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Pirate <span class="caret"></span></a>
+                        <a
+                            class="btn dropdown-toggle"
+                            data-toggle="dropdown"
+                            href="#"
+                        >
+                            <i class="icon-user"></i>
+                            Pirate <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu pull-right">
-                            <?php if (isBanned($Mytreasure->p_id)): ?>
-                                <li><a href="" data-id="<?= $Mytreasure->p_id ?>" class="unban"><i class="icon-ok"></i> Un-Ban</a></li>
-                            <?php else: ?>
-                                <li><a href="" data-id="<?= $Mytreasure->p_id ?>" class="ban"><i class="icon-ban-circle"></i> Ban</a></li>
+                            <?php if (isBanned($Mytreasure->p_id)) : ?>
+                                <li>
+                                    <a
+                                        href=""
+                                        data-id="<?= $Mytreasure->p_id ?>"
+                                        class="unban"
+                                    >
+                                        <i class="icon-ok"></i> Un-Ban
+                                    </a>
+                                </li>
+                            <?php else : ?>
+                                <li>
+                                    <a
+                                        href=""
+                                        data-id="<?= $Mytreasure->p_id ?>"
+                                        class="ban"
+                                    >
+                                        <i class="icon-ban-circle"></i> Ban
+                                    </a>
+                                </li>
                             <?php endif; ?>
-                            <li><a href="#stripTreasureModal" class="striptreasure1" data-id="<?= $Mytreasure->p_id ?>"  data-toggle="modal"><i class="icon-gift"></i> Strip Treasure</a></li>
+                            <li>
+                                <a
+                                    href="#stripTreasureModal"
+                                    class="striptreasure1"
+                                    data-id="<?= $Mytreasure->p_id ?>"
+                                    data-toggle="modal"
+                                >
+                                    <i class="icon-gift"></i> Strip Treasure
+                                </a>
+                            </li>
                             <li class="divider"></li>
-                            <li><a href="<?= site_url('admin/pirates/manage/' . $Mytreasure->p_id) ?>"><i class="icon-edit"></i> Manage Pirate</a></li>
+                            <li>
+                                <a
+                                    href="<?= site_url('admin/pirates/manage/' . $Mytreasure->p_id) ?>"
+                                >
+                                    <i class="icon-edit"></i> Manage Pirate
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </td>
@@ -56,70 +107,82 @@
     </tbody>
 </table>
 <script type="text/javascript">
-    $('tr').on('click', '.unban',function(event){
+    const error = (xhr, status, err) => console.error(err);
+    $('tr').on('click', '.unban', function (event) {
         var button = $(this);
         $.ajax({
-            url: '<?= site_url('admin/pirates/unban') ?>/' + button.attr('data-id'),
-            error: function(xhr, status, error) {
-                console.log(error);
-            },
-            success: function(data) {
-                button.removeClass('unban').addClass('ban').parent().parent().parent().parent().parent().find('.label-important').remove();
+            url: '/admin/pirates/unban/' + button.attr('data-id'),
+            error,
+            success: () => {
+                button.removeClass('unban')
+                    .addClass('ban')
+                    .parent()
+                    .parent()
+                    .parent()
+                    .parent()
+                    .parent()
+                    .find('.label-important')
+                    .remove();
                 button.html('<i class="icon-ban-circle"></i> Ban</a>');
             }
         });
         event.preventDefault();
     });
-    $('tr').on('click', '.ban',function(){
-        var button = $(this);
+    $('tr').on('click', '.ban', (event) => {
+        var button = $(event.target);
         $.ajax({
-            url: '<?= site_url('admin/pirates/ban') ?>/' + button.attr('data-id'),
-            error: function(xhr, status, error) {
-                console.log(error);
-            },
-            success: function(data) {
-                button.removeClass('ban').addClass('unban').parent().parent().parent().parent().parent().find('td.phone').append('<span class="label label-important">Banned</span>');
+            url: '/admin/pirates/ban/' + button.attr('data-id'),
+            error,
+            success: () => {
+                button.removeClass('ban')
+                    .addClass('unban')
+                    .parent()
+                    .parent()
+                    .parent()
+                    .parent()
+                    .parent()
+                    .find('td.phone')
+                    .append('<span class="label label-important">Banned</span>');
                 button.html('<i class="icon-ok"></i> Un-Ban</a>');
             }
         });
         event.preventDefault();
     });
 
-    $('tr').on('click', '.striptreasure1', function(event){
-        var clicked = $(this);
+    $('tr').on('click', '.striptreasure1', ({ target, preventDefault }) => {
+        const pirateId = target.getAttribute('data-id');
         $.ajax({
-            url: '<?= site_url('admin/pirates/get') ?>/' + clicked.attr('data-id'),
-            error: function(xhr, status, error) {
-                console.log(error);
-            },
-            success: function(response) {
-                $('#stripTreasureModal').find('.striptreasure2').attr('data-id', response.id);
+            url: '/admin/pirates/get/' + pirateId,
+            error,
+            success: ({id}) => {
+                $('#stripTreasureModal')
+                    .find('.striptreasure2')
+                    .attr('data-id', id);
             }
         });
-        event.preventDefault();
+        preventDefault();
     });
 
-    $('.striptreasure2').click(function(event){
-        var clicked = $(this);
+    $('.striptreasure2').click(function({target, preventDefault}){
+        const pirateId = target.getAttribute('data-id');
         $.ajax({
-            url: '<?= site_url('admin/pirates/get') ?>/' + clicked.attr('data-id'),
-            error: function(xhr, status, error) {
-                console.log(error);
-            },
-            success: function(Pirate) {
+            url: '/admin/pirates/get/' + pirateId,
+            error,
+            success: ()  =>{
                 $.ajax({
-                    url: '<?= site_url('admin/pirates/strip_treasure') ?>/' + clicked.attr('data-id'),
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    },
-                    success: function(Pirate) {
-                        var pirateTableRow = $('table').find('#pirate'+clicked.attr('data-id'));
+                    url: '/admin/pirates/strip_treasure/' + pirateId,
+                    error,
+                    success: () => {
+                        const pirateTableRow = $('table')
+                            .find('#pirate' + pirateId);
+
                         pirateTableRow.find('.treasure').text(0);
+
                         $('#stripTreasureModal').modal('hide');
                     }
                 });
             }
         });
-        event.preventDefault();
+        preventDefault();
     });
 </script>

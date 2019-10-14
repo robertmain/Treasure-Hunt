@@ -17,7 +17,9 @@
         ([{f_id: lastId}] = treasure.slice(-1));
 
         newTreasure.forEach(({ phone, title, f_id }) => {
-            $(`<div><h4 class="alert-heading">Treasure Found</h4><p>User: ${phone}<br />Found Treasure: ${title}</p></div>`)
+            $(`<div><h4 class="alert-heading">
+                Treasure Found</h4><p>User: ${phone}<br />
+                Found Treasure: ${title}</p></div>`)
                 .addClass('alert alert-info span3')
                 .hide()
                 .prependTo('.alertcontainer')

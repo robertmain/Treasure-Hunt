@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : style
     Created on : 30-Apr-2011, 02:38:23
     Author     : Administrator
@@ -13,7 +13,7 @@ body *{
 }
 
 html, body{
-     overflow: hidden; 
+     overflow: hidden;
      height: 100%;
 }
 

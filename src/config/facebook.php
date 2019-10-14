@@ -6,7 +6,7 @@ $config['facebook_default_scope'] = 'read_insights'; // E.G 'read_stream,birthda
 $config['facebook_api_url'] = 'https://graph.facebook.com/'; // Just in case it changes.
 
 //Enable or disable caching
-$config['caching'] = TRUE;
+$config['caching'] = true;
 
 //Time to cache facebook objects in minutes
 $config['object_cache_time'] = 60;

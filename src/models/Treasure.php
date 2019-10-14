@@ -4,18 +4,23 @@ namespace App\Models;
 
 use App\Core\Model;
 
-class Treasure extends Model {
+class Treasure extends Model
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->table = 'treasure';
-        $this->before_delete = array('delete_found');
+        $this->before_delete = ['deleteFound'];
     }
 
-    public function delete_found($id) {
-        $this->db->delete('found', array('treasure' => $id));
+    public function deleteFound($id)
+    {
+        $this->db->delete('found', ['treasure' => $id]);
     }
-    public function get_all_and_last() {
+
+    public function getAllAndLast()
+    {
         $query='SELECT * FROM
             (SELECT
                 treasure.title,
@@ -38,5 +43,4 @@ class Treasure extends Model {
 
         return $this->db->query($query)->result();
     }
-
 }

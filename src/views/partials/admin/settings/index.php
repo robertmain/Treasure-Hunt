@@ -9,20 +9,31 @@
 <div class="tab-content">
     <div class="tab-pane fade" id="validation">
         <h3>Account Validation</h3>
-        <p>The system can require users to validate their account by contacting a member of staff. To turn this on or off use the button below</p>
+        <p>
+            The system can require users to validate their account by contacting
+            a member of staff. To turn this on or off use the button below
+        </p>
         <div class="btn-group" data-toggle="buttons-radio">
             <?php
             if ($config[0]->value == '1') {
                 $validationButtons['on'] = 'active';
-                $validationButtons['off'] = NULL;
-            }
-            else {
-                $validationButtons['on'] = NULL;
+                $validationButtons['off'] = null;
+            } else {
+                $validationButtons['on'] = null;
                 $validationButtons['off'] = 'active';
             }
             ?>
-            <button data-status="1" class="btn btn-success authorisation <?= $validationButtons['on'] ?>"><i class="icon-white icon-lock"></i> Authorisation On</button>
-            <button data-status="0" class="btn btn-success authorisation <?= $validationButtons['off'] ?>">Authorisation Off</button>
+            <button
+                data-status="1"
+                class="btn btn-success authorisation <?= $validationButtons['on']; ?>"
+            >
+                <i class="icon-white icon-lock"></i> Authorisation On</button>
+            <button
+                data-status="0"
+                class="btn btn-success authorisation <?= $validationButtons['off']; ?>"
+            >
+                Authorisation Off
+            </button>
         </div>
     </div>
     <div class="tab-pane fade" id="completion">
@@ -30,7 +41,8 @@
             <div class="span6">
                 <h3>Treasure Hunt Completion</h3>
                 <p>
-                    You can customise the message that will be shown to the user when they complete the treasure hunt and find all the codes.
+                    You can customise the message that will be shown to the user
+                    when they complete the treasure hunt and find all the codes.
                     See the table on the right for automatic variable substitutions
                 </p>
                 <form action="#" class="form-horizontal">
@@ -43,12 +55,23 @@
                     <div class="control-group">
                         <label for="completemessage" class="control-label">Message</label>
                         <div class="controls">
-                            <div class="input completemessage span4" name="completemessage" contenteditable="true"><?= auto_typography($config[2]->value) ?></div>
+                            <div
+                                class="input completemessage span4"
+                                name="completemessage"
+                                contenteditable="true"
+                            >
+                                <?= auto_typography($config[2]->value) ?>
+                            </div>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <button type="button" class="btn btn-primary updatemessage"><i class="icon-white icon-refresh"></i> Update Finish Message</button>
+                            <button
+                                type="button"
+                                class="btn btn-primary updatemessage"
+                            >
+                                <i class="icon-white icon-refresh"></i> Update Finish Message
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -65,7 +88,10 @@
                             <td>%TEAMNAME</td> <td><?= TEAMNAME ?></td>
                         </tr>
                         <tr>
-                            <td>%NCODES</td> <td>Number of QR Codes in the database (currently <?= $amountoftreasure ?>)</td>
+                            <td>%NCODES</td>
+                            <td>
+                                Number of QR Codes in the database (currently <?= $amountoftreasure ?>)
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -79,70 +105,49 @@
             <?php
             if ($config[3]->value == '1') {
                 $cookielawbutton['on'] = 'active';
-                $cookielawbutton['off'] = NULL;
-            }
-            else {
-                $cookielawbutton['on'] = NULL;
+                $cookielawbutton['off'] = null;
+            } else {
+                $cookielawbutton['on'] = null;
                 $cookielawbutton['off'] = 'active';
             }
             ?>
-            <button data-status="1" class="btn btn-success eucookielaw <?= $cookielawbutton['on'] ?>"><i class="icon-white icon-cog"></i> Cookie Compliancy On</button>
-            <button data-status="0" class="btn btn-success eucookielaw <?= $cookielawbutton['off'] ?>">Cookie Compliancy Off</button>
+            <button
+                data-status="1"
+                class="btn btn-success eucookielaw <?= $cookielawbutton['on'] ?>"
+            >
+                <i class="icon-white icon-cog"></i> Cookie Compliancy On
+            </button>
+            <button
+                data-status="0"
+                class="btn btn-success eucookielaw <?= $cookielawbutton['off'] ?>"
+            >
+                Cookie Compliancy Off
+            </button>
         </div>
     </div>
 </div>
 <script type="text/javascript">
+    const csrfTokenName = '<?= $CI->security->get_csrf_token_name() ?>';
+    const csrfHash = '<?= $CI->security->get_csrf_hash() ?>';
+
+    const updateSettings = (key, value) => $.post(
+        '/admin/settings/update',
+        `key=${key}&value=${value}&${csrfTokenName}=${csrfHash}`
+    );
+
     $('.settings-tabs a:first').tab('show').addClass('active');
-    $('.authorisation').click(function(){
-        var pressed = $(this);
-        $.ajax({
-            url: '<?= site_url('admin/settings/update') ?>',
-            type:'POST',
-            data: 'key=authorisation&value=' + pressed.attr('data-status') + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
-            error: function(jqXHR, error, errorThrown) {
-                console.log(jqXHR.status + ' ' +errorThrown);
-            }
-        });
+
+    $('.authorisation').click(({ target }) =>
+        updateSettings('authorisation', target.getAttribute('data-status')));
+
+    $('.updatemessage').click(() => {
+        updateSettings('completetitle', $('.completetitle').val());
+        updateSettings('completemessage', $('.completemessage').html());
     });
 
+    $('.eucookielaw').click(({ target }) =>
+        updateSettings('cookielaw', target.getAttribute('data-status')));
 
-    $('.updatemessage').click(function(){
-        $(this).attr('disabled', 'disabled');
-        $.ajax({
-            url: '<?= site_url('admin/settings/update') ?>',
-            type:'POST',
-            data: 'key=completetitle&value=' + $('.completetitle').val() + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
-            error: function(jqXHR, error, errorThrown) {
-                console.log(jqXHR.status + ' ' +errorThrown);
-            }
-        });
-        $.ajax({
-            url: '<?= site_url('admin/settings/update') ?>',
-            type:'POST',
-            data: 'key=completemessage&value=' + $('.completemessage').html() + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
-            error: function(jqXHR, error, errorThrown) {
-                console.log(jqXHR.status + ' ' +errorThrown);
-            }
-        });
-    });
-
-    $('.completetitle').keyup(function(){
-        $('.updatemessage').removeAttr('disabled');
-    });
-
-    $('.completemessage').keyup(function(){
-        $('.updatemessage').removeAttr('disabled');
-    });
-
-    $('.eucookielaw').click(function(){
-        var pressed = $(this);
-        $.ajax({
-            url: '<?= site_url('admin/settings/update') ?>',
-            type:'POST',
-            data: 'key=cookielaw&value=' + pressed.attr('data-status') + '&<?= $CI->security->get_csrf_token_name() ?>=<?= $CI->security->get_csrf_hash() ?>',
-            error: function(jqXHR, error, errorThrown) {
-                console.log(jqXHR.status + ' ' +errorThrown);
-            }
-        });
-    });
+    $('.completetitle').keyup(() => $('.updatemessage').removeAttr('disabled'));
+    $('.completemessage').keyup(() => $('.updatemessage').removeAttr('disabled'));
 </script>

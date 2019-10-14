@@ -6,14 +6,14 @@
  * @param Integer $pirate
  * @return Boolean
  */
-function isFound($treasure, $pirate) {
+function isFound($treasure, $pirate)
+{
     $CI = & get_instance();
     $CI->load->model('Mytreasure');
-    if ($CI->Mytreasure->get_by(array('pirate' => $pirate, 'treasure' => $treasure))) {
-        return TRUE;
-    }
-    else {
-        return FALSE;
+    if ($CI->Mytreasure->get_by(['pirate' => $pirate, 'treasure' => $treasure])) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -21,13 +21,13 @@ function isFound($treasure, $pirate) {
  *
  * @param Integer $pirate
  */
-function foundAll($pirate) {
+function foundAll($pirate)
+{
     $CI = & get_instance();
     $CI->load->model(['Mytreasure', 'Treasure']);
-    if (sizeof($CI->Mytreasure->get_many_by(array('pirate' => $pirate))) == sizeof($CI->Treasure->get_all())) {
-        return TRUE;
-    }
-    else {
-        return FALSE;
+    if (sizeof($CI->Mytreasure->get_many_by(['pirate' => $pirate])) == sizeof($CI->Treasure->get_all())) {
+        return true;
+    } else {
+        return false;
     }
 }

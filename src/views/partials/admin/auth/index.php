@@ -1,12 +1,12 @@
 <?php $this->layout('layouts/default'); ?>
 
-<?= form_open('admin/login/auth', array('class' => 'form-horizontal')) ?>
+<?= form_open('admin/login/auth', ['class' => 'form-horizontal']) ?>
 <div id="Modal" class="modal">
     <div class="modal-header">
         <h1>Authentication Required</h1>
     </div>
     <div class="modal-body">
-        <?php if ($CI->session->flashdata('autherror')): ?>
+        <?php if ($CI->session->flashdata('autherror')) : ?>
             <?php $Alert = $CI->session->flashdata('autherror') ?>
             <div class="alert alert-error">
                 <h1 class="alert-heading"><?= $Alert['title'] ?></h1>
@@ -16,7 +16,7 @@
         <div class="control-group">
             <label for="username" class="control-label">Username</label>
             <div class="controls">
-                <?= form_input('username', NULL, 'autofocus="autofocus" ') ?>
+                <?= form_input('username', null, 'autofocus="autofocus" ') ?>
             </div>
         </div>
         <div class="control-group">
