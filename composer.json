@@ -1,8 +1,12 @@
 {
-    "name": "robertmain/codeigniter-starter",
+    "name": "robertmain/treasure-hunt",
+    "description": "A QR code based treasurehunt example",
     "authors": [
         {
             "name": "Robert Main"
+        },
+        {
+            "name": "Alastair McColl"
         }
     ],
     "license": "MIT",
