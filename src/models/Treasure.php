@@ -35,7 +35,7 @@ class Treasure extends Model
             FROM
                 treasure
             LEFT JOIN found ON found.treasure = treasure.id
-            ORDER BY found.time DESC) AS temp_table
+            ORDER BY found.' . Mytreasure::CREATED . ' DESC) AS temp_table
                 LEFT JOIN
             pirates ON pirates.id = temp_table.pirate
         WHERE temp_table.deleted_at IS NULL

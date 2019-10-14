@@ -38,9 +38,8 @@ class Mytreasure extends Model
     public function getTreasurePerUser()
     {
         $this->db->select('pirates.phone,
-            pirates.signup,
             count(found.id) as treasures,
-            pirates.created_at,
+            pirates.' . Pirate::CREATED . ',
             pirates.id as p_id')
             ->from('pirates')
             ->join('found', 'found.pirate = pirates.id AND found.deleted_at IS NULL', 'left')
@@ -55,7 +54,7 @@ class Mytreasure extends Model
         $this->db->from($this->table);
         $this->db->join('pirates', 'pirates.id = found.pirate');
         $this->db->join('treasure', 'treasure.id = found.treasure');
-        $this->db->order_by('found.time');
+        $this->db->order_by($this->table . '.' . self::CREATED);
         return array_map(function ($found) {
             $found->phone = mdg(PIRATESALT, $found->phone);
             return $found;
@@ -69,7 +68,7 @@ class Mytreasure extends Model
         $this->db->where('found.id >', $id);
         $this->db->join('pirates', 'pirates.id = found.pirate');
         $this->db->join('treasure', 'treasure.id = found.treasure');
-        $this->db->order_by('found.time');
+        $this->db->order_by($this->table . '.' . self::CREATED);
         return array_map(function ($found) {
             $found->phone = md5(PIRATESALT, $found->phone);
             return $found;
@@ -87,15 +86,16 @@ class Mytreasure extends Model
     {
         $this->db->select('
             COUNT(treasure) as "treasure_found",
-            MINUTE(FROM_UNIXTIME(time)) as "minute",
-            HOUR(FROM_UNIXTIME(time)) as "hour",
-            DAY(FROM_UNIXTIME(time)) as day,
-            time,found.pirate');
+            MINUTE(FROM_UNIXTIME(' . $this->table . '.' . self::CREATED . ')) as "minute",
+            HOUR(FROM_UNIXTIME(' . $this->table . '.' . self::CREATED . ')) as "hour",
+            DAY(FROM_UNIXTIME(' . $this->table . '.' . self::CREATED . ')) as day,
+            ' . $this->table . '.' . self::CREATED . ',
+            found.pirate');
         $this->db->from($this->table);
         $this->db->join('pirates', 'pirates.id = found.pirate', 'LEFT');
         $this->db->join('treasure', 'treasure.id = found.treasure', 'LEFT');
         $this->db->group_by("minute");
-        $this->db->order_by('time', 'ASC');
+        $this->db->order_by($this->table . '.' . self::CREATED, 'ASC');
         $analytics = [];
         foreach ($this->db->get()->result() as $Analytic) {
             unset($Analytic->day, $Analytic->pirate);
@@ -107,8 +107,7 @@ class Mytreasure extends Model
     public function treasurePerPirate()
     {
         return $this->db->query('SELECT
-        AVG(temp.pirate_treasure) FROM
-        (
+        AVG(temp.pirate_treasure) FROM (
             SELECT count(id) as pirate_treasure FROM `found` GROUP BY pirate
         ) as temp')->result();
     }

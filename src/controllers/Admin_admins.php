@@ -23,10 +23,9 @@ class Admin_admins extends Admin_Controller
                 'username' => $this->input->post('username'),
                 'password' => hash('sha512', $this->input->post('password')),
                 'admin' => '1',
-                'signup' => time(),
             ]);
             $admins = array_map(function ($admin) {
-                unset($admin->password, $admin->email, $admin->signup);
+                unset($admin->password, $admin->email);
                 return $admin;
             }, $this->Pirate->get_many_by(['admin' => true]));
             $this->output->set_content_type('application/json')->set_output(json_encode($admins));

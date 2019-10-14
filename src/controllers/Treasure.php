@@ -48,7 +48,6 @@ class Treasure extends Controller
                     $this->Mytreasure->save([
                         'pirate' => $this->data['me']->id,
                         'treasure' => $treasure->id,
-                        'time' => time()
                     ]);
                 }
             }
