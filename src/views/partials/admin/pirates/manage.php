@@ -13,24 +13,43 @@
 <div class="control-group">
     <label class="control-label">Password</label>
     <div class="controls">
-        <?= form_password('password', NULL) ?>
+        <?= form_password('password', null) ?>
         <p class="help-block">Password Un-Changed If Left Blank</p>
     </div>
 </div>
 <div class="control-group">
     <div class="controls">
-        <?php if ($authorisationEnabled->value == '1'): ?>
-            <?php if ($Pirate->authorised == '1'): ?>
-                <button type="button" class="btn authorise active" data-authorise="0" data-id="<?= $Pirate->id ?>">De-Authorise Account</button>
-            <?php else: ?>
-                <button type="button" class="btn authorise" data-authorise="1" data-id="<?= $Pirate->id ?>">Authorise Account</button>
+        <?php if ($authorisationEnabled->value == '1') : ?>
+            <?php if ($Pirate->authorised == '1') : ?>
+                <button
+                    type="button"
+                    class="btn authorise active"
+                    data-authorise="0"
+                    data-id="<?= $Pirate->id ?>"
+                >
+                    De-Authorise Account
+                </button>
+            <?php else : ?>
+                <button
+                    type="button"
+                    class="btn authorise"
+                    data-authorise="1"
+                    data-id="<?= $Pirate->id ?>"
+                >
+                    Authorise Account
+                </button>
             <?php endif; ?>
         <?php endif; ?>
     </div>
 </div>
 
 <div class="form-actions">
-    <button type="submit" class="btn btn-success"><i class="icon-white icon-refresh"></i> Update Pirate</button>
+    <button
+        type="submit"
+        class="btn btn-success"
+    >
+        <i class="icon-white icon-refresh"></i> Update Pirate
+    </button>
 </div>
 <?= form_close() ?>
 

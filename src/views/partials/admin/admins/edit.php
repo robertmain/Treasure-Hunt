@@ -37,12 +37,18 @@
         <div class="control-group">
             <label for="password" class="control-label">Password</label>
             <div class="controls">
-                <?= form_password('password', NULL, 'class="password"') ?>
+                <?= form_password('password', null, 'class="password"') ?>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <button class="btn btn-primary" id="addadmin" type="submit"><i class="icon-refresh icon-white"></i> Update Admin</button>
+                <button
+                    class="btn btn-primary"
+                    id="addadmin"
+                    type="submit"
+                >
+                    <i class="icon-refresh icon-white"></i> Update Admin
+                </button>
             </div>
         </div>
         <?= form_close() ?>

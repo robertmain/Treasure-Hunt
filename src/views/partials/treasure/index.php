@@ -1,7 +1,7 @@
 <?php $this->layout('layouts/default') ?>
 
 <h1>My Treasure</h1>
-<?php if (isBanned($me->id) && isLoggedIn()): ?>
+<?php if (isBanned($me->id) && isLoggedIn()) : ?>
     <div class="alert">
         <h3 class="alert-heading">Information</h3>
         <p>
@@ -12,7 +12,7 @@
         </p>
     </div>
 <?php endif; ?>
-<?php if (sizeof($treasure) > 0): ?>
+<?php if (sizeof($treasure) > 0) : ?>
     <div id="foundAllModal" class="modal hide fade" style="display: none; ">
         <div class="modal-header">
             <h3><?= $foundAllTitle ?></h3>
@@ -25,7 +25,7 @@
         </div>
     </div>
 <?php endif; ?>
-<?php if (foundAll($me->id)): ?>
+<?php if (foundAll($me->id)) : ?>
     <script type="text/javascript">
         if((!getCookie("foundMessageSeen")) | (getCookie('foundMessageSeen') == undefined)){
             $(document).ready(function(){
@@ -37,7 +37,7 @@
             $(this).parent().parent().modal('hide');
         });
     </script>
-<?php else: ?>
+<?php else : ?>
     <script type="text/javascript">
         delCookie("foundMessageSeen");
     </script>
@@ -48,9 +48,9 @@
             <th>Title</th> <th>Status</th>
         </tr>
     </thead>
-    <?php if (sizeof($treasure) > 0): ?>
+    <?php if (sizeof($treasure) > 0) : ?>
         <tbody>
-            <?php foreach ($treasure as $Treasure): ?>
+            <?php foreach ($treasure as $Treasure) : ?>
                 <tr>
             <div id="ClueModal<?= $Treasure->id ?>" class="modal hide fade cluemodal">
                 <div class="modal-header">
@@ -60,22 +60,30 @@
                     <p><?= $Treasure->clue ?></p>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">
+                        Close
+                    </a>
                 </div>
             </div>
             <td>
                 <span>
                     <?= $Treasure->title ?><br />
-                    <?php if (isFound($Treasure->id, $me->id)): ?>
+                    <?php if (isFound($Treasure->id, $me->id)) : ?>
                         <em><?= $Treasure->location ?></em>
                     <?php endif; ?>
                 </span>
             </td>
             <td>
-                <?php if (isFound($Treasure->id, $me->id)): ?>
+                <?php if (isFound($Treasure->id, $me->id)) : ?>
                     <span class="label label-success">Found</span>
-                <?php else: ?>
-                    <span class="label">Not Found</span> <a data-toggle="modal" id="Click<?= $Treasure->id ?>" data-id="<?= $Treasure->id ?>" class="btn btn-info btn-mini">Clue</a>
+                <?php else : ?>
+                    <span class="label">Not Found</span>
+                    <a data-toggle="modal"
+                        id="Click<?= $Treasure->id ?>"
+                        data-id="<?= $Treasure->id ?>"
+                        class="btn btn-info btn-mini">
+                            Clue
+                    </a>
                     <script type="text/javascript">
                         $('#Click<?= $Treasure->id ?>').click(function(){
                             $('.modal').modal('hide');
@@ -86,11 +94,15 @@
                 <?php endif; ?>
             </td>
         </tr>
-    <?php endforeach; ?>
+            <?php endforeach; ?>
     </tbody>
-<?php else: ?>
+    <?php else : ?>
     <tr>
-        <td colspan="2"><p class="center"><em>There Is Currently No Treasure In The Database</em></p></td>
+        <td colspan="2">
+            <p class="center">
+                <em>There Is Currently No Treasure In The Database</em>
+            </p>
+        </td>
     </tr>
-<?php endif; ?>
+    <?php endif; ?>
 </table>

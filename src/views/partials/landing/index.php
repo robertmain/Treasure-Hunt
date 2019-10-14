@@ -27,7 +27,10 @@
         </div>
         <dl class="dl-horizontal">
             <dt>Further Help</dt>
-            <dd>If you require further help using the application, why not come and see us at the <?= TEAMNAME ?> booth</dd>
+            <dd>
+                If you require further help using the application, why not come
+                and see us at the <?= TEAMNAME ?> booth
+            </dd>
         </dl>
     </div>
 </div>
@@ -39,9 +42,15 @@
     and entering your mobile number and a password... it's quick and easy!
 </p>
 <div class="btn-group">
-    <?php if(!isLoggedIn()): ?>
-        <a class="btn btn-success btn-large" href="<?= site_url('auth/login') ?>"><i class="icon-white icon-lock"></i> Sign In</a>
-        <a class="btn btn-success btn-large" href="<?= site_url('auth/register') ?>"><i class="icon-white icon-plus"></i> Register</a>
+    <?php if (!isLoggedIn()) : ?>
+        <a class="btn btn-success btn-large" href="<?= site_url('auth/login') ?>">
+            <i class="icon-white icon-lock"></i> Sign In
+        </a>
+        <a class="btn btn-success btn-large" href="<?= site_url('auth/register') ?>">
+            <i class="icon-white icon-plus"></i> Register
+        </a>
     <?php endif; ?>
-    <a class="btn btn-warning btn-large"  data-toggle="modal" href="#helpModal"><i class="icon-white icon-question-sign"></i> Help</a>
+    <a class="btn btn-warning btn-large"  data-toggle="modal" href="#helpModal">
+        <i class="icon-white icon-question-sign"></i> Help
+    </a>
 </div>

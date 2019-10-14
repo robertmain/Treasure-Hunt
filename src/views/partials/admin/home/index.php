@@ -26,7 +26,7 @@
     </div>
     <div class="span6">
         <h3>User Registration</h3>
-        <?php if (sizeof(@$signupData) > 0): ?>
+        <?php if (sizeof(@$signupData) > 0) : ?>
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
                 google.setOnLoadCallback(drawChart);
@@ -42,7 +42,7 @@
                 }
             </script>
             <div id="signup_div"></div>
-        <?php else: ?>
+        <?php else : ?>
             <div><p class="center"><em>No Data</em></p></div>
         <?php endif; ?>
     </div>
@@ -50,7 +50,7 @@
 <div class="row">
     <div class="span12">
         <h3><?= APPTITLE ?> Activity</h3>
-        <?php if (sizeof(@$treasureFoundData) > 0): ?>
+        <?php if (sizeof(@$treasureFoundData) > 0) : ?>
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
                 google.setOnLoadCallback(drawChart);
@@ -66,7 +66,7 @@
                 }
             </script>
             <div id="found_div"></div>
-        <?php else: ?>
+        <?php else : ?>
             <p class="center"><em>No Data</em></p>
         <?php endif; ?>
     </div>

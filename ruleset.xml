@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PSR2_Extended" xsi:noNamespaceSchemaLocation="../../../phpcs.xsd">
+    <arg name="tab-width" value="4"/>
+    <!-- Include the whole PSR-2 standard -->
+    <rule ref="PSR2"/>
+
+    <!-- Prohibit array() and require [] instead-->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax">
+        <severity>0</severity>
+    </rule>
+</ruleset>

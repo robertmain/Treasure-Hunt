@@ -13,16 +13,13 @@
         <hr>
         <?= auto_typography($Treasure->text) ?>
     </div>
-    <div class="span2"></div>
+    <div class="span2">
+        <img src="" class="thumbnail" alt="<?= $Treasure->title; ?>">
+    </div>
 </div>
 
 <script type="text/javascript">
-    var form = $('form');
-    $('form').submit(function(event){
-        $('div.input').each(function (){
-            $(form).append('<input type="hidden" name="' + $(this).attr('name') + '" value="' + $(this).html() + '">');
-        });
-    });
-
-    $('.span2').html('<img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=<?= site_url('treasure/find/' . $Treasure->md5) ?>" class="thumbnail" alt="<?= $Treasure->title ?>">');
+    const treasureURL = '<?= site_url('treasure/find/' . $Treasure->md5); ?>';
+    $('.span2 img')
+        .attr('src', `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${treasureURL}`);
 </script>

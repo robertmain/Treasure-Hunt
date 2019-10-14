@@ -11,25 +11,25 @@
         <div class="control-group">
             <label for="title" class="control-label">Treasure Title</label>
             <div class="controls">
-                <?= form_input('title', NULL, 'maxlength="23"') ?>
+                <?= form_input('title', null, 'maxlength="23"') ?>
             </div>
         </div>
         <div class="control-group">
             <label for="location" class="control-label">Location</label>
             <div class="controls">
-                <?= form_input('location', NULL, 'maxlength="23"') ?>
+                <?= form_input('location', null, 'maxlength="23"') ?>
             </div>
         </div>
         <div class="control-group">
             <label for="location" class="control-label">Text</label>
             <div class="controls">
-                <?= form_textarea('text', NULL, 'class="text span4"') ?>
+                <?= form_textarea('text', null, 'class="text span4"') ?>
             </div>
         </div>
         <div class="control-group">
             <label for="location" class="control-label">Clue</label>
             <div class="controls">
-                <?= form_textarea('clue', NULL, 'class="clue span4" maxlength="107"') ?>
+                <?= form_textarea('clue', null, 'class="clue span4" maxlength="107"') ?>
             </div>
         </div>
         <div class="form-actions">

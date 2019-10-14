@@ -2,7 +2,7 @@
 <h1>Sign In</h1>
 <div class="row">
     <div class="span12">
-        <?php if($CI->session->flashdata('autherror')): ?>
+        <?php if ($CI->session->flashdata('autherror')) : ?>
             <div class="alert alert-error">
                 <?php $error = $CI->session->flashdata('autherror') ?>
                 <h3 class="alert-heading"><?= $error['title'] ?></h3>

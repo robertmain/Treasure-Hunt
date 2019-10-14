@@ -1,7 +1,7 @@
 <?php $this->layout('layouts/default'); ?>
 
 <h1>Treasure Found</h1>
-<?php if (isBanned($me->id) && isLoggedIn()): ?>
+<?php if (isBanned($me->id) && isLoggedIn()) : ?>
     <div class="alert">
         <h3 class="alert-heading">Information</h3>
         <p>
@@ -12,7 +12,7 @@
         </p>
     </div>
 <?php endif; ?>
-<?php if ($found == TRUE): ?>
+<?php if ($found == true) : ?>
     <div class="alert">
         <a href="#" data-dismiss="alert" class="close">&times;</a>
         <h3 class="alert-heading">Information</h3>
@@ -20,7 +20,7 @@
     </div>
 <?php endif; ?>
 
-<?php if (!isLoggedIn()): ?>
+<?php if (!isLoggedIn()) : ?>
     <div class="alert" style="overflow: hidden">
         <a href="#" data-dismiss="alert" class="close">&times;</a>
         <h3 class="alert-heading">Information</h3>

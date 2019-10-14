@@ -2,7 +2,7 @@
 
 <h1>Register</h1>
 <div class="row">
-    <?php if ($CI->session->flashdata('registerinfo')): ?>
+    <?php if ($CI->session->flashdata('registerinfo')) : ?>
         <div class="span12">
             <div class="alert alert-success">
                 <?php $alert = $CI->session->flashdata('registerinfo') ?>
@@ -22,7 +22,7 @@
                 }
             }, 1000);
         </script>
-    <?php else: ?>
+    <?php else : ?>
         <div class="span6">
             <?= validation_errors() ?>
             <?= form_open('auth/create', array('class' => 'form-horizontal')); ?>
