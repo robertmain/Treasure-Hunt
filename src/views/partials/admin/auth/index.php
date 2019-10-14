@@ -1,6 +1,6 @@
 <?php $this->layout('layouts/default'); ?>
 
-<?= form_open('admin/login/auth', array('class' => 'form-horizontal')) ?>
+<?= form_open('admin/login/auth', ['class' => 'form-horizontal']) ?>
 <div id="Modal" class="modal">
     <div class="modal-header">
         <h1>Authentication Required</h1>

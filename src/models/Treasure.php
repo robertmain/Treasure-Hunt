@@ -16,7 +16,7 @@ class Treasure extends Model
 
     public function deleteFound($id)
     {
-        $this->db->delete('found', array('treasure' => $id));
+        $this->db->delete('found', ['treasure' => $id]);
     }
 
     public function getAllAndLast()

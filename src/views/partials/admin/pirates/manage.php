@@ -2,7 +2,7 @@
 
 <h1>Pirates <small>Manage Pirate</small></h1>
 
-<?= form_open('admin/pirates/update', array('class' => 'form-horizontal')) ?>
+<?= form_open('admin/pirates/update', ['class' => 'form-horizontal']) ?>
 <?= form_hidden('id', $Pirate->id) ?>
 <div class="control-group">
     <label class="control-label">Phone Number</label>

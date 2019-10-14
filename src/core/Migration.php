@@ -31,7 +31,7 @@ abstract class Migration extends CI_Migration
     /**
      * {@inheritdoc}
     */
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
         $this->date_stamps = [
             static::CREATED . ' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()',

@@ -10,7 +10,7 @@ function isFound($treasure, $pirate)
 {
     $CI = & get_instance();
     $CI->load->model('Mytreasure');
-    if ($CI->Mytreasure->get_by(array('pirate' => $pirate, 'treasure' => $treasure))) {
+    if ($CI->Mytreasure->get_by(['pirate' => $pirate, 'treasure' => $treasure])) {
         return true;
     } else {
         return false;
@@ -25,7 +25,7 @@ function foundAll($pirate)
 {
     $CI = & get_instance();
     $CI->load->model(['Mytreasure', 'Treasure']);
-    if (sizeof($CI->Mytreasure->get_many_by(array('pirate' => $pirate))) == sizeof($CI->Treasure->get_all())) {
+    if (sizeof($CI->Mytreasure->get_many_by(['pirate' => $pirate])) == sizeof($CI->Treasure->get_all())) {
         return true;
     } else {
         return false;

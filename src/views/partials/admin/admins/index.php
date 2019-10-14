@@ -6,7 +6,7 @@
         <h2>Add Administrator</h2>
     </div>
     <div class="modal-body">
-        <?= form_open(null, array('class' => 'form-horizontal')) ?>
+        <?= form_open(null, ['class' => 'form-horizontal']) ?>
         <h3>Personal Data</h3>
         <div class="control-group">
             <label for="forename" class="control-label">Forename</label>

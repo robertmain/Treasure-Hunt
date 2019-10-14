@@ -13,8 +13,8 @@ class Admin_home extends Admin_Controller
         if (!isLoggedIn()) {
             redirect('admin/login');
         }
-        $this->load->model(array('Mytreasure', 'Pirate', 'Treasure'));
-        $this->load->helper(array('analytics'));
+        $this->load->model(['Mytreasure', 'Pirate', 'Treasure']);
+        $this->load->helper(['analytics']);
     }
 
     public function index()

@@ -6,7 +6,7 @@
 </div>
 <div class="row">
     <div class="span12">
-        <?= form_open('admin/treasure/create', array('class' => 'form-horizontal')) ?>
+        <?= form_open('admin/treasure/create', ['class' => 'form-horizontal']) ?>
         <?= validation_errors() ?>
         <div class="control-group">
             <label for="title" class="control-label">Treasure Title</label>

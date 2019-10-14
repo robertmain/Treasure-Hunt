@@ -9,7 +9,7 @@
                 <p><?= $error['content'] ?></p>
             </div>
         <?php endif; ?>
-        <?= form_open('auth/authenticate', array('class' => 'form-horizontal')); ?>
+        <?= form_open('auth/authenticate', ['class' => 'form-horizontal']); ?>
         <div class="control-group">
             <label class="control-label" for="login">Mobile No</label>
             <div class="controls">

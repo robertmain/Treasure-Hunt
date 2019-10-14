@@ -9,7 +9,7 @@ class Admin_admins extends Admin_Controller
 {
     public function index()
     {
-        $this->data['admins'] = $this->Pirate->get_many_by(array('admin' => '1'));
+        $this->data['admins'] = $this->Pirate->get_many_by(['admin' => '1']);
         $this->render('partials::admin/admins/index', $this->data);
     }
 
@@ -41,12 +41,12 @@ class Admin_admins extends Admin_Controller
 
     public function update()
     {
-        $updatedAdmin = array(
+        $updatedAdmin = [
             'forename' => $this->input->post('forename'),
             'surname' => $this->input->post('surname'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
-        );
+        ];
         if ($this->input->post('password')) {
             $updatedAdmin['password'] = hash('sha512', $this->input->post('password'));
         }
@@ -63,7 +63,7 @@ class Admin_admins extends Admin_Controller
 
     public function remove($user_id)
     {
-        if (sizeof($this->Pirate->get_many_by(array('admin' => '1'))) > 1) {
+        if (sizeof($this->Pirate->get_many_by(['admin' => '1'])) > 1) {
             $this->Pirate->delete($user_id);
         }
         redirect('admin/admins');

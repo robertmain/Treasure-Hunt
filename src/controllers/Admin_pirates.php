@@ -31,9 +31,9 @@ class Admin_pirates extends Admin_Controller
 
     public function update()
     {
-        $updatedPirate = array(
+        $updatedPirate = [
             'phone'=>$this->input->post('phone')
-        );
+        ];
 
         if ($this->input->post('password')) {
             $updatedPirate['password'] = hash('sha512', $this->input->post('password'));

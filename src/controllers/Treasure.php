@@ -26,8 +26,8 @@ class Treasure extends Controller
             show_404(current_url(), false);
         }
         $this->data['foundAllTitle'] = $this->Config->get_by(['key' => 'completetitle'])->value;
-        $find = array('%NCODES', '%TEAMNAME');
-        $replace = array(sizeof($this->Treasure->get_all()), TEAMNAME);
+        $find = ['%NCODES', '%TEAMNAME'];
+        $replace = [sizeof($this->Treasure->get_all()), TEAMNAME];
         $foundMessageTemplate = $this->Config->get_by([
             'key' => 'completemessage'
         ])->value;

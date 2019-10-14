@@ -10,7 +10,7 @@ class Admin_settings extends Admin_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('Config', 'Treasure'));
+        $this->load->model(['Config', 'Treasure']);
     }
 
     public function index()

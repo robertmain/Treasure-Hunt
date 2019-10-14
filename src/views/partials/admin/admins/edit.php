@@ -6,7 +6,7 @@
 </div>
 <div class="row">
     <div class="span12">
-        <?= form_open('admin/admins/update', array('class' => 'form-horizontal')) ?>
+        <?= form_open('admin/admins/update', ['class' => 'form-horizontal']) ?>
         <?= form_hidden('id', $Admin->id) ?>
         <h3>Personal Data</h3>
         <div class="control-group">

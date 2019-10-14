@@ -7,7 +7,7 @@
 </div>
 <div class="row">
     <div class="span12">
-        <?= form_open('admin/treasure/update', array('class' => 'form-horizontal')) ?>
+        <?= form_open('admin/treasure/update', ['class' => 'form-horizontal']) ?>
         <?= form_hidden('id', $Treasure->id) ?>
         <?= validation_errors() ?>
         <div class="control-group">

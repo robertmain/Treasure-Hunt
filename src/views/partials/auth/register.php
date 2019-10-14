@@ -25,7 +25,7 @@
     <?php else : ?>
         <div class="span6">
             <?= validation_errors() ?>
-            <?= form_open('auth/create', array('class' => 'form-horizontal')); ?>
+            <?= form_open('auth/create', ['class' => 'form-horizontal']); ?>
             <div class="control-group">
                 <label for="phone" class="control-label">Mobile No</label>
                 <div class="controls">

@@ -10,7 +10,7 @@ class Admin_treasure extends Admin_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('Treasure'));
+        $this->load->model(['Treasure']);
     }
 
     public function index()

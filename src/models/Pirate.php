@@ -15,7 +15,7 @@ class Pirate extends Model
 
     public function deleteFound($id)
     {
-        $this->db->delete('found', array('pirate' => $id));
+        $this->db->delete('found', ['pirate' => $id]);
     }
 
     public function getSignupAnalytics()
