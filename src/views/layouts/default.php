@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <?= link_tag(base_url(ASSET_PATH . 'css/style.css')) ?>
-        <script type="text/javascript" src="<?= base_url('src/assets/js/jquery.min.js') ?>"></script>
-        <script type="text/javascript" src="<?= base_url('src/assets/js/bootstrap.min.js') ?>"></script>
+        <script type="text/javascript" src="<?= base_url(ASSET_PATH . 'js/jquery.min.js') ?>"></script>
+        <script type="text/javascript" src="<?= base_url(ASSET_PATH . 'js/bootstrap.min.js') ?>"></script>
         <title><?= APPTITLE ?></title>
         <?php if ($CI->agent->is_mobile()) : ?>
             <meta name="viewport" content="user-scalable=no, width=device-width" />
@@ -89,14 +89,14 @@
                     <p>
                         A <?= TEAMNAME ?> Web Application<br />
                         All Rights Reserved<br />
-                        <?= img('src/assets/img/hostedby.png') ?>
+                        <?= img(base_url(ASSET_PATH . 'img/hostedby.png')) ?>
                     </p>
                 </footer>
             <?php endif; ?>
         </div>
     </body>
     <?php if ($cookielaw == '1') : ?>
-        <script src="/src/assets/js/cookie.js"></script>
+        <script src="<?= base_url(ASSET_PATH . 'js/cookie.js') ?>"></script>
         <script type="text/javascript">
             if(!getCookie("messageSeen")){
                 $(document).ready(() => {
