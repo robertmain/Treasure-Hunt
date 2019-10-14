@@ -61,7 +61,6 @@ class Admin_pirates extends Admin_Controller
                     $pirate->forename,
                     $pirate->password,
                     $pirate->phone,
-                    $pirate->signup,
                     $pirate->surname,
                     $pirate->username,
                     $pirate->banned

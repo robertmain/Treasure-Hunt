@@ -38,7 +38,6 @@ class Mytreasure extends Model
     public function getTreasurePerUser()
     {
         $this->db->select('pirates.phone,
-            pirates.signup,
             count(found.id) as treasures,
             pirates.created_at,
             pirates.id as p_id')
@@ -107,8 +106,7 @@ class Mytreasure extends Model
     public function treasurePerPirate()
     {
         return $this->db->query('SELECT
-        AVG(temp.pirate_treasure) FROM
-        (
+        AVG(temp.pirate_treasure) FROM (
             SELECT count(id) as pirate_treasure FROM `found` GROUP BY pirate
         ) as temp')->result();
     }

@@ -19,7 +19,7 @@ class Admin_home extends Admin_Controller
 
     public function index()
     {
-        $this->data['registeredUsers'] = $this->Pirate->get_many_by('admin', '0');
+        $this->data['registeredUsers'] = $this->Pirate->get_many_by('admin', false);
         $this->data['totalCodesInDatabase'] = $this->Treasure->get_all();
         $this->data['totalFoundCodes'] = $this->Mytreasure->get_all();
         $this->data['treasure_per_pirate'] = $this->Mytreasure->treasurePerPirate();

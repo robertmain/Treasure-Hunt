@@ -85,7 +85,6 @@ class Auth extends Controller
             $newPirateID = $this->Pirate->save([
                 'phone' => $this->input->post('phone'),
                 'password' => hash('sha512', $this->input->post('password')),
-                'signup' => time(),
             ]);
             $this->session->set_userdata('id', $newPirateID);
             $this->session->set_flashdata('registerinfo', [

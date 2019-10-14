@@ -1,6 +1,5 @@
 <?php $this->layout('layouts/default'); ?>
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <div class="row">
     <div class="span12">
         <h1>Dashboard</h1>
@@ -26,48 +25,40 @@
     </div>
     <div class="span6">
         <h3>User Registration</h3>
-        <?php if (sizeof(@$signupData) > 0) : ?>
-            <script type="text/javascript">
-                google.load("visualization", "1", {packages:["corechart"]});
-                google.setOnLoadCallback(drawChart);
-                function drawChart() {
-                    var data = google.visualization.arrayToDataTable(<?= signupToGraph($signupData) ?>);
-                    var options = {
-                        vAxis:{'title': 'Treasure Found'},
-                        hAxis:{'title': 'Time'},
-                        curveType: 'function'
-                    };
-                    var chart = new google.visualization.LineChart(document.getElementById('signup_div'));
-                    chart.draw(data, options);
-                }
-            </script>
-            <div id="signup_div"></div>
-        <?php else : ?>
-            <div><p class="center"><em>No Data</em></p></div>
-        <?php endif; ?>
+        <div id="signup_div"></div>
     </div>
 </div>
 <div class="row">
     <div class="span12">
         <h3><?= APPTITLE ?> Activity</h3>
-        <?php if (sizeof(@$treasureFoundData) > 0) : ?>
-            <script type="text/javascript">
-                google.load("visualization", "1", {packages:["corechart"]});
-                google.setOnLoadCallback(drawChart);
-                function drawChart() {
-                    var data = google.visualization.arrayToDataTable(<?= activityToGraph($treasureFoundData) ?>);
-                    var options = {
-                        vAxis:{'title': 'Treasure Found'},
-                        hAxis:{'title': 'Time'},
-                        curveType: 'function'
-                    };
-                    var chart = new google.visualization.LineChart(document.getElementById('found_div'));
-                    chart.draw(data, options);
-                }
-            </script>
-            <div id="found_div"></div>
-        <?php else : ?>
-            <p class="center"><em>No Data</em></p>
-        <?php endif; ?>
+        <div id="found_div"></div>
     </div>
 </div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load('visualization', '1', { packages:['corechart'] });
+    google.setOnLoadCallback(() => {
+        const { visualization: { arrayToDataTable } } = google;
+
+        const signUpData = arrayToDataTable(<?= signupToGraph($signupData) ?>);
+        const foundData = arrayToDataTable(<?= activityToGraph($treasureFoundData) ?>)
+
+        const options = {
+            hAxis:{'title': 'Time'},
+            curveType: 'function',
+            legend: { position: 'none' }
+        }
+
+        new google.visualization.LineChart(document.getElementById('signup_div'))
+            .draw(signUpData, {
+                ...options,
+                vAxis:{'title': 'Registrations'},
+            });
+        new google.visualization.LineChart(document.getElementById('found_div'))
+            .draw(foundData, {
+                ...options,
+                vAxis:{'title': 'Treasure Found'},
+            });
+    });
+</script>

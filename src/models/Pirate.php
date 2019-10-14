@@ -22,16 +22,16 @@ class Pirate extends Model
     {
         $this->db->select('
             COUNT(id) as "signups",
-            MINUTE(FROM_UNIXTIME(signup)) as "minute",
-            HOUR(FROM_UNIXTIME(signup)) as "hour",
-            DAY(FROM_UNIXTIME(signup)) as "day",
+            MINUTE(created_at) as "minute",
+            HOUR(created_at) as "hour",
+            DAY(created_at) as "day",
             forename,
             surname,
             id')
             ->from('pirates')
             ->group_by('hour')
             ->where('admin', '0')
-            ->order_by('signup', 'ASC');
+            ->order_by('created_at', 'ASC');
 
         return array_map(function ($Analytic) {
             unset($Analytic->day, $Analytic->pirate);
