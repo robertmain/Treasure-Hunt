@@ -102,6 +102,7 @@
             <?php endif; ?>
         </div>
     </body>
+    <?= $this->section('scripts'); ?>
     <?php if ($cookielaw == '1') : ?>
         <script src="<?= base_url(ASSET_PATH . 'js/cookie.js') ?>"></script>
         <script type="text/javascript">
