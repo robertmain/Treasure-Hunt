@@ -33,12 +33,10 @@ abstract class Controller extends \CI_Controller
 
         $this->templates->addData([
             'CI' => get_instance(),
+            'title' => '',
+            'subtitle' => ''
         ]);
         $this->templates->addData($this->data);
-        $this->templates->addData([
-            'title' => '',
-            'subtitle' => '',
-        ], 'layouts/default');
         $this->templates->addFolder('layouts', VIEWPATH . 'layouts');
         $this->templates->addFolder('partials', VIEWPATH . 'partials');
     }
