@@ -56,7 +56,7 @@ class Mytreasure extends Model
         $this->db->join('treasure', 'treasure.id = found.treasure');
         $this->db->order_by($this->table . '.' . self::CREATED);
         return array_map(function ($found) {
-            $found->phone = md5(PIRATESALT, $found->phone);
+            $found->phone = md5(PIRATESALT . $found->phone);
             return $found;
         }, $this->db->get()->result());
     }
