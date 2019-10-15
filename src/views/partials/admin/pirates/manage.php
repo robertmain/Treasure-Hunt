@@ -1,6 +1,9 @@
-<?php $this->layout('layouts/default'); ?>
-
-<h1>Pirates <small>Manage Pirate</small></h1>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Pirates',
+    'subtitle' => 'Manage Pirate'
+]);
+?>
 
 <?= form_open('admin/pirates/update', ['class' => 'form-horizontal']) ?>
 <?= form_hidden('id', $Pirate->id) ?>

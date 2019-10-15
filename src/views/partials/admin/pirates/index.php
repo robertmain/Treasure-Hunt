@@ -1,4 +1,8 @@
-<?php $this->layout('layouts/default'); ?>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Pirates',
+]);
+?>
 
 <div id="stripTreasureModal" class="modal hide fade">
     <div class="modal-header">
@@ -23,7 +27,6 @@
         </a>
     </div>
 </div>
-<h1>Pirates</h1>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
