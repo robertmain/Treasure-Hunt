@@ -75,6 +75,13 @@
             </div>
         </div>
         <div class="container">
+            <?php if ($title) : ?>
+                <div class="row">
+                    <div class="span12">
+                        <h1><?= $title; ?> <small><?= $subtitle ?></small></h1>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="row">
                 <div class="span12">
                     <?php if (isLoggedIn() && !isAdmin()) : ?>

@@ -1,10 +1,10 @@
-<?php $this->layout('layouts/default'); ?>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Adminstrators',
+    'subtitle' => 'Delete Administrator'
+]);
+?>
 
-<div class="row">
-    <div class="span12">
-        <h1>Treasure <small>Delete Treasure</small></h1>
-    </div>
-</div>
 <div class="row">
     <div class="span12">
         <div class="alert alert-danger">

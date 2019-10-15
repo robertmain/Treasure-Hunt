@@ -1,10 +1,9 @@
-<?php $this->layout('layouts/default'); ?>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Dashboard',
+]);
+?>
 
-<div class="row">
-    <div class="span12">
-        <h1>Dashboard</h1>
-    </div>
-</div>
 <div class="row">
     <div class="span6">
         <h3>Overview</h3>

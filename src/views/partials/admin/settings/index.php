@@ -1,5 +1,8 @@
-<?php $this->layout('layouts/default'); ?>
-<h1>Application Settings</h1>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Application Settings',
+]);
+?>
 
 <ul class="nav nav-tabs settings-tabs">
     <li><a href="#validation" data-toggle="tab">Account Validation</a></li>

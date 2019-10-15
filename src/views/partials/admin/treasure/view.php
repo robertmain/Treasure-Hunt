@@ -1,9 +1,10 @@
-<?php $this->layout('layouts/default'); ?>
-<div class="row">
-    <div class="span12">
-        <h1>Treasure <small>View Treasure</small></h1>
-    </div>
-</div>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Treasure',
+    'subtitle' => 'View Treasure',
+]);
+?>
+
 <div class="row">
     <div class="span10">
         <h2><?= $Treasure->title ?></h2>

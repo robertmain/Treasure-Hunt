@@ -1,4 +1,8 @@
-<?php $this->layout('layouts/default'); ?>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Adminstrators',
+]);
+?>
 
 <div id="newAdmin" class="modal hide fade">
     <div class="modal-header">
@@ -54,74 +58,65 @@
         <?= form_close() ?>
     </div>
 </div>
-<div class="row">
-    <div class="span12">
-        <h1>Administrators</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="span12">
-        <table class="table table-bordered table-striped">
-            <thead>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th> <th>Username</th> <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (sizeof($admins) > 0) : ?>
+            <?php foreach ($admins as $Admin) : ?>
                 <tr>
-                    <th>Name</th> <th>Username</th> <th></th>
+                    <td><?= $Admin->forename . ' ' . $Admin->surname ?></td>
+                    <td><?= $Admin->username ?></td>
+                    <td>
+                        <div class="btn-group">
+                            <a
+                                class="btn dropdown-toggle"
+                                data-toggle="dropdown"
+                                href="#"
+                            >
+                                <i class="icon-user"></i> Admin <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <?=
+                                        anchor(
+                                            'admin/admins/edit/' . $Admin->id,
+                                            '<i class="icon-pencil"></i> Edit'
+                                        );
+                                    ?>
+                                </li>
+                                <?php if (sizeof($admins) > 1) : ?>
+                                <li>
+                                    <?=
+                                        anchor(
+                                            'admin/admins/delete/' . $Admin->id,
+                                            '<i class="icon-trash"></i> Delete'
+                                        );
+                                    ?>
+                                </li>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php if (sizeof($admins) > 0) : ?>
-                    <?php foreach ($admins as $Admin) : ?>
-                        <tr>
-                            <td><?= $Admin->forename . ' ' . $Admin->surname ?></td>
-                            <td><?= $Admin->username ?></td>
-                            <td>
-                                <div class="btn-group">
-                                    <a
-                                        class="btn dropdown-toggle"
-                                        data-toggle="dropdown"
-                                        href="#"
-                                    >
-                                        <i class="icon-user"></i> Admin <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <?=
-                                                anchor(
-                                                    'admin/admins/edit/' . $Admin->id,
-                                                    '<i class="icon-pencil"></i> Edit'
-                                                );
-                                            ?>
-                                        </li>
-                                        <?php if (sizeof($admins) > 1) : ?>
-                                        <li>
-                                            <?=
-                                                anchor(
-                                                    'admin/admins/delete/' . $Admin->id,
-                                                    '<i class="icon-trash"></i> Delete'
-                                                );
-                                            ?>
-                                        </li>
-                                        <?php endif; ?>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <tr>
-                        <td colspan="3"><p class="center"><em>No Admins In Database</em></p></td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-        <a
-            data-toggle="modal"
-            href="#newAdmin"
-            class="btn btn-success"
-        >
-            <i class="icon-plus icon-white"></i> Add Admin
-        </a>
-    </div>
-</div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <tr>
+                <td colspan="3"><p class="center"><em>No Admins In Database</em></p></td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+<a
+    data-toggle="modal"
+    href="#newAdmin"
+    class="btn btn-success"
+>
+    <i class="icon-plus icon-white"></i> Add Admin
+</a>
 
 <script type="text/javascript">
     $('#addadmin').on('click', function () {

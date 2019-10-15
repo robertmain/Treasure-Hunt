@@ -1,9 +1,10 @@
-<?php $this->layout('layouts/default'); ?>
-<div class="row">
-    <div class="span12">
-        <h1>Administrators <small>Edit Administrator</small></h1>
-    </div>
-</div>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Administrators',
+    'subtitle' => 'Edit Administrator'
+]);
+?>
+
 <div class="row">
     <div class="span12">
         <?= form_open('admin/admins/update', ['class' => 'form-horizontal']) ?>
