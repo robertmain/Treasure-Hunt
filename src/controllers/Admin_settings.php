@@ -24,12 +24,9 @@ class Admin_settings extends Admin_Controller
     public function update()
     {
         if ($this->input->is_ajax_request()) {
-            $config_item = $this->Config->get_by([
-                'key' => $this->input->post('key')
-            ]);
             $this->Config->save([
                 'value' => $this->input->post('value'),
-            ], $config_item->id);
+            ], $this->input->post('key'));
         } else {
             show_404(current_url(), false);
         }
