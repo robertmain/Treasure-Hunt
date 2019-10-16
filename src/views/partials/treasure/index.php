@@ -1,6 +1,9 @@
-<?php $this->layout('layouts/default') ?>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'My Treasure',
+]);
+?>
 
-<h1>My Treasure</h1>
 <?php if (isBanned($me->id) && isLoggedIn()) : ?>
     <div class="alert">
         <h3 class="alert-heading">Information</h3>

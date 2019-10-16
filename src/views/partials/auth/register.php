@@ -1,6 +1,9 @@
-<?php $this->layout('layouts/default'); ?>
+<?php
+    $this->layout('layouts/default', [
+        'title' => 'Register',
+    ]);
+?>
 
-<h1>Register</h1>
 <div class="row">
     <?php if ($CI->session->flashdata('registerinfo')) : ?>
         <div class="span12">
@@ -10,10 +13,11 @@
                 <p><?= $alert['content'] ?></p>
             </div>
         </div>
+        <?php $this->push('scripts'); ?>
         <script type="text/javascript">
-            var start = 10;
+            let start = 10;
             $('.seconds').html(start);
-            var interval = setInterval(function() {
+            const interval = setInterval(() => {
                 start--;
                 $('.seconds').html(start);
                 if (start == 0) {
@@ -22,6 +26,7 @@
                 }
             }, 1000);
         </script>
+        <?php $this->end(); ?>
     <?php else : ?>
         <div class="span6">
             <?= validation_errors() ?>

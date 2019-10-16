@@ -1,12 +1,15 @@
 <?php $this->layout('layouts/live') ?>
 
 <div class="alertcontainer"></div>
+
+<?php $this->push('scripts'); ?>
 <script type="text/javascript">
     let lastId;
     const treasure = [];
 
     setInterval(async() => {
-        const response = await fetch(`<?= current_url() ?>/socket/${(lastId > 0) ? lastId: ''}`)
+        const fetchSince = (lastId > 0) ? lastId : '';
+        const response = await fetch(`<?= base_url('admin/live/socket/${fetchSince}') ?>`)
         const body = await response.json();
 
         const newTreasure = body.filter(({ f_id }) =>
@@ -27,3 +30,4 @@
         });
     }, 2000);
 </script>
+<?php $this->end(); ?>
