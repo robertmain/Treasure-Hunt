@@ -57,24 +57,21 @@ $this->layout('layouts/default', [
 <?= form_close() ?>
 
 <script type="text/javascript">
-    $('.authorise').click(function(){
-        var clicked = $(this);
+    $('.authorise').click(({ target, preventDefault }) => {
+        let action;
+        const clicked = $(target);
         if(clicked.hasClass('active')){
-            var action = 'deauthorise';
+            action = 'deauthorise';
             clicked.removeClass('active');
             clicked.html('Authorise Account');
-        }
-        else{
-            var action = 'authorise';
+        } else {
+            action = 'authorise';
             clicked.addClass('active');
             clicked.html('De-Authorise Account');
         }
-        $.ajax({
-            url: '<?= site_url('admin/pirates') ?>/' + action + '/' + clicked.attr('data-id'),
-            error: function(xhr, status, error) {
-                console.log(error);
-            },
-        });
-        event.preventDefault();
+        $.get(
+            `<?= site_url('admin/pirates') ?>/${action}/${clicked.data('id')}`
+        )
+        preventDefault();
     });
 </script>

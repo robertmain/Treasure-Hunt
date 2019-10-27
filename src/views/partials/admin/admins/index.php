@@ -110,41 +110,31 @@ $this->layout('layouts/default', [
         <?php endif; ?>
     </tbody>
 </table>
-<a
-    data-toggle="modal"
-    href="#newAdmin"
-    class="btn btn-success"
->
+<a data-toggle="modal" href="#newAdmin" class="btn btn-success">
     <i class="icon-plus icon-white"></i> Add Admin
 </a>
 
+<?php $this->push('scripts'); ?>
 <script type="text/javascript">
-    $('#addadmin').on('click', function () {
-        const forenameField = $('.forename');
-        const surnameField = $('.surname');
-        const emailField = $('.email');
-        const passwordField = $('.password');
-        const usernameField = $('.username');
-        $.ajax({
-            url: '<?= site_url('admin/admins/create') ?>',
-            data: [
-                forenameField,
-                surnameField,
-                emailField,
-                passwordField,
-                usernameField,
-            ].map((field) => ({key: field.attr('name'), value: field.val()}))
+    $('#addadmin').on('click', () => {
+        const fields = [
+            $('.forename'),
+            $('.surname'),
+            $('.email'),
+            $('.password'),
+            $('.username'),
+        ];
+
+        $.post(
+            '<?= site_url('admin/admins/create') ?>',
+            fields.map((field) => ({key: field.attr('name'), value: field.val()}))
                 .concat({
                     key: '<?= $CI->security->get_csrf_token_name(); ?>',
                     value: '<?= $CI->security->get_csrf_hash() ?>',
                 })
                 .map(({key, value}) => `${key}=${value}`)
                 .join('&'),
-            type:'POST',
-            dataType:'json',
-            error: ({status}, error, errorThrown) =>
-                console.error(`${status}: ${errorThrown}`),
-            success: function(admins) {
+            (admins) => {
                 const adminRows = admins.map(
                     ({forename, surname, username, id}) => {
                         return `<tr>
@@ -185,14 +175,11 @@ $this->layout('layouts/default', [
                     .empty()
                     .append(...adminRows)
                     .fadeIn(1500);
-                [
-                    forenameField,
-                    surnameField,
-                    emailField,
-                    passwordField,
-                    usernameField,
-                ].forEach(field => field.val(null));
-            }
-        });
+
+                fields.forEach(field => field.val(null));
+            },
+            'json'
+        )
     });
 </script>
+<?php $this->end(); ?>
