@@ -37,26 +37,57 @@ $this->layout('layouts/two-one', [
     <script type="text/javascript">
         google.load('visualization', '1', { packages:['corechart'] });
         google.setOnLoadCallback(() => {
-            const { visualization: { arrayToDataTable } } = google;
+            const {
+                visualization: {
+                    arrayToDataTable,
+                    LineChart,
+                },
+            } = google;
+            const toTouples = (
+                headings = ['Time', 'Count'],
+                data = []
+            ) => ([
+                headings,
+                ...data.map(({ key, value }) => ([key, value]))
+            ])
 
-            const signUpData = arrayToDataTable(<?= signupToGraph($signupData) ?>);
-            const foundData = arrayToDataTable(<?= activityToGraph($treasureFoundData) ?>)
+
+            const signUpData = toTouples(
+                ['Time', 'Registrations'],
+                <?= json_encode($signupData); ?>.map(
+                    ({ created_at, signups}) => ({
+                        key: new Date(created_at),
+                        value: parseInt(signups),
+                    })
+                )
+            );
+
+            const foundData = toTouples(
+                ['Time', 'Treasure Found'],
+                <?= json_encode($treasureFoundData); ?>.map(
+                    ({ created_at, treasure_found }) => ({
+                        key: new Date(created_at),
+                        value: parseInt(treasure_found),
+                    })
+                )
+            );
 
             const options = {
-                hAxis:{'title': 'Time'},
                 curveType: 'function',
                 legend: { position: 'none' }
             }
 
-            new google.visualization.LineChart(document.getElementById('signup_div'))
-                .draw(signUpData, {
+            new LineChart(document.getElementById('signup_div'))
+                .draw(arrayToDataTable(signUpData), {
                     ...options,
-                    vAxis:{'title': 'Registrations'},
+                    hAxis:{'title': signUpData[0][0]},
+                    vAxis:{'title': signUpData[0][1]},
                 });
-            new google.visualization.LineChart(document.getElementById('found_div'))
-                .draw(foundData, {
+            new LineChart(document.getElementById('found_div'))
+                .draw(arrayToDataTable(foundData), {
                     ...options,
-                    vAxis:{'title': 'Treasure Found'},
+                    hAxis:{'title': foundData[0][0]},
+                    vAxis:{'title': foundData[0][1]},
                 });
         });
     </script>
