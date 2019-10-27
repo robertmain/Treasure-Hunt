@@ -1,7 +1,7 @@
 <?php $this->layout('layouts/live'); ?>
 <?php if ($cookielaw == '1') : ?>
     <?php $this->push('scripts'); ?>
-        <script src="<?= base_url(ASSET_PATH . 'js/cookie.js') ?>"></script>
+        <script src="<?= ASSET_PATH . $this->asset('js/cookie.js') ?>"></script>
         <script type="text/javascript">
             const modalWindow = $('#myModal');
             if(!getCookie("messageSeen")){
@@ -56,7 +56,7 @@
             <p>
                 A <?= TEAMNAME ?> Web Application<br />
                 All Rights Reserved<br />
-                <?= img(base_url(ASSET_PATH . 'img/hostedby.png')) ?>
+                <?= img(ASSET_PATH . $this->asset('img/hostedby.png')) ?>
             </p>
         </footer>
     <?php endif; ?>
