@@ -22,14 +22,11 @@ class Pirate extends Model
     {
         $this->db->select('
             COUNT(id) as "signups",
-            MINUTE(' . $this->table . '.' . self::CREATED . ') as "minute",
-            HOUR(' . $this->table . '.' . self::CREATED . ') as "hour",
-            DAY(' . $this->table . '.' . self::CREATED . ') as "day",
+            ' . $this->table . '.' . self::CREATED . ',
             forename,
             surname,
             id')
             ->from('pirates')
-            ->group_by('hour')
             ->where('admin', false)
             ->order_by($this->table . '.' . self::CREATED, 'ASC');
 

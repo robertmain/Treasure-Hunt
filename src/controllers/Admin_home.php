@@ -14,7 +14,6 @@ class Admin_home extends Admin_Controller
             redirect('admin/login');
         }
         $this->load->model(['Mytreasure', 'Pirate', 'Treasure']);
-        $this->load->helper(['analytics']);
     }
 
     public function index()

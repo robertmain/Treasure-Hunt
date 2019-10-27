@@ -1,6 +1,9 @@
-<?php $this->layout('layouts/default') ?>
+<?php
+$this->layout('layouts/default', [
+    'title' => 'Home'
+])
+?>
 
-<h1>Home</h1>
 <div class="modal fade hide in out" id="helpModal">
     <div class="modal-header">
         <a class="close" data-dismiss="modal">x</a>

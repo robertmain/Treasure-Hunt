@@ -4,6 +4,7 @@ namespace App\Core;
 
 use League\Plates\Engine;
 use Exceptions\Http\HttpException;
+use League\Plates\Extension\Asset;
 
 /**
  * Abstract Base Controller
@@ -30,15 +31,14 @@ abstract class Controller extends \CI_Controller
         set_exception_handler([self::class, 'handle_http_exception']);
 
         $this->templates = new Engine(VIEWPATH);
+        $this->templates->loadExtension(new Asset(ASSET_PATH));
 
         $this->templates->addData([
             'CI' => get_instance(),
+            'title' => '',
+            'subtitle' => ''
         ]);
         $this->templates->addData($this->data);
-        $this->templates->addData([
-            'title' => '',
-            'subtitle' => '',
-        ], 'layouts/default');
         $this->templates->addFolder('layouts', VIEWPATH . 'layouts');
         $this->templates->addFolder('partials', VIEWPATH . 'partials');
     }

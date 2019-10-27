@@ -110,82 +110,60 @@ $this->layout('layouts/default', [
     </tbody>
 </table>
 <script type="text/javascript">
-    const error = (xhr, status, err) => console.error(err);
-    $('tr').on('click', '.unban', function (event) {
-        var button = $(this);
-        $.ajax({
-            url: '/admin/pirates/unban/' + button.attr('data-id'),
-            error,
-            success: () => {
-                button.removeClass('unban')
+    $('tr').on('click', '.unban', ({ target, preventDefault }) => {
+        $.get(
+            `/admin/pirates/unban/${target.getAttribute('data-id')}`,
+            () => {
+                target.removeClass('unban')
                     .addClass('ban')
-                    .parent()
-                    .parent()
-                    .parent()
-                    .parent()
-                    .parent()
+                    .parents('tr')
+                    .find('td.phone')
                     .find('.label-important')
                     .remove();
-                button.html('<i class="icon-ban-circle"></i> Ban</a>');
+                target.html('<i class="icon-ban-circle"></i> Ban</a>');
             }
-        });
-        event.preventDefault();
+        )
+        preventDefault();
     });
-    $('tr').on('click', '.ban', (event) => {
-        var button = $(event.target);
-        $.ajax({
-            url: '/admin/pirates/ban/' + button.attr('data-id'),
-            error,
-            success: () => {
-                button.removeClass('ban')
+    $('tr').on('click', '.ban', ({ target }) => {
+        $.get(
+            `/admin/pirates/ban/${target.getAttribute('data-id')}`,
+            () => {
+                target.removeClass('ban')
                     .addClass('unban')
-                    .parent()
-                    .parent()
-                    .parent()
-                    .parent()
-                    .parent()
+                    .parents('tr')
                     .find('td.phone')
                     .append('<span class="label label-important">Banned</span>');
-                button.html('<i class="icon-ok"></i> Un-Ban</a>');
+                target.html('<i class="icon-ok"></i> Un-Ban</a>');
             }
-        });
+        );
         event.preventDefault();
     });
 
     $('tr').on('click', '.striptreasure1', ({ target, preventDefault }) => {
-        const pirateId = target.getAttribute('data-id');
-        $.ajax({
-            url: '/admin/pirates/get/' + pirateId,
-            error,
-            success: ({id}) => {
+        $.get(
+            `/admin/pirates/get/${target.getAttribute('data-id')}`,
+            () => {
                 $('#stripTreasureModal')
                     .find('.striptreasure2')
                     .attr('data-id', id);
             }
-        });
+        )
         preventDefault();
     });
 
-    $('.striptreasure2').click(function({target, preventDefault}){
+    $('.striptreasure2').click(({ target, preventDefault }) => {
         const pirateId = target.getAttribute('data-id');
-        $.ajax({
-            url: '/admin/pirates/get/' + pirateId,
-            error,
-            success: ()  =>{
-                $.ajax({
-                    url: '/admin/pirates/strip_treasure/' + pirateId,
-                    error,
-                    success: () => {
-                        const pirateTableRow = $('table')
-                            .find('#pirate' + pirateId);
+        $.get(
+            `/admin/pirates/strip_treasure/${pirateId}`,
+            () => {
+                $('table')
+                    .find('#pirate' + pirateId)
+                    .find('.treasure').text(0);
 
-                        pirateTableRow.find('.treasure').text(0);
-
-                        $('#stripTreasureModal').modal('hide');
-                    }
-                });
+                $('#stripTreasureModal').modal('hide');
             }
-        });
+        )
         preventDefault();
     });
 </script>

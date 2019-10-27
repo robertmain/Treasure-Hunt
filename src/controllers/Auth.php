@@ -38,9 +38,7 @@ class Auth extends Controller
             'password' => hash('sha512', $this->input->post('password')),
         ]);
         if ($user) {
-            $requireAuthorization = $this->Config->get_by([
-                'key' => 'authorization'
-            ])->value;
+            $requireAuthorization = $this->Config->get('authorisation')->value;
             if ($requireAuthorization) {
                 if ($user->authorised) {
                     $this->session->set_userdata('id', $user->id);

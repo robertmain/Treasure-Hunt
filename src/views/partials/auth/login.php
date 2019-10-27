@@ -1,5 +1,9 @@
-<?php $this->layout('layouts/default'); ?>
-<h1>Sign In</h1>
+<?php
+    $this->layout('layouts/default', [
+        'title' => 'Sign In',
+    ]);
+?>
+
 <div class="row">
     <div class="span12">
         <?php if ($CI->session->flashdata('autherror')) : ?>

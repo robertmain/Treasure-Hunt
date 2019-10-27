@@ -56,7 +56,7 @@ class Mytreasure extends Model
         $this->db->join('treasure', 'treasure.id = found.treasure');
         $this->db->order_by($this->table . '.' . self::CREATED);
         return array_map(function ($found) {
-            $found->phone = mdg(PIRATESALT, $found->phone);
+            $found->phone = md5(PIRATESALT . $found->phone);
             return $found;
         }, $this->db->get()->result());
     }
@@ -86,21 +86,18 @@ class Mytreasure extends Model
     {
         $this->db->select('
             COUNT(treasure) as "treasure_found",
-            MINUTE(FROM_UNIXTIME(' . $this->table . '.' . self::CREATED . ')) as "minute",
-            HOUR(FROM_UNIXTIME(' . $this->table . '.' . self::CREATED . ')) as "hour",
-            DAY(FROM_UNIXTIME(' . $this->table . '.' . self::CREATED . ')) as day,
             ' . $this->table . '.' . self::CREATED . ',
             found.pirate');
         $this->db->from($this->table);
         $this->db->join('pirates', 'pirates.id = found.pirate', 'LEFT');
         $this->db->join('treasure', 'treasure.id = found.treasure', 'LEFT');
-        $this->db->group_by("minute");
         $this->db->order_by($this->table . '.' . self::CREATED, 'ASC');
-        $analytics = [];
-        foreach ($this->db->get()->result() as $Analytic) {
-            unset($Analytic->day, $Analytic->pirate);
-            $analytics[] = $Analytic;
-        }
+        $analytics = array_map(function ($record) {
+            unset($record->day);
+            unset($record->pirate);
+            return $record;
+        }, $this->db->get()->result());
+
         return $analytics;
     }
 
