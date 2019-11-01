@@ -15,16 +15,7 @@ class Auth extends Controller
 
     public function index()
     {
-        redirect('auth/login');
-    }
-
-    public function login()
-    {
-        if (isLoggedIn()) {
-            show_404(current_url(), false);
-        }
-
-        $this->render('partials::auth/login');
+        $this->render('partials::auth/get-started');
     }
 
     public function authenticate()
@@ -64,11 +55,6 @@ class Auth extends Controller
             ]);
             redirect('auth/login');
         }
-    }
-
-    public function register()
-    {
-        $this->render('partials::auth/register');
     }
 
     public function create()

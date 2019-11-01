@@ -44,16 +44,12 @@ $this->layout('layouts/default', [
     codes to link to a web application. Register your account by clicking &quot;Register&quot;
     and entering your mobile number and a password... it's quick and easy!
 </p>
-<div class="btn-group">
-    <?php if (!isLoggedIn()) : ?>
-        <a class="btn btn-success btn-large" href="<?= site_url('auth/login') ?>">
-            <i class="icon-white icon-lock"></i> Sign In
-        </a>
-        <a class="btn btn-success btn-large" href="<?= site_url('auth/register') ?>">
-            <i class="icon-white icon-plus"></i> Register
-        </a>
-    <?php endif; ?>
-    <a class="btn btn-warning btn-large"  data-toggle="modal" href="#helpModal">
-        <i class="icon-white icon-question-sign"></i> Help
+<a class="btn btn-warning btn-large"  data-toggle="modal" href="#helpModal">
+    <i class="icon-white icon-question-sign"></i> Help
+</a>
+
+<?php if (!isLoggedIn()) : ?>
+    <a class="btn btn-success btn-large" href="<?= site_url('auth') ?>">
+        Get Started <i class="icon-white icon-arrow-right"></i>
     </a>
-</div>
+<?php endif; ?>
