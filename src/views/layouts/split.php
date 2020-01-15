@@ -14,4 +14,4 @@ $this->layout('layouts/two-one', [
     <?php $this->start('two'); ?>
         <?= $this->section('right'); ?>
     <?php $this->end(); ?>
-<?php endif; ?>
+<?php endif;

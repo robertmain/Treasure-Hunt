@@ -2,9 +2,8 @@
     $this->layout('layouts/split', [
         'title' => 'Get Started',
     ]);
-?>
 
-<?php $this->start('left'); ?>
+    $this->start('left'); ?>
     <h3>Existing Users</h3>
     <p>
         Already got an account? Sign-in below to continue where you left off!
