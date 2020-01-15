@@ -27,7 +27,7 @@ class PirateModel extends TestCase
             ->shouldAllowMockingProtectedMethods();
 
         $this->test_user = (object)[
-            'username' => 'mrtesting',
+            'phone' => 'mrtesting',
             'password' => 'abc',
         ];
     }
@@ -35,17 +35,17 @@ class PirateModel extends TestCase
     /**
      * @test
     */
-    public function is_granted_login_with_a_valid_username_and_password() : void
+    public function is_granted_login_with_a_valid_phone_number_and_password() : void
     {
         $this->pirate_model->shouldReceive('get_by')
-            ->with(['username' => $this->test_user->username])
+            ->with(['phone' => $this->test_user->phone])
             ->andReturn((object)[
-                'username' => $this->test_user->username,
+                'phone' => $this->test_user->phone,
                 'password' => hash('sha512', $this->test_user->password)
             ]);
 
         $valid = $this->pirate_model->password_verify(
-            $this->test_user->username,
+            $this->test_user->phone,
             $this->test_user->password
         );
 
@@ -55,10 +55,10 @@ class PirateModel extends TestCase
     /**
      * @test
     */
-    public function is_denied_login_if_username_is_incorrect_or_does_not_exist() : void
+    public function is_denied_login_if_phone_is_incorrect_or_does_not_exist() : void
     {
         $this->pirate_model->shouldReceive('get_by')
-            ->with(['username' => 'dontexist'])
+            ->with(['phone' => 'dontexist'])
             ->andReturn(null);
 
         $valid = $this->pirate_model->password_verify('dontexist', 'abc');
@@ -72,7 +72,7 @@ class PirateModel extends TestCase
     public function is_denied_login_if_password_is_incorrect() : void
     {
         $this->pirate_model->shouldReceive('get_by')
-            ->with(['username' => 'mrtesting'])
+            ->with(['phone' => 'mrtesting'])
             ->andReturn($this->test_user);
 
         $valid = $this->pirate_model->password_verify('mrtesting', 'def');

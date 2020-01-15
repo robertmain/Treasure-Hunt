@@ -19,7 +19,7 @@ class Admin_admins extends Admin_Controller
                 'forename' => $this->input->post('forename'),
                 'surname' => $this->input->post('surname'),
                 'email' => $this->input->post('email'),
-                'username' => $this->input->post('username'),
+                'phone' => $this->input->post('phone'),
                 'password' => $this->input->post('password'),
                 'admin' => '1',
             ]);
@@ -43,7 +43,7 @@ class Admin_admins extends Admin_Controller
             'forename' => $this->input->post('forename'),
             'surname' => $this->input->post('surname'),
             'email' => $this->input->post('email'),
-            'username' => $this->input->post('username'),
+            'phone' => $this->input->post('phone'),
             'password' => $this->input->post('password'),
         ];
 

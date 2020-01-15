@@ -58,7 +58,6 @@ class Admin_pirates extends Admin_Controller
                     $pirate->password,
                     $pirate->phone,
                     $pirate->surname,
-                    $pirate->username,
                     $pirate->banned
                 );
 

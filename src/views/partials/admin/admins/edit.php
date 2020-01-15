@@ -30,9 +30,9 @@ $this->layout('layouts/default', [
         </div>
         <h3>Account Data</h3>
         <div class="control-group">
-            <label for="username" class="control-label">Username</label>
+            <label for="phone" class="control-label">Phone</label>
             <div class="controls">
-                <?= form_input('username', $Admin->username, 'class="username"') ?>
+                <?= form_input('phone', $Admin->phone, 'class="phone"') ?>
             </div>
         </div>
         <div class="control-group">

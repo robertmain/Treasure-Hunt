@@ -48,9 +48,9 @@ class Pirate extends Model
         return parent::save($data, $id);
     }
 
-    public function password_verify($username, $password)
+    public function password_verify($phone, $password)
     {
-        $user = $this->get_by(['username' => $username]);
+        $user = $this->get_by(['phone' => $phone]);
         if ($user) {
             return $this->password_hash($password) == $user->password;
         } else {

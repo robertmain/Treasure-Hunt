@@ -17,11 +17,9 @@
                                 <li><?= anchor('admin/admins', 'Admins') ?></li>
                                 <li><?= anchor('admin/pirates', 'Pirates') ?></li>
                                 <li><?= anchor('admin/settings', 'Application Settings') ?></li>
-                                <li><?= anchor('admin/logout', 'Sign Out') ?></li>
-                            <?php else : ?>
-                                <li><?= anchor('treasure', 'My Treasure') ?></li>
-                                <li><?= anchor('auth/logout', 'Sign Out') ?></li>
                             <?php endif; ?>
+                            <li><?= anchor('treasure', 'My Treasure') ?></li>
+                            <li><?= anchor('auth/logout', 'Sign Out') ?></li>
                         <?php else : ?>
                             <li><?= anchor(site_url(), 'Home') ?></li>
                             <li><?= anchor(site_url('auth'), 'Log In/Register') ?></li>

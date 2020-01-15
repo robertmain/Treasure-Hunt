@@ -31,11 +31,7 @@ class Auth extends Controller
 
         $authenticated = $this->Pirate->password_verify($this->input->post('login'), $this->input->post('password'));
         if ($authenticated) {
-            $user = $this->Pirate->get_by(['username' => $this->input->post('login')]);
-            if ($user->admin) {
-                $this->session->set_flashdata('autherror', $authError);
-                redirect('auth');
-            }
+            $user = $this->Pirate->get_by(['phone' => $this->input->post('login')]);
             $requireAuthorization = $this->Config->get('authorisation')->value;
             if ($requireAuthorization) {
                 if ($user->authorised) {

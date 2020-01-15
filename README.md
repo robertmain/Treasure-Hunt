@@ -14,7 +14,7 @@
     <th colspan="2">Normal User</th>
   </tr>
   <tr>
-    <td>Phone number (used as username)</td> <td><code>01536478832</code></td>
+    <td>Phone number</td> <td><code>01536478832</code></td>
   </tr>
   <tr>
     <td>Password</td> <td><code>password</code></td>
@@ -23,7 +23,7 @@
     <th colspan="2">Administrative User</th>
   </td>
   <tr>
-    <td>Username</td> <td><code>foobar</code></td>
+    <td>Phone number</td> <td><code>12345</code></td>
   </tr>
   <tr>
     <td>Password</td> <td><code>fubar</code></td>

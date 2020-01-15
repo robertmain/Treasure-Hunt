@@ -32,9 +32,9 @@ $this->layout('layouts/default', [
         </div>
         <h3>Account Data</h3>
         <div class="control-group">
-            <label for="username" class="control-label">Username</label>
+            <label for="phone" class="control-label">Phone</label>
             <div class="controls">
-                <?= form_input('username', null, 'class="username"') ?>
+                <?= form_input('phone', null, 'class="phone"') ?>
             </div>
         </div>
         <div class="control-group">
@@ -61,7 +61,7 @@ $this->layout('layouts/default', [
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Name</th> <th>Username</th> <th></th>
+            <th>Name</th> <th>Phone</th> <th></th>
         </tr>
     </thead>
     <tbody>
@@ -69,7 +69,7 @@ $this->layout('layouts/default', [
             <?php foreach ($admins as $Admin) : ?>
                 <tr>
                     <td><?= $Admin->forename . ' ' . $Admin->surname ?></td>
-                    <td><?= $Admin->username ?></td>
+                    <td><?= $Admin->phone ?></td>
                     <td>
                         <div class="btn-group">
                             <a
@@ -122,7 +122,7 @@ $this->layout('layouts/default', [
             $('.surname'),
             $('.email'),
             $('.password'),
-            $('.username'),
+            $('.phone'),
         ];
 
         $.post(
@@ -136,10 +136,10 @@ $this->layout('layouts/default', [
                 .join('&'),
             (admins) => {
                 const adminRows = admins.map(
-                    ({forename, surname, username, id}) => {
+                    ({forename, surname, phone, id}) => {
                         return `<tr>
                             <td>${forename} ${surname}</td>
-                            <td>${username}</td>
+                            <td>${phone}</td>
                             <td>
                                 <div class="btn-group">
                                     <a

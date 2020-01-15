@@ -86,7 +86,7 @@ class Migration_create_pirates_table extends Migration
           'forename' => 'Foo',
           'surname' => 'Bar',
           'email' => 'foo.bar@gmail.com',
-          'username' => 'foobar',
+          'phone' => '12345',
           // phpcs:disable Generic.Files.LineLength.TooLong
           'password' => '24057942a277ba9f4be7ee806ecb9c63b1845677d501031367fb67ec273366e9d6edd7e37f1ed30d690fe8ce92a63e944d81658ca49ca70d1f76a386b9e41c13',
           'admin' => true,
