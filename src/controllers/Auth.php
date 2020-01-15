@@ -23,12 +23,19 @@ class Auth extends Controller
         if (isLoggedIn()) {
             show_404(current_url(), false);
         }
-        $user = $this->Pirate->get_by([
-            'phone' => $this->input->post('login'),
-            'admin' => '0',
-            'password' => hash('sha512', $this->input->post('password')),
-        ]);
-        if ($user) {
+
+        $authError = [
+            'title' => 'Authentication Error',
+            'content' => 'Username/Password Not Found',
+        ];
+
+        $authenticated = $this->Pirate->password_verify($this->input->post('login'), $this->input->post('password'));
+        if ($authenticated) {
+            $user = $this->Pirate->get_by(['username' => $this->input->post('login')]);
+            if ($user->admin) {
+                $this->session->set_flashdata('autherror', $authError);
+                redirect('auth');
+            }
             $requireAuthorization = $this->Config->get('authorisation')->value;
             if ($requireAuthorization) {
                 if ($user->authorised) {
@@ -49,11 +56,8 @@ class Auth extends Controller
                 redirect('home');
             }
         } else {
-            $this->session->set_flashdata('autherror', [
-                'title' => 'Authentication Error',
-                'content' => 'Username/Password Not Found',
-            ]);
-            redirect('auth/login');
+            $this->session->set_flashdata('autherror', $authError);
+            redirect('auth');
         }
     }
 
@@ -68,7 +72,7 @@ class Auth extends Controller
         } else {
             $newPirateID = $this->Pirate->save([
                 'phone' => $this->input->post('phone'),
-                'password' => hash('sha512', $this->input->post('password')),
+                'password' => $this->input->post('password'),
             ]);
             $this->session->set_userdata('id', $newPirateID);
             $this->session->set_flashdata('registerinfo', [

@@ -35,10 +35,6 @@ class Admin_pirates extends Admin_Controller
             'phone'=>$this->input->post('phone')
         ];
 
-        if ($this->input->post('password')) {
-            $updatedPirate['password'] = hash('sha512', $this->input->post('password'));
-        }
-
         $this->Pirate->update_by('id', $this->input->post('id'), $updatedPirate);
         redirect('admin/pirates');
     }

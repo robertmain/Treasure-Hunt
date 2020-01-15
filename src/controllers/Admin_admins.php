@@ -20,7 +20,7 @@ class Admin_admins extends Admin_Controller
                 'surname' => $this->input->post('surname'),
                 'email' => $this->input->post('email'),
                 'username' => $this->input->post('username'),
-                'password' => hash('sha512', $this->input->post('password')),
+                'password' => $this->input->post('password'),
                 'admin' => '1',
             ]);
             $admins = array_map(function ($admin) {
@@ -44,10 +44,9 @@ class Admin_admins extends Admin_Controller
             'surname' => $this->input->post('surname'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
+            'password' => $this->input->post('password'),
         ];
-        if ($this->input->post('password')) {
-            $updatedAdmin['password'] = hash('sha512', $this->input->post('password'));
-        }
+
         $this->Pirate->save($updatedAdmin, $this->input->post('id'));
         redirect('admin/admins');
     }
