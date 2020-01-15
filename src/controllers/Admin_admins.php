@@ -1,7 +1,6 @@
 <?php
 
 use App\Core\Admin_Controller;
-use Exceptions\Http\Client\NotFoundException;
 
 //phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
 //phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps

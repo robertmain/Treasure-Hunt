@@ -61,7 +61,6 @@ $autoload['packages'] = [];
 */
 $autoload['libraries'] = [
   'session',
-  'database',
   'user_agent',
   'form_validation',
 ];
