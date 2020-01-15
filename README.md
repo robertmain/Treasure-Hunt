@@ -1,5 +1,7 @@
 # QR Scavenger Hunt
 
+[![Build Status](https://travis-ci.com/robertmain/Treasure-Hunt.svg?branch=master)](https://travis-ci.com/robertmain/Treasure-Hunt)
+
 ## Getting Started
 
 1. Clone the application using either Git or Http
