@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\Admin_Controller;
+use Exceptions\Http\Client\BadRequestException;
 
 // phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
@@ -76,10 +77,14 @@ class Admin_treasure extends Admin_Controller
         redirect('admin/treasure');
     }
 
-    public function view($id)
+    public function view($id, $format = 'html')
     {
         $this->data['Treasure'] = $this->Treasure->get($id);
 
-        $this->render('partials::admin/treasure/view', $this->data);
+        if ($format === 'html') {
+            $this->render('partials::admin/treasure/view', $this->data);
+        } else {
+            throw new BadRequestException('Unknown output renderer ' . $format);
+        }
     }
 }

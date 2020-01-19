@@ -6,6 +6,7 @@ use Admin_treasure;
 use PHPUnit\Framework\TestCase;
 use App\Models\Treasure;
 use Mockery;
+use \Exceptions\Http\Client\BadRequestException;
 
 /**
  * Hello world
@@ -56,10 +57,22 @@ class AdminTreasureController extends TestCase
         $this->treasure_controller->shouldReceive('render');
 
         $this->treasure_controller->Treasure->shouldReceive('get')
-            ->with(123)
+            ->with($this->sample_treasure->id)
             ->andReturn($this->sample_treasure);
 
-        $this->treasure_controller->view(123);
+        $this->treasure_controller->view($this->sample_treasure->id);
+    }
+
+    /**
+     * @test
+     */
+    public function view_action_raises_exception_with_unknown_format() : void
+    {
+        $this->expectException(BadRequestException::class);
+
+        $this->treasure_controller->Treasure->shouldReceive('get');
+
+        $this->treasure_controller->view($this->sample_treasure->id, 'foobar');
     }
 
     public function tearDown() : void
