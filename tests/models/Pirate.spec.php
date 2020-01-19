@@ -1,6 +1,6 @@
 <?php
 
-namespace TreasureHunt\Tests;
+namespace TreasureHunt\Tests\Models;
 
 use PHPUnit\Framework\TestCase;
 use App\Models\Pirate;

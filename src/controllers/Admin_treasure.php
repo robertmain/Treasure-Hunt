@@ -76,9 +76,10 @@ class Admin_treasure extends Admin_Controller
         redirect('admin/treasure');
     }
 
-    public function view()
+    public function view($id)
     {
-        $this->data['Treasure'] = $this->Treasure->get($this->uri->segment(4));
+        $this->data['Treasure'] = $this->Treasure->get($id);
+
         $this->render('partials::admin/treasure/view', $this->data);
     }
 }
