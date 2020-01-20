@@ -7,7 +7,7 @@ $this->layout('layouts/default', [
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Title</th> <th>Location</th> <th>Clue</th><th>Last Found By</th>
+            <th>Title</th> <th>Location</th> <th>Clue</th> <th>Last Found By</th>
         </tr>
     </thead>
     <tbody>
@@ -17,18 +17,18 @@ $this->layout('layouts/default', [
                     <td><?= $Treasure->title ?></td>
                     <td><?= $Treasure->location ?></td>
                     <td><?= $Treasure->clue ?></td>
-                    <?php if ($Treasure->id) :?>
-                    <td colspan="2"><?= $Treasure->id ?> (<?= $Treasure->phone ?>)</td>
-                    <?php else : ?>
-                    <td colspan="2"> No One Yet</td>
-                    <?php endif; ?>
                     <td>
-                        <div class="btn-group">
+                    <?php if ($Treasure->id) :?>
+                        <?= $Treasure->id ?> (<?= $Treasure->phone ?>)
+                    <?php else : ?>
+                        No One Yet
+                    <?php endif; ?>
+                        <div class="btn-group pull-right">
                             <a
                                 class="btn"
                                 href="<?= site_url('admin/treasure/view/' . $Treasure->treasure_id) ?>"
                             >
-                                <i class="icon-qrcode"></i> Treasure
+                                <i class="icon-qrcode"></i> View
                             </a>
                             <a
                                 class="btn dropdown-toggle"
@@ -41,8 +41,8 @@ $this->layout('layouts/default', [
                                 <li>
                                     <?=
                                         anchor(
-                                            'admin/treasure/view/' . $Treasure->treasure_id,
-                                            '<i class="icon-eye-open"></i> View'
+                                            'admin/treasure/view/' . $Treasure->treasure_id . '/pdf',
+                                            '<i class="icon-file"></i> View PDF'
                                         );
                                     ?>
                                 </li>
