@@ -6,7 +6,7 @@ $this->layout('layouts/default', [
 
 <div id="stripTreasureModal" class="modal hide fade">
     <div class="modal-header">
-        <h2><?= APPTITLE ?> <small>Strip Pirate Treasure</small></h2>
+        <h2><?= APP_TITLE ?> <small>Strip Pirate Treasure</small></h2>
     </div>
     <div class="modal-body">
         <div class="alert alert-danger">

@@ -42,7 +42,7 @@ class Migration_create_config_table extends Migration
           [
             'key' => 'completemessage',
             // phpcs:disable Generic.Files.LineLength.TooLong
-            'value' => 'You have found all %NCODES QR Codes and have been entered into our prize draw. Please Visit The %TEAMNAME booth for more information.',
+            'value' => 'You have found all %NCODES QR Codes and have been entered into our prize draw. Please talk to someone from %APP_OWNER for more information.',
           ],
           [
             'key' => 'cookielaw',

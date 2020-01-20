@@ -40,10 +40,10 @@ class Auth extends Controller
                 } else {
                     $this->session->set_flashdata('autherror', [
                         'title' => 'Error',
-                        'content' => 'Your Account Is Not Yet Authoriseed.<br />
-                            To Authorise Your Account Please Visit The '
-                            . TEAMNAME . ' Booth And Ask To Get Your Device
-                            Activated'
+                        'content' => 'Your Account Is Not Yet Authoriseed.<br />' .
+                            'To Authorise Your Account Please Contact a Member ' .
+                            ' Of ' . APP_OWNER . ', And Ask To Get Your' .
+                            ' Device Activated',
                     ]);
                     redirect('login');
                 }

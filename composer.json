@@ -11,7 +11,7 @@
     ],
     "license": "MIT",
     "scripts": {
-        "post-install-cmd": "cp .env.example .env",
+        "post-install-cmd": "cp -n .env.example .env",
         "migrate:latest": "php index.php cli/migrate latest",
         "migrate:flush": [
             "php index.php cli/migrate drop",
@@ -36,7 +36,8 @@
         "codeigniter/framework": "^3.1",
         "league/plates": "^3.3",
         "vlucas/phpdotenv": "^3.3",
-        "crazycodr/standard-exceptions": "^2.1"
+        "crazycodr/standard-exceptions": "^2.1",
+        "tecnickcom/tcpdf": "^6.3"
     },
     "autoload": {
         "classmap": [
