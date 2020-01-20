@@ -28,7 +28,7 @@ $this->layout('layouts/two-one', [
 <?php $this->end(); ?>
 
 <?php $this->start('three'); ?>
-<h3><?= APPTITLE ?> Activity</h3>
+<h3><?= APP_TITLE ?> Activity</h3>
 <div id="found_div"></div>
 <?php $this->end(); ?>
 

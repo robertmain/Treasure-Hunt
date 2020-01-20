@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="<?= site_url() ?>"><?= APPTITLE ?></a>
+            <a class="brand" href="<?= site_url() ?>"><?= APP_TITLE ?></a>
             <div class="nav-collapse">
                 <ul class="nav">
                     <?php if ($CI->uri->uri_string() != 'admin/login') : ?>

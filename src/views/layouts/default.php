@@ -15,11 +15,11 @@
     <?php $this->end(); ?>
     <div class="modal fade hide in out" id="myModal">
         <div class="modal-header">
-            <h3>Cookies On <?= APPTITLE ?></h3>
+            <h3>Cookies Used By <?= APP_TITLE ?></h3>
         </div>
         <div class="modal-body">
             <p>
-                <?= APPTITLE ?> uses cookies to keep your login session
+                <?= APP_TITLE ?> uses cookies to keep your login session
                 active. By clicking "Dismiss" and continuing to use this
                 application, we assume that you are happy for us to
                 continue to use cookies in this manner
@@ -44,20 +44,17 @@
     <?php endif; ?>
     <div class="row">
         <div class="span12">
-            <?php if (isLoggedIn() && !isAdmin()) : ?>
+            <?php if (isLoggedIn()) : ?>
                 <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
             <?php endif; ?>
                 <?= $this->section('content') ?>
         </div>
     </div>
-    <?php if ($CI->uri->uri_string() != 'admin/login') : ?>
+    <footer>
         <hr>
-        <footer>
-            <p>
-                A <?= TEAMNAME ?> Web Application<br />
-                All Rights Reserved<br />
-                <?= img(ASSET_PATH . $this->asset('img/hostedby.png')) ?>
-            </p>
-        </footer>
-    <?php endif; ?>
+        <p>
+            &copy; <?= APP_OWNER . ' ' . date('Y'); ?><br />
+            All Rights Reserved<br />
+        </p>
+    </footer>
 </div>

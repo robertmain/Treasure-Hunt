@@ -122,7 +122,7 @@ $this->layout('layouts/two-one', [
             </thead>
             <tbody>
                 <tr>
-                    <td>%TEAMNAME</td> <td><?= TEAMNAME ?></td>
+                    <td>%APP_OWNER</td> <td><?= APP_OWNER ?></td>
                 </tr>
                 <tr>
                     <td>%NCODES</td>

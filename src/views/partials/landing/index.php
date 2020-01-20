@@ -31,13 +31,13 @@ $this->layout('layouts/default', [
         <dl class="dl-horizontal">
             <dt>Further Help</dt>
             <dd>
-                If you require further help using the application, why not come
-                and see us at the <?= TEAMNAME ?> booth
+                If you require further help using the application, please feel
+                free to talk to a member of <?= APP_OWNER; ?> for further assistance
             </dd>
         </dl>
     </div>
 </div>
-<h3>Welcome to <?= APPTITLE ?></h3>
+<h3>Welcome to <?= APP_TITLE ?></h3>
 <h3>Getting Started</h3>
 <p>
     This application uses a smart phone or device to scan QR (Quick Response)

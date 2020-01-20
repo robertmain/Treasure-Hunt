@@ -6,7 +6,7 @@
         <script type="text/javascript" src="/<?= ASSET_PATH . $this->asset('js/jquery.min.js') ?>"></script>
         <script type="text/javascript" src="/<?= ASSET_PATH . $this->asset('js/bootstrap.min.js') ?>"></script>
         <meta name="viewport" content="user-scalable=no, width=device-width" />
-        <title><?= APPTITLE ?></title>
+        <title><?= APP_TITLE ?></title>
     </head>
     <body>
         <?= $this->section('content') ?>
