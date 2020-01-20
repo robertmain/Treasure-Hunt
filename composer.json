@@ -11,7 +11,7 @@
     ],
     "license": "MIT",
     "scripts": {
-        "post-install-cmd": "cp .env.example .env",
+        "post-install-cmd": "cp -n .env.example .env",
         "migrate:latest": "php index.php cli/migrate latest",
         "migrate:flush": [
             "php index.php cli/migrate drop",
