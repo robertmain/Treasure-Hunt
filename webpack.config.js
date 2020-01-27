@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve, join } = require('path');
 
 module.exports = ({ mode = 'development' }) => ({
     mode,
@@ -19,6 +19,9 @@ module.exports = ({ mode = 'development' }) => ({
     },
     resolve: {
         extensions: ['.js'],
+        alias: {
+            '@': join(__dirname, 'src/assets/js'),
+        },
     },
     optimization: {
         splitChunks: {
