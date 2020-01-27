@@ -1,19 +1,18 @@
 <?php $this->layout('layouts/live'); ?>
 <?php if ($cookielaw == '1') : ?>
     <?php $this->push('scripts'); ?>
-        <script src="<?= ASSET_PATH . $this->asset('js/cookie.js') ?>"></script>
-        <script type="text/javascript">
-            const modalWindow = $('#myModal');
-            if(!getCookie("messageSeen")){
-                $(document).ready(() => modalWindow.modal('show'));
+        <script>
+            if(getCookie('messageSeen') !== 'true'){
+                $(document).ready(() => $('#cookieModal')
+                    .modal('show')
+                    .find('.dismiss').click(({ target }) => {
+                        setCookie('messageSeen', true, 365);
+                        $(target).parents('.modal').modal('hide')
+                    }));
             }
-            $('.dismiss').click(() => {
-                setCookie("messageSeen", true, 365);
-                modalWindow.modal('hide');
-            });
         </script>
     <?php $this->end(); ?>
-    <div class="modal fade hide in out" id="myModal">
+    <div class="modal fade hide in out" id="cookieModal">
         <div class="modal-header">
             <h3>Cookies Used By <?= APP_TITLE ?></h3>
         </div>
