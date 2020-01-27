@@ -8,6 +8,9 @@ module.exports = ({ mode = 'development' }) => ({
             './src/assets/js/vendor/bootstrap.js',
             './src/assets/js/utils/cookie.js',
         ],
+        treasure: [
+            './src/assets/js/treasure/index'
+        ]
     },
     output: {
         path: resolve('./src/assets/dist/js'),

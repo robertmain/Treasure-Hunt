@@ -24,19 +24,19 @@ if (isBanned($me->id) && isLoggedIn()) {
     </div>
 <?php endif; ?>
 <?php if (foundAll($me->id)) : ?>
-    <script type="text/javascript">
-        if((!getCookie("foundMessageSeen")) | (getCookie('foundMessageSeen') == undefined)){
-            $(document).ready(function(){
-                $('#foundAllModal').modal('show');
-            });
+    <script>
+        const COOKIE_NAME = 'foundMessageSeen';
+        if(!getCookie(COOKIE_NAME)){
+            $(document).ready(() => $('#foundAllModal')
+                .modal('show')
+                .find('.dismiss').click(({ target }) => {
+                    setCookie(COOKIE_NAME, true, 365);
+                    $(target).parents('.modal').modal('hide')
+                }));
         }
-        $('.dismiss').click(function(){
-            setCookie("foundMessageSeen",true,365);
-            $(this).parent().parent().modal('hide');
-        });
     </script>
 <?php else : ?>
-    <script type="text/javascript">
+    <script>
         delCookie("foundMessageSeen");
     </script>
 <?php endif; ?>
@@ -47,22 +47,19 @@ if (isBanned($me->id) && isLoggedIn()) {
         </tr>
     </thead>
     <?php if (sizeof($treasure) > 0) : ?>
+        <div class="modal hide fade found-treasure-modal">
+            <div class="modal-header"><h3></h3></div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary" data-dismiss="modal">
+                    Close
+                </a>
+            </div>
+        </div>
+
         <tbody>
             <?php foreach ($treasure as $Treasure) : ?>
                 <tr>
-            <div id="ClueModal<?= $Treasure->id ?>" class="modal hide fade cluemodal">
-                <div class="modal-header">
-                    <h3>Clue For <?= $Treasure->title ?></h3>
-                </div>
-                <div class="modal-body">
-                    <p><?= $Treasure->clue ?></p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">
-                        Close
-                    </a>
-                </div>
-            </div>
             <td>
                 <span>
                     <?= $Treasure->title ?><br />
@@ -76,19 +73,16 @@ if (isBanned($me->id) && isLoggedIn()) {
                     <span class="label label-success">Found</span>
                 <?php else : ?>
                     <span class="label">Not Found</span>
-                    <a data-toggle="modal"
-                        id="Click<?= $Treasure->id ?>"
-                        data-id="<?= $Treasure->id ?>"
-                        class="btn btn-info btn-mini">
-                            Clue
+                    <a
+                        data-toggle="modal"
+                        data-id="<?= $Treasure->id; ?>"
+                        data-title="<?= $Treasure->title; ?>"
+                        data-clue="<?= $Treasure->clue; ?>"
+                        class="btn btn-info btn-mini"
+                    >
+                        Clue
                     </a>
-                    <script type="text/javascript">
-                        $('#Click<?= $Treasure->id ?>').click(function(){
-                            $('.modal').modal('hide');
-                            $('#ClueModal<?= $Treasure->id ?>').modal('show');
-                            window.scrollTo(0, 1);
-                        });
-                    </script>
+                    <script src="<?= base_url(ASSET_PATH . $this->asset('dist/js/treasure.js')); ?>"></script>
                 <?php endif; ?>
             </td>
         </tr>
