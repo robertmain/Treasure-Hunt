@@ -1,4 +1,4 @@
-import { post } from 'axios';
+import { post } from '@/utils/api';
 import { createRow } from '@/utils/table';
 
 export const adminTableRow = ({ id, forename, surname, phone }) => createRow([
@@ -33,10 +33,7 @@ document.querySelector('#addadmin')
 
         const {
             data: admins,
-        } = await post('/admin/admins/create', new FormData(newAdminForm), {
-            headers: { ['X-Requested-With']: 'XMLHttpRequest' },
-            responseType: 'json',
-        });
+        } = await post('admins/create', new FormData(newAdminForm));
 
         const adminrows = admins.map(
             ({ forename, surname, phone, id }) => adminTableRow({ id, forename, surname, phone })
