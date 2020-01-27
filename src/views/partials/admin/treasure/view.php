@@ -15,12 +15,10 @@ $this->layout('layouts/default', [
         <?= auto_typography($Treasure->text) ?>
     </div>
     <div class="span2">
-        <img src="" class="thumbnail" alt="<?= $Treasure->title; ?>">
+        <img
+            src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=<?= site_url('treasure/find/' . $Treasure->md5); ?>"
+            class="thumbnail"
+            alt="<?= $Treasure->title; ?>"
+        >
     </div>
 </div>
-
-<script type="text/javascript">
-    const treasureURL = '<?= site_url('treasure/find/' . $Treasure->md5); ?>';
-    $('.span2 img')
-        .attr('src', `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${treasureURL}`);
-</script>
