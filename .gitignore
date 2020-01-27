@@ -1,4 +1,4 @@
-vendor/
+/vendor/
 src/logs
 src/cache
 .env
@@ -7,3 +7,5 @@ docs
 tests/coverage
 .phpunit.result.cache
 app.zip
+node_modules
+src/assets/dist
