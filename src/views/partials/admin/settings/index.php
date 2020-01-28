@@ -4,12 +4,6 @@ $this->layout('layouts/two-one', [
 ]);
 ?>
 
-<ul class="nav nav-tabs settings-tabs">
-    <li><a href="#validation" data-toggle="tab">Account Validation</a></li>
-    <li><a href="#completion" data-toggle="tab">Treasure Hunt Completion</a></li>
-    <li><a href="#eucookiecompliancy" data-toggle="tab">EU Cookie Law Compliancy</a></li>
-</ul>
-
 <?php $this->start('one'); ?>
 <h3>Account Validation</h3>
 <p>
@@ -137,29 +131,5 @@ $this->layout('layouts/two-one', [
 <?php $this->end(); ?>
 
 <?php $this->push('scripts'); ?>
-<script type="text/javascript">
-    const csrfTokenName = '<?= $CI->security->get_csrf_token_name() ?>';
-    const csrfHash = '<?= $CI->security->get_csrf_hash() ?>';
-
-    const updateSettings = (key, value) => $.post(
-        '/admin/settings/update',
-        `key=${key}&value=${value}&${csrfTokenName}=${csrfHash}`
-    );
-
-    $('.settings-tabs a:first').tab('show').addClass('active');
-
-    $('.authorisation').click(({ target }) =>
-        updateSettings('authorisation', target.getAttribute('data-status')));
-
-    $('.updatemessage').click(() => {
-        updateSettings('completetitle', $('.completetitle').val());
-        updateSettings('completemessage', $('.completemessage').html());
-    });
-
-    $('.eucookielaw').click(({ target }) =>
-        updateSettings('cookielaw', target.getAttribute('data-status')));
-
-    $('.completetitle').keyup(() => $('.updatemessage').removeAttr('disabled'));
-    $('.completemessage').keyup(() => $('.updatemessage').removeAttr('disabled'));
-</script>
+<script src="<?= base_url(ASSET_PATH . $this->asset('dist/js/admin-settings.js')) ?>"></script>
 <?php $this->end(); ?>

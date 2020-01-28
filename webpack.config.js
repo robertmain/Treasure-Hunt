@@ -12,6 +12,7 @@ module.exports = ({ mode = 'development' }) => ({
             './src/assets/js/treasure/index'
         ],
         ['admin-admins']: './src/assets/js/admin/admins',
+        ['admin-settings']: './src/assets/js/admin/settings',
     },
     output: {
         path: resolve('./src/assets/dist/js'),
