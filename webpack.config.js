@@ -13,6 +13,7 @@ module.exports = ({ mode = 'development' }) => ({
         ],
         ['admin-admins']: './src/assets/js/admin/admins',
         ['admin-settings']: './src/assets/js/admin/settings',
+        live: './src/assets/js/admin/live',
     },
     output: {
         path: resolve('./src/assets/dist/js'),
