@@ -47,7 +47,6 @@ $this->layout('layouts/default', [
             <div class="controls">
                 <button
                     class="btn btn-primary"
-                    data-dismiss="modal"
                     id="addadmin"
                     type="button"
                 >
@@ -58,7 +57,7 @@ $this->layout('layouts/default', [
         <?= form_close() ?>
     </div>
 </div>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="admins">
     <thead>
         <tr>
             <th>Name</th> <th>Phone</th> <th></th>
@@ -115,71 +114,5 @@ $this->layout('layouts/default', [
 </a>
 
 <?php $this->push('scripts'); ?>
-<script type="text/javascript">
-    $('#addadmin').on('click', () => {
-        const fields = [
-            $('.forename'),
-            $('.surname'),
-            $('.email'),
-            $('.password'),
-            $('.phone'),
-        ];
-
-        $.post(
-            '<?= site_url('admin/admins/create') ?>',
-            fields.map((field) => ({key: field.attr('name'), value: field.val()}))
-                .concat({
-                    key: '<?= $CI->security->get_csrf_token_name(); ?>',
-                    value: '<?= $CI->security->get_csrf_hash() ?>',
-                })
-                .map(({key, value}) => `${key}=${value}`)
-                .join('&'),
-            (admins) => {
-                const adminRows = admins.map(
-                    ({forename, surname, phone, id}) => {
-                        return `<tr>
-                            <td>${forename} ${surname}</td>
-                            <td>${phone}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a
-                                        class="btn dropdown-toggle"
-                                        data-toggle="dropdown" href="#"
-                                    >
-                                        <i class="icon-user"></i>
-                                        Admin <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a
-                                                href="<?= base_url('/admin/admins/edit/') ?>${id}"
-                                            >
-                                                <i class="icon-pencil" ></i> Edit
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="<?= base_url('/admin/admins/delete/') ?>${id}"
-                                            >
-                                                <i class="icon-trash"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>`
-                    }
-                );
-
-                $('tbody')
-                    .empty()
-                    .append(...adminRows)
-                    .fadeIn(1500);
-
-                fields.forEach(field => field.val(null));
-            },
-            'json'
-        )
-    });
-</script>
+<script src="<?= base_url(ASSET_PATH . $this->asset('dist/js/admin-admins.js')) ?>"></script>
 <?php $this->end(); ?>
