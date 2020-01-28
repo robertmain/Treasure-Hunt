@@ -1,28 +1,38 @@
 const { resolve, join } = require('path');
 
+const SRC = {
+    BASE: './src/assets/',
+    JS: 'js/'
+};
+
+const DIST = {
+    BASE: `${SRC.BASE}dist/`,
+    JS: SRC.JS,
+}
+
 module.exports = ({ mode = 'development' }) => ({
     mode,
     entry: {
         main: [
-            './src/assets/js/vendor/jquery.js',
-            './src/assets/js/vendor/bootstrap.js',
-            './src/assets/js/utils/cookie.js',
+            `${SRC.BASE + SRC.JS}vendor/jquery`,
+            `${SRC.BASE + SRC.JS}vendor/bootstrap`,
+            `${SRC.BASE + SRC.JS}utils/cookie`,
         ],
         treasure: [
-            './src/assets/js/treasure/index'
+            `${SRC.BASE + SRC.JS}treasure/index`,
         ],
-        ['admin-admins']: './src/assets/js/admin/admins',
-        ['admin-settings']: './src/assets/js/admin/settings',
-        live: './src/assets/js/admin/live',
+        ['admin-admins']: `${SRC.BASE + SRC.JS}admin/admins`,
+        ['admin-settings']: `${SRC.BASE + SRC.JS}admin/settings`,
+        live: `${SRC.BASE + SRC.JS}admin/live`,
     },
     output: {
-        path: resolve('./src/assets/dist/js'),
+        path: resolve(DIST.BASE + DIST.JS),
         libraryTarget: 'umd',
     },
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@': join(__dirname, 'src/assets/js'),
+            '@': join(__dirname, SRC.BASE + SRC.JS),
         },
     },
     optimization: {
