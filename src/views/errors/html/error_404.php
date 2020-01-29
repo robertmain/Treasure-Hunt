@@ -14,7 +14,7 @@
     <div id="container">
         <div class="row">
             <div class="span2">
-                <img src="/src/assets/img/tb_sign1.png" alt="">
+                <img src="<?= '/' . ASSET_PATH . 'img/tb_sign1.png'; ?>" alt="">
             </div>
             <div class="span10">
                 <h1><?php echo $heading; ?></h1>

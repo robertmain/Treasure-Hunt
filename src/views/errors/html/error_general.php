@@ -59,7 +59,7 @@ p {
     <div id="container">
         <div class="row">
             <div class="span2">
-                <img src="<?= ASSET_PATH; ?>img/tbservers.png" alt="">
+                <img src="<?= '/' . ASSET_PATH . 'img/tbservers.png'; ?>" alt="">
             </div>
             <div class="span10">
                 <h3><?= strip_tags($message) ?></h3>
