@@ -7,7 +7,7 @@
         </div>
     </div>
     <?php $this->push('scripts'); ?>
-    <script type="text/javascript">
+    <script>
         let start = 10;
         $('.seconds').html(start);
         const interval = setInterval(() => {

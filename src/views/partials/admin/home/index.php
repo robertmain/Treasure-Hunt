@@ -33,8 +33,8 @@ $this->layout('layouts/two-one', [
 <?php $this->end(); ?>
 
 <?php $this->push('scripts'); ?>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
+    <script src="https://www.google.com/jsapi"></script>
+    <script>
         google.load('visualization', '1', { packages:['corechart'] });
         google.setOnLoadCallback(() => {
             const {
