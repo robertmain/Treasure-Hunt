@@ -5,7 +5,7 @@ $this->layout('layouts/default', [
 ]);
 ?>
 
-<?= form_open('admin/pirates/update', ['class' => 'form-horizontal']) ?>
+<?= form_open('admin/pirates/update', ['class' => 'form-horizontal', 'id' => 'updatePirate']) ?>
 <?= form_hidden('id', $Pirate->id) ?>
 <div class="control-group">
     <label class="control-label">Phone Number</label>
@@ -48,7 +48,8 @@ $this->layout('layouts/default', [
 
 <div class="form-actions">
     <button
-        type="submit"
+        id="submit"
+        type="button"
         class="btn btn-success"
     >
         <i class="icon-white icon-refresh"></i> Update Pirate
@@ -56,22 +57,36 @@ $this->layout('layouts/default', [
 </div>
 <?= form_close() ?>
 
-<script type="text/javascript">
-    $('.authorise').click(({ target, preventDefault }) => {
-        let action;
-        const clicked = $(target);
-        if(clicked.hasClass('active')){
-            action = 'deauthorise';
-            clicked.removeClass('active');
-            clicked.html('Authorise Account');
-        } else {
-            action = 'authorise';
-            clicked.addClass('active');
-            clicked.html('De-Authorise Account');
-        }
-        $.get(
-            `<?= site_url('admin/pirates') ?>/${action}/${clicked.data('id')}`
-        )
-        preventDefault();
-    });
+<?php $this->push('scripts'); ?>
+<script src="<?= base_url(ASSET_PATH . $this->asset('dist/js/admin-pirates.js')) ?>"></script>
+<script>
+    document.querySelector('#submit')
+        .addEventListener('click', async () => {
+            const formData = new FormData(document.querySelector('#updatePirate'));
+            const id = formData.get('id');
+            formData.delete('id');
+            await updateDetails(id, Object.fromEntries(formData.entries()));
+        });
+
+    document.querySelector('.authorise')
+        .addEventListener('click', async (event) => {
+            const {
+                target
+            } = event;
+
+            let authorize;
+            if(target.classList.contains('active')){
+                authorize = false;
+                target.classList.remove('active');
+                target.textContent = 'Authorize Account';
+            } else {
+                authorize = true;
+                target.classList.add('active');
+                target.textContent = 'De-Authorize Account';
+            }
+
+            await toggleAuthorization(target.dataset.id, authorize);
+            event.preventDefault();
+        });
 </script>
+<?php $this->end(); ?>

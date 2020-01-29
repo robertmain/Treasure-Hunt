@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\Admin_Controller;
+use Exceptions\Http\Client\NotFoundException;
 
 // phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
@@ -29,14 +30,31 @@ class Admin_pirates extends Admin_Controller
         $this->render('partials::admin/pirates/manage', $this->data);
     }
 
-    public function update()
+    public function update($user_id = null)
     {
-        $updatedPirate = [
-            'phone'=>$this->input->post('phone')
-        ];
+        $user = $this->Pirate->get($user_id);
+        if (!$user) {
+            throw new NotFoundException('Unable to find user: ' . $user_id);
+        } else {
+            $allowedFields = [
+                'authorised',
+                'phone',
+                'password',
+            ];
 
-        $this->Pirate->update_by('id', $this->input->post('id'), $updatedPirate);
-        redirect('admin/pirates');
+            $postData = json_decode($this->input->raw_input_stream, true);
+            $updatedPirate = array_filter($postData, function ($key) use ($allowedFields) {
+                return in_array($key, $allowedFields);
+            }, ARRAY_FILTER_USE_KEY);
+
+            $this->Pirate->save($updatedPirate, $user_id);
+
+            $updatedData = $this->Pirate->get($user_id);
+            unset($updatedData->password);
+
+            $this->output->set_content_type('application/json')
+                ->set_output(json_encode($updatedData));
+        }
     }
 
     /* =======END NON-AJAX ACTIONS======= */
@@ -89,36 +107,6 @@ class Admin_pirates extends Admin_Controller
             if ($user_id) {
                 $this->Pirate->save([
                     'banned' => false,
-                ], $user_id);
-            } else {
-                show_error(400, false);
-            }
-        } else {
-            show_404(current_url(), false);
-        }
-    }
-
-    public function authorise($user_id)
-    {
-        if ($this->input->is_ajax_request()) {
-            if ($user_id) {
-                $this->Pirate->save([
-                    'authorised' => true
-                ], $user_id);
-            } else {
-                show_error(400, false);
-            }
-        } else {
-            show_404(current_url(), false);
-        }
-    }
-
-    public function deauthorise($user_id)
-    {
-        if ($this->input->is_ajax_request()) {
-            if ($user_id) {
-                $this->Pirate->save([
-                    'authorised' => false
                 ], $user_id);
             } else {
                 show_error(400, false);

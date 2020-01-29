@@ -109,34 +109,26 @@ $this->layout('layouts/default', [
         <?php endforeach; ?>
     </tbody>
 </table>
-<script type="text/javascript">
-    $('tr').on('click', '.unban', ({ target, preventDefault }) => {
-        $.get(
-            `/admin/pirates/unban/${target.getAttribute('data-id')}`,
-            () => {
-                target.removeClass('unban')
-                    .addClass('ban')
-                    .parents('tr')
-                    .find('td.phone')
-                    .find('.label-important')
-                    .remove();
-                target.html('<i class="icon-ban-circle"></i> Ban</a>');
-            }
-        )
-        preventDefault();
-    });
-    $('tr').on('click', '.ban', ({ target }) => {
-        $.get(
-            `/admin/pirates/ban/${target.getAttribute('data-id')}`,
-            () => {
-                target.removeClass('ban')
-                    .addClass('unban')
-                    .parents('tr')
-                    .find('td.phone')
-                    .append('<span class="label label-important">Banned</span>');
-                target.html('<i class="icon-ok"></i> Un-Ban</a>');
-            }
-        );
+
+<?php $this->push('scripts'); ?>
+<script src="<?= base_url(ASSET_PATH . $this->asset('dist/js/admin-pirates.js')) ?>"></script>
+<script>
+    $('tr').on('click', '.ban', async (event) => {
+        const { target } = event;
+
+        await updateDetails(target.dataset.id, { banned: '0' });
+        target.classList.remove('ban');
+        target.classList.add('unban');
+
+        const bannedTag = document.createElement('span');
+        bannedTag.classList.add(['label', 'label-important']);
+        bannedTag.innerText = 'Banned';
+
+        target.closest('tr')
+            .querySelector('td.phone')
+            .appendChild(bannedTag);
+
+        target.innerHTML = '<i class="icon-ok"></i> Un-Ban</a>';
         event.preventDefault();
     });
 
@@ -167,3 +159,4 @@ $this->layout('layouts/default', [
         preventDefault();
     });
 </script>
+<? $this->end(); ?>

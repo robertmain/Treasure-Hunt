@@ -23,6 +23,7 @@ module.exports = ({ mode = 'development' }) => ({
         ],
         ['admin-admins']: `${SRC.BASE + SRC.JS}admin/admins`,
         ['admin-settings']: `${SRC.BASE + SRC.JS}admin/settings`,
+        ['admin-pirates']: `${SRC.BASE + SRC.JS}admin/pirates`,
         live: `${SRC.BASE + SRC.JS}admin/live`,
     },
     output: {

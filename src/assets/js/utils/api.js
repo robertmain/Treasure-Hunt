@@ -5,4 +5,4 @@ const api = create({
   headers: { ['X-Requested-With']: 'XMLHttpRequest' },
 });
 
-export const { get, post } = api; 
+export const { get, post } = api;
