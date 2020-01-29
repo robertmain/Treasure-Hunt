@@ -9,14 +9,15 @@
     <?php $this->push('scripts'); ?>
     <script>
         let start = 10;
-        $('.seconds').html(start);
+        const ele = document.querySelector('.seconds');
+        ele.textContent = start;
         const interval = setInterval(() => {
-            start--;
-            $('.seconds').html(start);
-            if (start == 0) {
-                window.location = '<?= site_url('treasure') ?>'
+            ele.textContent = start;
+            if (start === 0) {
+                window.location = `${window.location.origin}/treasure`;
                 clearInterval(interval);
             }
+            start--;
         }, 1000);
     </script>
     <?php $this->end(); ?>
