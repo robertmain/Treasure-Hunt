@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title><?= $heading; ?></title>
-    <link rel="Stylesheet" href="/src/assets/css/bootstrap.min.css" />
+    <?= link_tag('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') ?>
     <link rel="Stylesheet" href="/src/assets/css/style.css" />
 </head>
 

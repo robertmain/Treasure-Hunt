@@ -13,14 +13,8 @@ const DIST = {
 module.exports = ({ mode = 'development' }) => ({
     mode,
     entry: {
-        main: [
-            `${SRC.BASE + SRC.JS}vendor/jquery`,
-            `${SRC.BASE + SRC.JS}vendor/bootstrap`,
-            `${SRC.BASE + SRC.JS}utils/cookie`,
-        ],
-        treasure: [
-            `${SRC.BASE + SRC.JS}treasure/index`,
-        ],
+        main: `${SRC.BASE + SRC.JS}index`,
+        treasure: `${SRC.BASE + SRC.JS}treasure/index`,
         ['admin-admins']: `${SRC.BASE + SRC.JS}admin/admins`,
         ['admin-settings']: `${SRC.BASE + SRC.JS}admin/settings`,
         ['admin-pirates']: `${SRC.BASE + SRC.JS}admin/pirates`,
@@ -34,6 +28,7 @@ module.exports = ({ mode = 'development' }) => ({
         extensions: ['.js'],
         alias: {
             '@': join(__dirname, SRC.BASE + SRC.JS),
+            'jquery': 'jquery-slim/dist/jquery.slim.js',
         },
     },
     optimization: {

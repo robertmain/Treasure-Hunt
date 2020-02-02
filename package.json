@@ -28,6 +28,9 @@
     "webpack-command": "^0.5.0"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "jquery-slim": "^3.0.0",
+    "popper.js": "^1.16.1"
   }
 }
