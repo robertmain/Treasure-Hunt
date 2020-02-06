@@ -1,4 +1,4 @@
-import { post } from '@/utils/api';
+import { post } from 'js/utils/api';
 
 const update = async (id, data = {}) => post(`/admin/pirates/update/${id}`, data);
 

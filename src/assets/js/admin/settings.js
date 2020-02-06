@@ -1,4 +1,4 @@
-import { post } from '@/utils/api';
+import { post } from 'js/utils/api';
 
 export const updateSettings = (key, value) => post('settings/update', { key, value });
 

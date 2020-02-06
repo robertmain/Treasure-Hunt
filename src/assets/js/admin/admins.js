@@ -1,5 +1,5 @@
-import { post } from '@/utils/api';
-import { createRow } from '@/utils/table';
+import { post } from 'js/utils/api';
+import { createRow } from 'js/utils/table';
 
 export const adminTableRow = ({ id, forename, surname, phone }) => createRow([
     `${forename} ${surname}`,

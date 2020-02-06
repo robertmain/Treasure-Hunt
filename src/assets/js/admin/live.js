@@ -1,4 +1,5 @@
-import { get } from '@/utils/api';
+import { get } from 'js/utils/api';
+import 'css/live.scss';
 
 let lastId;
 const treasure = [];

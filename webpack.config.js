@@ -1,4 +1,5 @@
 const { resolve, join } = require('path');
+const { compilerOptions } = require ('./jsconfig.json');
 
 const SRC = {
     BASE: './src/assets/',
@@ -26,7 +27,11 @@ module.exports = ({ mode = 'development' }) => ({
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@': join(__dirname, SRC.BASE + SRC.JS),
+            ...Object.entries(compilerOptions.paths)
+                .reduce((acc, [alias, [path]]) => ({
+                    ...acc,
+                    [alias.replace(/\/\*$/gi, '')]: resolve(__dirname, SRC.BASE, path).replace(/\/\*$/gi, ''),
+                }), {}),
             'jquery': 'jquery-slim/dist/jquery.slim.js',
         },
     },
