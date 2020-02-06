@@ -22,7 +22,6 @@ module.exports = ({ mode = 'development' }) => ({
     },
     output: {
         path: resolve(DIST.BASE + DIST.JS),
-        libraryTarget: 'umd',
     },
     resolve: {
         extensions: ['.js'],
