@@ -5,10 +5,10 @@
     Description: This is the custom stylesheet for the desktop implementation of my web app
 */
 
-@import '../css/fonts.css';
+@import "~bootstrap/scss/bootstrap";
 
 body, h1,h2,h3,h4,h5,h6{
-    font-family: 'AllerRegular', arial;
+    font-family: 'Open Sans', arial;
     color: #575757;
 }
 
