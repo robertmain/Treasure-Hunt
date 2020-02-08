@@ -76,14 +76,14 @@ $this->layout('layouts/default', [
                                 data-toggle="dropdown"
                                 href="#"
                             >
-                                <i class="icon-user"></i> Admin <span class="caret"></span>
+                                <i class="fas fa-user"></i> Admin <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <?=
                                         anchor(
                                             'admin/admins/edit/' . $Admin->id,
-                                            '<i class="icon-pencil"></i> Edit'
+                                            '<i class="fas fa-pencil"></i> Edit'
                                         );
                                     ?>
                                 </li>
@@ -92,7 +92,7 @@ $this->layout('layouts/default', [
                                     <?=
                                         anchor(
                                             'admin/admins/delete/' . $Admin->id,
-                                            '<i class="icon-trash"></i> Delete'
+                                            '<i class="fas fa-trash"></i> Delete'
                                         );
                                     ?>
                                 </li>
@@ -110,7 +110,7 @@ $this->layout('layouts/default', [
     </tbody>
 </table>
 <a data-toggle="modal" href="#newAdmin" class="btn btn-success">
-    <i class="icon-plus icon-white"></i> Add Admin
+    <i class="fas fa-plus"></i> Add Admin
 </a>
 
 <?php $this->push('scripts'); ?>

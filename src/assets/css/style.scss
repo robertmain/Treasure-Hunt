@@ -4,7 +4,10 @@
     Author     : Administrator
     Description: This is the custom stylesheet for the desktop implementation of my web app
 */
-
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
 @import "~bootstrap/scss/bootstrap";
 
 body, h1,h2,h3,h4,h5,h6{

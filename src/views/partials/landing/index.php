@@ -50,6 +50,6 @@ $this->layout('layouts/default', [
 
 <?php if (!isLoggedIn()) : ?>
     <a class="btn btn-success btn-large" href="<?= site_url('auth') ?>">
-        Get Started <i class="icon-white icon-arrow-right"></i>
+        Get Started <i class="fa fa-arrow-right"></i>
     </a>
 <?php endif; ?>

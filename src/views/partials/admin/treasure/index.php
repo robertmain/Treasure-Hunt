@@ -28,7 +28,7 @@ $this->layout('layouts/default', [
                                 class="btn"
                                 href="<?= site_url('admin/treasure/view/' . $Treasure->treasure_id) ?>"
                             >
-                                <i class="icon-qrcode"></i> View
+                                <i class="fas fa-qrcode"></i> View
                             </a>
                             <a
                                 class="btn dropdown-toggle"
@@ -42,7 +42,7 @@ $this->layout('layouts/default', [
                                     <?=
                                         anchor(
                                             'admin/treasure/view/' . $Treasure->treasure_id . '/pdf',
-                                            '<i class="icon-file"></i> View PDF'
+                                            '<i class="fas fa-file"></i> View PDF'
                                         );
                                     ?>
                                 </li>
@@ -51,7 +51,7 @@ $this->layout('layouts/default', [
                                     <?=
                                         anchor(
                                             'admin/treasure/edit/' . $Treasure->treasure_id,
-                                            '<i class="icon-pencil"></i> Edit'
+                                            '<i class="fas fa-edit"></i> Edit'
                                         );
                                     ?>
                                 </li>
@@ -59,7 +59,7 @@ $this->layout('layouts/default', [
                                     <?=
                                         anchor(
                                             'admin/treasure/delete/' . $Treasure->treasure_id,
-                                            '<i class="icon-trash"></i> Delete'
+                                            '<i class="fas fa-trash"></i> Delete'
                                         );
                                     ?>
                                 </li>
@@ -79,5 +79,5 @@ $this->layout('layouts/default', [
     class="btn btn-success"
     href="<?= site_url('admin/treasure/add') ?>"
 >
-    <i class="icon-plus icon-white"></i> Add Treasure
+    <i class="fas fa-plus"></i> Add Treasure
 </a>

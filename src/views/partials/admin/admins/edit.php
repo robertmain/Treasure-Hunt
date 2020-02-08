@@ -43,12 +43,8 @@ $this->layout('layouts/default', [
         </div>
         <div class="control-group">
             <div class="controls">
-                <button
-                    class="btn btn-primary"
-                    id="addadmin"
-                    type="submit"
-                >
-                    <i class="icon-refresh icon-white"></i> Update Admin
+                <button class="btn btn-primary" id="addadmin" type="button">
+                    <i class="fas fa-save"></i> Save Changes
                 </button>
             </div>
         </div>

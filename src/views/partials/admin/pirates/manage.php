@@ -52,7 +52,7 @@ $this->layout('layouts/default', [
         type="button"
         class="btn btn-success"
     >
-        <i class="icon-white icon-refresh"></i> Update Pirate
+        <i class="fas fa-refresh"></i> Update Pirate
     </button>
 </div>
 <?= form_close() ?>

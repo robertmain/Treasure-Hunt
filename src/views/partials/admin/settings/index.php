@@ -24,7 +24,7 @@ $this->layout('layouts/two-one', [
         data-status="1"
         class="btn btn-success authorisation <?= $validationButtons['on']; ?>"
     >
-        <i class="icon-white icon-lock"></i> Authorisation On</button>
+        <i class="fas fa-lock"></i> Authorisation On</button>
     <button
         data-status="0"
         class="btn btn-success authorisation <?= $validationButtons['off']; ?>"
@@ -56,7 +56,7 @@ $this->layout('layouts/two-one', [
         data-status="1"
         class="btn btn-success eucookielaw <?= $cookielawbutton['on'] ?>"
     >
-        <i class="icon-white icon-cog"></i> Cookie Compliancy On
+        <i class="fas fa-cog"></i> Cookie Compliancy On
     </button>
     <button
         data-status="0"
@@ -101,7 +101,7 @@ $this->layout('layouts/two-one', [
                         type="button"
                         class="btn btn-primary updatemessage"
                     >
-                        <i class="icon-white icon-refresh"></i> Update Finish Message
+                        <i class="fas fa-sync"></i> Update Finish Message
                     </button>
                 </div>
             </div>

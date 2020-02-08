@@ -23,7 +23,7 @@ $this->layout('layouts/default', [
     <div class="modal-footer">
         <a href="#" class="btn btn-success" data-dismiss="modal">No - Go Back</a>
         <a href="#" class="btn btn-danger striptreasure2">
-            <i class="icon-white icon-warning-sign"></i> Yes - Strip This Pirate's Treasure
+            <i class="fas fa-exclamation-triangle"></i> Yes - Strip This Pirate's Treasure
         </a>
     </div>
 </div>
@@ -59,7 +59,7 @@ $this->layout('layouts/default', [
                             data-toggle="dropdown"
                             href="#"
                         >
-                            <i class="icon-user"></i>
+                            <i class="fas fa-user"></i>
                             Pirate <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu pull-right">
@@ -70,7 +70,7 @@ $this->layout('layouts/default', [
                                         data-id="<?= $Mytreasure->p_id ?>"
                                         class="unban"
                                     >
-                                        <i class="icon-ok"></i> Un-Ban
+                                        <i class="fas fa-check"></i> Un-Ban
                                     </a>
                                 </li>
                             <?php else : ?>
@@ -80,7 +80,7 @@ $this->layout('layouts/default', [
                                         data-id="<?= $Mytreasure->p_id ?>"
                                         class="ban"
                                     >
-                                        <i class="icon-ban-circle"></i> Ban
+                                        <i class="fas fa-ban"></i> Ban
                                     </a>
                                 </li>
                             <?php endif; ?>
@@ -91,7 +91,7 @@ $this->layout('layouts/default', [
                                     data-id="<?= $Mytreasure->p_id ?>"
                                     data-toggle="modal"
                                 >
-                                    <i class="icon-gift"></i> Strip Treasure
+                                    <i class="fas fa-ban"></i> Strip Treasure
                                 </a>
                             </li>
                             <li class="divider"></li>
@@ -99,7 +99,7 @@ $this->layout('layouts/default', [
                                 <a
                                     href="<?= site_url('admin/pirates/manage/' . $Mytreasure->p_id) ?>"
                                 >
-                                    <i class="icon-edit"></i> Manage Pirate
+                                    <i class="fas fa-edit"></i> Manage Pirate
                                 </a>
                             </li>
                         </ul>
@@ -128,7 +128,7 @@ $this->layout('layouts/default', [
             .querySelector('td.phone')
             .appendChild(bannedTag);
 
-        target.innerHTML = '<i class="icon-ok"></i> Un-Ban</a>';
+        target.innerHTML = '<i class="fas fa-check"></i> Un-Ban</a>';
         event.preventDefault();
     });
 

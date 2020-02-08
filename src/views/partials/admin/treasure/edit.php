@@ -32,6 +32,8 @@ $this->layout('layouts/default', [
     </div>
 </div>
 <div class="form-actions">
-    <button type="submit" class="btn btn-primary"><i class="icon-white icon-refresh"></i> Save Changes</button>
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Save Changes
+    </button>
 </div>
 <?= form_close() ?>

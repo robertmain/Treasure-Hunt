@@ -24,8 +24,7 @@ if (isBanned($me->id) && isLoggedIn()) {
         <h3 class="alert-heading">Information</h3>
         <p>It seems you aren't signed in right now. You must be logged in to participate in this treasure hunt.</p>
         <div class="pull-right">
-            <a href="<?= site_url('login') ?>" class="btn "><i class="icon-lock"></i> Sign In</a>
-            <a href="<?= site_url('auth/register') ?>" class="btn"><i class="icon-user"></i> Sign Up</a>
+            <a href="<?= site_url('auth') ?>" class="btn "><i class="fas fas-icon-right"></i> Get Started</a>
         </div>
     </div>
 <?php endif; ?>

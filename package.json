@@ -30,6 +30,7 @@
     "webpack-command": "^0.5.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "@openfonts/open-sans_all": "^1.44.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
