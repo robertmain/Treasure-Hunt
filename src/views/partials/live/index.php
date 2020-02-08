@@ -1,6 +1,6 @@
 <?php $this->layout('layouts/live') ?>
 
-<div class="alertcontainer"></div>
+<div class="card-columns"></div>
 
 
 <?php $this->push('scripts'); ?>

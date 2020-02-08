@@ -17,12 +17,14 @@ setInterval(async() => {
     ([{f_id: lastId}] = treasure.slice(-1));
 
     newTreasure.forEach(({ phone, title }) => {
-        $(`<div><h4 class="alert-heading">
-            Treasure Found</h4><p>User: ${phone}<br />
-            Found Treasure: ${title}</p></div>`)
-            .addClass('alert alert-info span3')
-            .hide()
-            .prependTo('.alertcontainer')
-            .fadeIn(1500);
+        $(`<div class="card text-white bg-info mb-3" style="max-width: 25rem;">
+            <div class="card-body">
+                <h5 class="card-title text-white">Treasure Found</h5>
+                <p class="card-text">
+                    <strong>User:</strong> ${phone}<br />
+                    <strong>Found Treasure:</strong> ${title}
+                </p>
+            </div>
+        </div>`).prependTo('.card-columns');
     });
 }, 2000);
