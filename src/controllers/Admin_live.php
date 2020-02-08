@@ -20,8 +20,9 @@ class Admin_live extends Controller
 
     public function socket()
     {
-        if ($this->uri->segment(4)) {
-            $response = $this->Mytreasure->getNewFound($this->uri->segment(4));
+        $since = $this->input->get('since');
+        if ($since) {
+            $response = $this->Mytreasure->getNewFound($since);
         } else {
             $response = $this->Mytreasure->getAllFound();
         }

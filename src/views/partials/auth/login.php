@@ -5,22 +5,16 @@
         <p><?= $error['content'] ?></p>
     </div>
 <?php endif; ?>
-<?= form_open('auth/authenticate', ['class' => 'form-horizontal']); ?>
-<div class="control-group">
+<?= form_open('auth/authenticate'); ?>
+<div class="form-group">
     <label class="control-label" for="login">Mobile No</label>
-    <div class="controls">
-        <input name="login" type="tel" maxlength="11" />
-    </div>
+    <input name="login" class="form-control" type="tel"/>
 </div>
-<div class="control-group">
+<div class="form-group">
     <label class="control-label" for="password">Password</label>
-    <div class="controls">
-        <?= form_password('password') ?>
-    </div>
+    <?= form_password('password', '', 'class="form-control"') ?>
 </div>
-<div class="control-group">
-    <div class="controls">
-        <?= form_submit('submit', 'Sign In', 'class="btn btn-primary"'); ?>
-    </div>
+<div class="form-group">
+    <button class="btn btn-primary" type="submit">Sign In</button>
 </div>
 <?= form_close() ?>

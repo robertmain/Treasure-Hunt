@@ -1,32 +1,38 @@
-<div class="navbar">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="<?= site_url() ?>"><?= APP_TITLE ?></a>
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <?php if ($CI->uri->uri_string() != 'admin/login') : ?>
-                        <?php if (isLoggedIn()) : ?>
-                            <?php if (isAdmin()) : ?>
-                                <li><?= anchor('admin/home', 'Dashboard') ?></li>
-                                <li><?= anchor('admin/treasure', 'Treasure') ?></li>
-                                <li><?= anchor('admin/admins', 'Admins') ?></li>
-                                <li><?= anchor('admin/pirates', 'Pirates') ?></li>
-                                <li><?= anchor('admin/settings', 'Application Settings') ?></li>
-                            <?php endif; ?>
-                            <li><?= anchor('treasure', 'My Treasure') ?></li>
-                            <li><?= anchor('auth/logout', 'Sign Out') ?></li>
-                        <?php else : ?>
-                            <li><?= anchor(site_url(), 'Home') ?></li>
-                            <li><?= anchor(site_url('auth'), 'Log In/Register') ?></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
+    <div class="container">
+        <a class="navbar-brand" href="<?= site_url() ?>"><?= APP_TITLE ?></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                    <?php if (isLoggedIn()) : ?>
+                        <li class="nav-item"><?= anchor('treasure', 'My Treasure', 'class="nav-link"') ?></li>
+                        <?php if (isAdmin()) : ?>
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#" id="navbarDropdown"
+                                    role="button"
+                                    data-toggle="dropdown"
+                                >
+                                    Adminstration
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <?= anchor('admin/home', 'Dashboard', 'class="dropdown-item"') ?>
+                                    <?= anchor('admin/treasure', 'Treasure', 'class="dropdown-item"') ?>
+                                    <?= anchor('admin/admins', 'Admins', 'class="dropdown-item"') ?>
+                                    <?= anchor('admin/pirates', 'Pirates', 'class="dropdown-item"') ?>
+                                    <?= anchor('admin/settings', 'Settings', 'class="dropdown-item"') ?>
+                                </div>
+                            </li>
                         <?php endif; ?>
+                        <li class="nav-item"><?= anchor('auth/logout', 'Sign Out', 'class="nav-link"') ?></li>
+                    <?php else : ?>
+                        <li class="nav-item"><?= anchor(site_url('auth'), 'Log In/Register', 'class="nav-link"') ?></li>
                     <?php endif; ?>
-                </ul>
-            </div>
+            </ul>
         </div>
     </div>
-</div>
+</nav>

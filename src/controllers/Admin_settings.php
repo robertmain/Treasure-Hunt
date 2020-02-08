@@ -24,9 +24,10 @@ class Admin_settings extends Admin_Controller
     public function update()
     {
         if ($this->input->is_ajax_request()) {
+            $jsondata = json_decode($this->input->raw_input_stream, true);
             $this->Config->save([
-                'value' => $this->input->post('value'),
-            ], $this->input->post('key'));
+                'value' => $jsondata['value'],
+            ], $jsondata['key']);
         } else {
             show_404(current_url(), false);
         }

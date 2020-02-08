@@ -6,21 +6,28 @@ $this->layout('layouts/default', [
 ?>
 
 <div class="row">
-    <div class="span10">
-        <h2><?= $Treasure->title ?></h2>
-        <h4>Location: <?= $Treasure->location ?></h4>
-        <h4>Hash: <?= $Treasure->md5 ?></h4>
-        <h4>URL: <?= anchor('treasure/find/' . $Treasure->md5) ?></h4>
-        <hr>
-        <?= auto_typography($Treasure->text) ?>
+    <div class="col col-xs-12 col-md-2">
+        <img
+            src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=<?= site_url('treasure/find/' . $Treasure->md5); ?>"
+            class="img-thumbnail"
+            alt="<?= $Treasure->title; ?>"
+        >
     </div>
-    <div class="span2">
-        <img src="" class="thumbnail" alt="<?= $Treasure->title; ?>">
+    <div class="col col-xs-12 col-md-10">
+        <h4><?= $Treasure->title ?></h4>
+        <p>
+            <strong>Location:</strong> <?= $Treasure->location ?><br />
+        </p>
+        <p>
+            <strong>URL:</strong> <?= anchor('treasure/find/' . $Treasure->md5, 'treasure/find/' . $Treasure->md5) ?><br />
+        </p>
+        <p>
+            <strong>Clue:</strong> <?= $Treasure->clue ?>
+        </p>
     </div>
 </div>
-
-<script type="text/javascript">
-    const treasureURL = '<?= site_url('treasure/find/' . $Treasure->md5); ?>';
-    $('.span2 img')
-        .attr('src', `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${treasureURL}`);
-</script>
+<div class="row mt-5">
+    <div class="col col-xs-12">
+        <?= auto_typography($Treasure->text) ?>
+    </div>
+</div>
