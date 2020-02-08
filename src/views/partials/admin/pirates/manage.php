@@ -7,52 +7,46 @@ $this->layout('layouts/default', [
 
 <?= form_open('admin/pirates/update', ['class' => 'form-horizontal', 'id' => 'updatePirate']) ?>
 <?= form_hidden('id', $Pirate->id) ?>
-<div class="control-group">
+<div class="form-group">
     <label class="control-label">Phone Number</label>
-    <div class="controls">
-        <?= form_input('phone', $Pirate->phone, 'maxlength="11"') ?>
-    </div>
+    <?= form_input('phone', $Pirate->phone, 'maxlength="11" class="form-control"') ?>
 </div>
-<div class="control-group">
+<div class="form-group">
     <label class="control-label">Password</label>
-    <div class="controls">
-        <?= form_password('password', null) ?>
-        <p class="help-block">Password Un-Changed If Left Blank</p>
-    </div>
+    <?= form_password('password', null, 'class="form-control"') ?>
+    <span><em>(Un-Changed If Left Blank)</em></span>
 </div>
-<div class="control-group">
-    <div class="controls">
-        <?php if ($authorisationEnabled->value == '1') : ?>
-            <?php if ($Pirate->authorised == '1') : ?>
-                <button
-                    type="button"
-                    class="btn authorise active"
-                    data-authorise="0"
-                    data-id="<?= $Pirate->id ?>"
-                >
-                    De-Authorise Account
-                </button>
-            <?php else : ?>
-                <button
-                    type="button"
-                    class="btn authorise"
-                    data-authorise="1"
-                    data-id="<?= $Pirate->id ?>"
-                >
-                    Authorise Account
-                </button>
-            <?php endif; ?>
+<div class="form-group">
+    <?php if ($authorisationEnabled->value == '1') : ?>
+        <?php if ($Pirate->authorised == '1') : ?>
+            <button
+                type="button"
+                class="btn authorise active"
+                data-authorise="0"
+                data-id="<?= $Pirate->id ?>"
+            >
+                De-Authorise Account
+            </button>
+        <?php else : ?>
+            <button
+                type="button"
+                class="btn authorise"
+                data-authorise="1"
+                data-id="<?= $Pirate->id ?>"
+            >
+                Authorise Account
+            </button>
         <?php endif; ?>
-    </div>
+    <?php endif; ?>
 </div>
 
-<div class="form-actions">
+<div class="form-group">
     <button
         id="submit"
         type="button"
         class="btn btn-success"
     >
-        <i class="fas fa-refresh"></i> Update Pirate
+        <i class="fas fa-save"></i> Update Pirate
     </button>
 </div>
 <?= form_close() ?>

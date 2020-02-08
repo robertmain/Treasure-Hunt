@@ -6,7 +6,7 @@ $this->layout('layouts/default', [
 ?>
 
 <div class="row">
-    <div class="span12">
+    <div class="col col-xs-12">
         <div class="alert alert-danger">
             <h2 class="alert-heading">Warning</h2>
             <p>

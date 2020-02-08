@@ -5,17 +5,17 @@ $this->layout('layouts/default', [
 ?>
 
 <div class="row">
-    <div class="span6">
+    <div class="col col-xs-6">
         <?= $this->section('one'); ?>
     </div>
-    <div class="span6<?= (!$this->section('one')) ? ' offset6' : '' ?>">
+    <div class="col col-xs-6 <?= (!$this->section('one')) ? ' col-offset-6' : '' ?>">
         <?= $this->section('two'); ?>
     </div>
 </div>
 
 <?php if ($this->section('three')) : ?>
-<div class="row">
-    <div class="span12">
+<div class="row mt-5">
+    <div class="col col-xs-12">
         <?= $this->section('three'); ?>
     </div>
 </div>

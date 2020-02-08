@@ -4,63 +4,71 @@ $this->layout('layouts/default', [
 ]);
 ?>
 
-<div id="newAdmin" class="modal hide fade">
-    <div class="modal-header">
-        <a href="#" class="close" data-dismiss="modal">&times;</a>
-        <h2>Add Administrator</h2>
-    </div>
-    <div class="modal-body">
-        <?= form_open(null, ['class' => 'form-horizontal']) ?>
-        <h3>Personal Data</h3>
-        <div class="control-group">
-            <label for="forename" class="control-label">Forename</label>
-            <div class="controls">
-                <?= form_input('forename', null, 'class="forename"') ?>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="surname" class="control-label">Surname</label>
-            <div class="controls">
-                <?= form_input('surname', null, 'class="surname"') ?>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="email" class="control-label">Email</label>
-            <div class="controls">
-                <?= form_input('email', null, 'class="email"') ?>
-            </div>
-        </div>
-        <h3>Account Data</h3>
-        <div class="control-group">
-            <label for="phone" class="control-label">Phone</label>
-            <div class="controls">
-                <?= form_input('phone', null, 'class="phone"') ?>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="password" class="control-label">Password</label>
-            <div class="controls">
-                <?= form_password('password', null, 'class="password"') ?>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <button
-                    class="btn btn-primary"
-                    id="addadmin"
-                    type="button"
-                >
-                    <i class="icon-plus icon-white"></i> Add Admin
+<div class="modal fade in" id="newAdmin" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Administrator</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <div class="modal-body">
+                <?= form_open(null, ['class' => 'form-horizontal']) ?>
+                    <h4>Personal Data</h4>
+                    <div class="control-group">
+                        <label for="forename" class="control-label">Forename</label>
+                        <div class="controls">
+                            <?= form_input('forename', null, 'class="forename form-control"') ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="surname" class="control-label">Surname</label>
+                        <div class="controls">
+                            <?= form_input('surname', null, 'class="surname form-control"') ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email</label>
+                        <div class="controls">
+                            <?= form_input('email', null, 'class="email form-control"') ?>
+                        </div>
+                    </div>
+
+                    <h4>Account Data</h4>
+                    <div class="form-group">
+                        <label for="phone" class="control-label">Phone</label>
+                        <div class="controls">
+                            <?= form_input('phone', null, 'class="phone form-control"') ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="control-label">Password</label>
+                        <div class="controls">
+                            <?= form_password('password', null, 'class="password form-control"') ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="controls">
+                            <button class="btn btn-primary" id="addadmin" type="button">
+                                <i class="fas fa-plus"></i> Add Admin
+                            </button>
+                        </div>
+                    </div>
+                <?= form_close() ?>
+            </div>
         </div>
-        <?= form_close() ?>
     </div>
 </div>
+
 <table class="table table-bordered table-striped" id="admins">
     <thead>
         <tr>
-            <th>Name</th> <th>Phone</th> <th></th>
+            <th>Name</th> <th colspan="2">Phone</th>
         </tr>
     </thead>
     <tbody>
@@ -68,11 +76,12 @@ $this->layout('layouts/default', [
             <?php foreach ($admins as $Admin) : ?>
                 <tr>
                     <td><?= $Admin->forename . ' ' . $Admin->surname ?></td>
-                    <td><?= $Admin->phone ?></td>
                     <td>
-                        <div class="btn-group">
+                        <?= $Admin->phone ?>
+                        
+                        <div class="btn-group float-sm-right">
                             <a
-                                class="btn dropdown-toggle"
+                                class="btn btn-secondary dropdown-toggle"
                                 data-toggle="dropdown"
                                 href="#"
                             >

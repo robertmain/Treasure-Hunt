@@ -1,11 +1,11 @@
 <?php
 $this->layout('layouts/two-one', [
-    'title' => 'Application Settings',
+    'title' => 'Settings',
 ]);
 ?>
 
 <?php $this->start('one'); ?>
-<h3>Account Validation</h3>
+<h4>Account Validation</h4>
 <p>
     The system can require users to validate their account by contacting
     a member of staff. To turn this on or off use the button below
@@ -35,7 +35,7 @@ $this->layout('layouts/two-one', [
 <?php $this->end(); ?>
 
 <?php $this->start('two'); ?>
-<h3>EU Cookie Law Compliancy</h3>
+<h4>EU Cookie Law Compliancy</h4>
 <p>
     Should the application comply with EU Cookie law and ask permission to use
     cookies?
@@ -69,33 +69,29 @@ $this->layout('layouts/two-one', [
 
 <?php $this->start('three'); ?>
 <div class="row">
-    <div class="span6">
-        <h3>Treasure Hunt Completion</h3>
+    <div class="col col-xs-6">
+        <h4>Treasure Hunt Completion</h4>
         <p>
             You can customise the message that will be shown to the user
             when they complete the treasure hunt and find all the codes.
             See the table on the right for automatic variable substitutions
         </p>
         <form action="#" class="form-horizontal">
-            <div class="control-group">
+            <div class="form-group">
                 <label for="completetitle" class="control-label">Title</label>
-                <div class="controls">
-                    <?= form_input('completetitle', $config[1]->value, 'class="completetitle"') ?>
-                </div>
+                <?= form_input('completetitle', $config[1]->value, 'class="completetitle form-control"') ?>
             </div>
-            <div class="control-group">
+            <div class="form-group">
                 <label for="completemessage" class="control-label">Message</label>
-                <div class="controls">
-                    <div
-                        class="input completemessage span4"
-                        name="completemessage"
-                        contenteditable="true"
-                    >
-                        <?= auto_typography($config[2]->value) ?>
-                    </div>
+                <div
+                    class="input completemessage form-control"
+                    name="completemessage"
+                    contenteditable="true"
+                >
+                    <?= auto_typography($config[2]->value) ?>
                 </div>
             </div>
-            <div class="control-group">
+            <div class="form-group">
                 <div class="controls">
                     <button
                         type="button"
@@ -107,7 +103,7 @@ $this->layout('layouts/two-one', [
             </div>
         </form>
     </div>
-    <div class="span6">
+    <div class="col col-xs-6">
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>

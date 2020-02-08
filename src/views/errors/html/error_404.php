@@ -6,17 +6,16 @@
 <head>
     <meta charset="utf-8">
     <title><?= $heading; ?></title>
-    <?= link_tag('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css') ?>
-    <link rel="Stylesheet" href="/src/assets/css/style.css" />
+    <link rel="Stylesheet" href="<?= ASSET_PATH . 'css/style.css'; ?>" />
 </head>
 
 <body>
     <div id="container">
         <div class="row">
-            <div class="span2">
-                <img src="<?= '/' . ASSET_PATH . 'img/tb_sign1.png'; ?>" alt="">
+            <div class="col col-xs-1">
+                <img src="<?= '/' . ASSET_PATH . 'img/tb_sign1.png'; ?>" class="img-sm" alt="">
             </div>
-            <div class="span10">
+            <div class="col col-xs-10">
                 <h1><?php echo $heading; ?></h1>
                 <?php echo $message; ?>
                 <p>

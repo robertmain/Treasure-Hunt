@@ -11,19 +11,29 @@ if (isBanned($me->id) && isLoggedIn()) {
 ?>
 
 <?php if (sizeof($treasure) > 0) : ?>
-    <div id="foundAllModal" class="modal hide fade" style="display: none; ">
-        <div class="modal-header">
-            <h3><?= $foundAllTitle ?></h3>
-        </div>
-        <div class="modal-body">
-            <p><?= auto_typography($foundAllMessage) ?></p>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
+<div id="foundAllModal" class="modal hide fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><?= $foundAllTitle ?></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <?= auto_typography($foundAllMessage) ?>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary dismiss" data-dismiss="modal">Close</a>
+            </div>
         </div>
     </div>
+</div>
 <?php endif; ?>
 <?php if (foundAll($me->id)) : ?>
+    <?php $this->push('scripts'); ?>
     <script>
         const COOKIE_NAME = 'foundMessageSeen';
         if(!getCookie(COOKIE_NAME)){
@@ -35,10 +45,13 @@ if (isBanned($me->id) && isLoggedIn()) {
                 }));
         }
     </script>
+    <?php $this->end(); ?>
 <?php else : ?>
+    <?php $this->push('scripts'); ?>
     <script>
         delCookie("foundMessageSeen");
     </script>
+    <?php $this->end(); ?>
 <?php endif; ?>
 <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -47,16 +60,19 @@ if (isBanned($me->id) && isLoggedIn()) {
         </tr>
     </thead>
     <?php if (sizeof($treasure) > 0) : ?>
-        <div class="modal hide fade found-treasure-modal">
-            <div class="modal-header"><h3></h3></div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-primary" data-dismiss="modal">
-                    Close
-                </a>
+        <div class="modal hide fade found-treasure-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header"><h3></h3></div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-primary" data-dismiss="modal">
+                            Close
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-
         <tbody>
             <?php foreach ($treasure as $Treasure) : ?>
                 <tr>
@@ -78,7 +94,7 @@ if (isBanned($me->id) && isLoggedIn()) {
                         data-id="<?= $Treasure->id; ?>"
                         data-title="<?= $Treasure->title; ?>"
                         data-clue="<?= $Treasure->clue; ?>"
-                        class="btn btn-info btn-mini"
+                        class="btn btn-info btn-sm float-sm-right"
                     >
                         Clue
                     </a>

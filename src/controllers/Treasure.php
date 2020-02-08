@@ -22,9 +22,6 @@ class Treasure extends Controller
 
     public function index()
     {
-        if (!isLoggedIn() | isAdmin()) {
-            show_404(current_url(), false);
-        }
         $this->data['foundAllTitle'] = $this->Config->get_by(['key' => 'completetitle'])->value;
         $find = ['%NCODES', '%APP_OWNER'];
         $replace = [sizeof($this->Treasure->get_all()), APP_OWNER];

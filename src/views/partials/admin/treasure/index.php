@@ -21,49 +21,48 @@ $this->layout('layouts/default', [
                     <?php if ($Treasure->id) :?>
                         <?= $Treasure->id ?> (<?= $Treasure->phone ?>)
                     <?php else : ?>
-                        No One Yet
+                        No One Yet<br />
                     <?php endif; ?>
-                        <div class="btn-group pull-right">
-                            <a
-                                class="btn"
-                                href="<?= site_url('admin/treasure/view/' . $Treasure->treasure_id) ?>"
-                            >
-                                <i class="fas fa-qrcode"></i> View
-                            </a>
-                            <a
-                                class="btn dropdown-toggle"
-                                data-toggle="dropdown"
-                                href="#"
-                            >
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <?=
-                                        anchor(
-                                            'admin/treasure/view/' . $Treasure->treasure_id . '/pdf',
-                                            '<i class="fas fa-file"></i> View PDF'
-                                        );
-                                    ?>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <?=
-                                        anchor(
-                                            'admin/treasure/edit/' . $Treasure->treasure_id,
-                                            '<i class="fas fa-edit"></i> Edit'
-                                        );
-                                    ?>
-                                </li>
-                                <li>
-                                    <?=
-                                        anchor(
-                                            'admin/treasure/delete/' . $Treasure->treasure_id,
-                                            '<i class="fas fa-trash"></i> Delete'
-                                        );
-                                    ?>
-                                </li>
-                            </ul>
+                        <div class="dropdown">
+                            <div class="btn-group" role="group">
+                                <a
+                                    class="btn btn-secondary"
+                                    href="<?= site_url('admin/treasure/view/' . $Treasure->treasure_id) ?>"
+                                >
+                                    <i class="fas fa-qrcode"></i> View
+                                </a>
+                                <div class="btn-group" role="group">
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown">
+
+                                    </button>
+                                    <div class="dropdown-menu  dropdown-menu-right">
+                                        <?=
+                                            anchor(
+                                                'admin/treasure/view/' . $Treasure->treasure_id . '/pdf',
+                                                '<i class="fas fa-fw fa-file"></i> View PDF',
+                                                'class="dropdown-item"'
+                                            );
+                                        ?>
+                                        <?=
+                                            anchor(
+                                                'admin/treasure/edit/' . $Treasure->treasure_id,
+                                                '<i class="fas fa-fw fa-edit"></i> Edit',
+                                                'class="dropdown-item"'
+                                            );
+                                        ?>
+                                        <?=
+                                            anchor(
+                                                'admin/treasure/delete/' . $Treasure->treasure_id,
+                                                '<i class="fas fa-fw fa-trash"></i> Delete',
+                                                'class="dropdown-item"'
+                                            );
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>

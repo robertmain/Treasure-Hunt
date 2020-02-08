@@ -58,10 +58,10 @@ p {
 <body>
     <div id="container">
         <div class="row">
-            <div class="span2">
+            <div class="col col-xs-2">
                 <img src="<?= '/' . ASSET_PATH . 'img/tbservers.png'; ?>" alt="">
             </div>
-            <div class="span10">
+            <div class="col col-xs-10">
                 <h3><?= strip_tags($message) ?></h3>
             </div>
         </div>
