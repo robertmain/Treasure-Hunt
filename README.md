@@ -11,26 +11,9 @@
 
 ## Application Login Credentials
 
-<table>
-  <tr>
-    <th colspan="2">Normal User</th>
-  </tr>
-  <tr>
-    <td>Phone number</td> <td><code>01536478832</code></td>
-  </tr>
-  <tr>
-    <td>Password</td> <td><code>password</code></td>
-  </tr>
-  <tr>
-    <th colspan="2">Administrative User</th>
-  </td>
-  <tr>
-    <td>Phone number</td> <td><code>12345</code></td>
-  </tr>
-  <tr>
-    <td>Password</td> <td><code>fubar</code></td>
-  </tr>
-</table>
+The appliction no longer ships with users pre-created. To create a user, run `composer run-script cli user create <username> <password> <admin>` (the latter being `true` or `false`).
+
+If this application is being run as a docker container, this command will need to be run in the context of the docker container.
 
 ## Managing The Application
 
