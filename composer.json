@@ -29,7 +29,8 @@
             "composer archive --format=zip --file app",
             "composer install --quiet"
         ],
-        "lint": "phpcs src --standard=./ruleset.xml --colors -s --extensions=php"
+        "lint": "phpcs src --standard=./ruleset.xml --colors -s --extensions=php",
+        "cli": "php index.php cli\/"
     },
     "require": {
         "php": ">=7.2",

@@ -78,7 +78,7 @@ $this->layout('layouts/default', [
                     <td><?= $Admin->forename . ' ' . $Admin->surname ?></td>
                     <td>
                         <?= $Admin->phone ?>
-                        
+
                         <div class="btn-group float-sm-right">
                             <a
                                 class="btn btn-secondary dropdown-toggle"
@@ -87,24 +87,22 @@ $this->layout('layouts/default', [
                             >
                                 <i class="fas fa-user"></i> Admin <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <?=
-                                        anchor(
-                                            'admin/admins/edit/' . $Admin->id,
-                                            '<i class="fas fa-pencil"></i> Edit'
-                                        );
-                                    ?>
-                                </li>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <?=
+                                    anchor(
+                                        'admin/admins/edit/' . $Admin->id,
+                                        '<i class="fas fa-edit"></i> Edit',
+                                        'class="dropdown-item"'
+                                    );
+                                ?>
                                 <?php if (sizeof($admins) > 1) : ?>
-                                <li>
                                     <?=
                                         anchor(
                                             'admin/admins/delete/' . $Admin->id,
-                                            '<i class="fas fa-trash"></i> Delete'
+                                            '<i class="fas fa-trash"></i> Delete',
+                                            'class="dropdown-item"'
                                         );
                                     ?>
-                                </li>
                                 <?php endif; ?>
                             </ul>
                         </div>

@@ -12,46 +12,34 @@ $this->layout('layouts/default', [
         <h4>Personal Data</h4>
         <div class="control-group">
             <label for="forename" class="control-label">Forename</label>
-            <div class="controls">
-                <?= form_input('forename', null, 'class="forename form-control"') ?>
-            </div>
+            <?= form_input('forename', $Admin->forename, 'class="forename form-control"') ?>
         </div>
 
         <div class="form-group">
             <label for="surname" class="control-label">Surname</label>
-            <div class="controls">
-                <?= form_input('surname', null, 'class="surname form-control"') ?>
-            </div>
+            <?= form_input('surname', $Admin->surname, 'class="surname form-control"') ?>
         </div>
 
         <div class="form-group">
             <label for="email" class="control-label">Email</label>
-            <div class="controls">
-                <?= form_input('email', null, 'class="email form-control"') ?>
-            </div>
+            <?= form_input('email', $Admin->email, 'class="email form-control"') ?>
         </div>
 
         <h4>Account Data</h4>
         <div class="form-group">
             <label for="phone" class="control-label">Phone</label>
-            <div class="controls">
-                <?= form_input('phone', null, 'class="phone form-control"') ?>
-            </div>
+            <?= form_input('phone', $Admin->phone, 'class="phone form-control"') ?>
         </div>
 
         <div class="form-group">
             <label for="password" class="control-label">Password</label>
-            <div class="controls">
-                <?= form_password('password', null, 'class="password form-control"') ?>
-            </div>
+            <?= form_password('password', null, 'class="password form-control"') ?>
         </div>
 
         <div class="form-group">
-            <div class="controls">
-                <button class="btn btn-primary" id="addadmin" type="button">
-                    <i class="fas fa-save"></i> Save Changes
-                </button>
-            </div>
+            <button class="btn btn-primary" id="addadmin" type="button">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
         </div>
     <?= form_close() ?>
     </div>

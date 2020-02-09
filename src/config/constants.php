@@ -10,7 +10,7 @@
 | of this setting
 |
 */
-defined('SHOW_DEBUG_BACKTRACE') or define('SHOW_DEBUG_BACKTRACE', true);
+defined('SHOW_DEBUG_BACKTRACE') or define('SHOW_DEBUG_BACKTRACE', ENVIRONMENT == 'development');
 
 /*
 |--------------------------------------------------------------------------
