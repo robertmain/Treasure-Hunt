@@ -142,6 +142,27 @@ class PirateModel extends TestCase
         ]);
     }
 
+    /**
+     * @test
+     */
+    public function nickname_is_not_generated_on_update() : void
+    {
+        Mockery::mock('overload:' . All::class)
+            ->makePartial()
+            ->shouldAllowMockingProtectedMethods()
+            ->shouldNotReceive('getName');
+
+        $this->pirate_model->shouldReceive('update')
+            ->once()
+            ->with(4, Mockery::on(function ($data) {
+                return !array_key_exists('nickname', $data);
+            }));
+
+        $this->pirate_model->save([
+            // User data is really not important in this test, so it was omitted
+        ], 4);
+    }
+
     public function tearDown() : void
     {
         Mockery::close();

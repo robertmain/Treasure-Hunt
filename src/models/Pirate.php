@@ -47,9 +47,11 @@ class Pirate extends Model
             $data['password'] = $this->password_hash($data['password']);
         }
 
-        $data['nickname'] = (new All([
-            new Alliteration(),
-        ]))->getName();
+        if ($id === null) {
+            $data['nickname'] = (new All([
+                new Alliteration(),
+            ]))->getName();
+        }
 
         return parent::save($data, $id);
     }
