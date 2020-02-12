@@ -38,7 +38,8 @@
         "league/plates": "^3.3",
         "vlucas/phpdotenv": "^3.3",
         "crazycodr/standard-exceptions": "^2.1",
-        "tecnickcom/tcpdf": "^6.3"
+        "tecnickcom/tcpdf": "^6.3",
+        "probablyrational/random-name-generator": "^2.2"
     },
     "autoload": {
         "classmap": [

@@ -5,7 +5,12 @@ namespace TreasureHunt\Tests\Models;
 use PHPUnit\Framework\TestCase;
 use App\Models\Pirate;
 use Mockery;
+use ProbablyRational\RandomNameGenerator\All;
 
+/**
+ * @runTestsInSeparateProcesses
+ * @preserveGlobalState disabled
+ */
 class PirateModel extends TestCase
 {
     use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
@@ -105,12 +110,36 @@ class PirateModel extends TestCase
         $this->pirate_model->shouldNotreceive('password_hash');
 
         $this->pirate_model->shouldReceive('update')
-                         ->once()
-                         ->with(6, Mockery::on(function ($data) {
-                            return !array_key_exists('password', $data);
-                         }));
+            ->once()
+            ->with(6, Mockery::on(function ($data) {
+                return !array_key_exists('password', $data);
+            }));
 
         $this->pirate_model->save(['firstname' => 'bob'], 6);
+    }
+
+    /**
+     * @test
+     */
+    public function nickname_is_generated_on_create() : void
+    {
+        Mockery::mock('overload:' . All::class)
+            ->makePartial()
+            ->shouldAllowMockingProtectedMethods()
+            ->shouldReceive('getName')
+            ->once()
+            ->andReturn('hello-world');
+
+        $this->pirate_model->shouldReceive('insert')
+            ->once()
+            ->with(Mockery::on(function ($data) {
+                return array_key_exists('nickname', $data)
+                    && $data['nickname'] == 'hello-world';
+            }));
+
+        $this->pirate_model->save([
+            // User data is really not important in this test, so it was omitted
+        ]);
     }
 
     public function tearDown() : void
