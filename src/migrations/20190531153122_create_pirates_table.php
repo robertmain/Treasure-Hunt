@@ -60,6 +60,7 @@ class Migration_create_pirates_table extends Migration
               'type' => 'VARCHAR',
               'constraint' => 255,
               'null' => true,
+              'unique' => true,
               'default' => null,
             ],
             'signup' => [

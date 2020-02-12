@@ -48,9 +48,21 @@ class Pirate extends Model
         }
 
         if ($id === null) {
-            $data['nickname'] = (new All([
-                new Alliteration(),
-            ]))->getName();
+            $nicknameGenerator = new All([
+                new Alliteration()
+            ]);
+            $found = true;
+            while ($found == true) {
+                $nickname = $nicknameGenerator->getName();
+                $result = $this->get_by(['nickname' => $nickname]);
+
+                if ($result) {
+                    $found = true;
+                } else {
+                    $found = false;
+                }
+            }
+            $data['nickname'] = $nickname;
         }
 
         return parent::save($data, $id);

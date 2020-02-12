@@ -25,15 +25,25 @@ class PirateModel extends TestCase
      */
     private $test_user;
 
+    /**
+     * @var MockInterface
+     */
+    private $nicknameGenerator;
+
     public function setUp() : void
     {
         $this->pirate_model = Mockery::mock(Pirate::class)
             ->makePartial()
             ->shouldAllowMockingProtectedMethods();
 
+        $this->nicknameGenerator = Mockery::mock('overload:' . All::class)
+            ->makePartial()
+            ->shouldAllowMockingProtectedMethods();
+
         $this->test_user = (object)[
             'phone' => 'mrtesting',
             'password' => 'abc',
+            'nickname' => 'curious-otter',
         ];
     }
 
@@ -123,18 +133,21 @@ class PirateModel extends TestCase
      */
     public function nickname_is_generated_on_create() : void
     {
-        Mockery::mock('overload:' . All::class)
-            ->makePartial()
-            ->shouldAllowMockingProtectedMethods()
-            ->shouldReceive('getName')
+        $uniqueNickname = $this->test_user->nickname;
+        $this->nicknameGenerator->shouldReceive('getName')
             ->once()
-            ->andReturn('hello-world');
+            ->andReturn($this->test_user->nickname);
+
+        $this->pirate_model->shouldReceive('get_by')
+            ->once()
+            ->with(['nickname' => $uniqueNickname])
+            ->andReturn(null);
 
         $this->pirate_model->shouldReceive('insert')
             ->once()
-            ->with(Mockery::on(function ($data) {
+            ->with(Mockery::on(function ($data) use ($uniqueNickname) {
                 return array_key_exists('nickname', $data)
-                    && $data['nickname'] == 'hello-world';
+                    && $data['nickname'] == $uniqueNickname;
             }));
 
         $this->pirate_model->save([
@@ -147,10 +160,7 @@ class PirateModel extends TestCase
      */
     public function nickname_is_not_generated_on_update() : void
     {
-        Mockery::mock('overload:' . All::class)
-            ->makePartial()
-            ->shouldAllowMockingProtectedMethods()
-            ->shouldNotReceive('getName');
+        $this->nicknameGenerator->shouldNotReceive('getName');
 
         $this->pirate_model->shouldReceive('update')
             ->once()
@@ -161,6 +171,43 @@ class PirateModel extends TestCase
         $this->pirate_model->save([
             // User data is really not important in this test, so it was omitted
         ], 4);
+    }
+
+    /**
+     * @test
+     */
+    public function nickname_is_regenerated_if_not_unique() : void
+    {
+        $nonUniqueNickname = $this->test_user->nickname;
+        $uniqueNickname = 'unique-nickname';
+
+        $this->nicknameGenerator->shouldReceive('getName')
+            ->twice()
+            ->andReturn($nonUniqueNickname, $uniqueNickname);
+
+        // The first call to Pirate::get_by should return the test user, the
+        // second should return NULL
+        $this->pirate_model->shouldReceive('get_by')
+            ->andReturn($this->test_user, null);
+
+        // Set-up expectations for a non-unique nickname
+        $this->pirate_model->shouldReceive('get_by')
+            ->with(['nickname' => $nonUniqueNickname]);
+
+        // Set-up expectations for a unique nickname
+        $this->pirate_model->shouldReceive('get_by')
+            ->with(['nickname' => $uniqueNickname]);
+
+        $this->pirate_model->shouldReceive('insert')
+            ->once()
+            ->with(Mockery::on(function ($userData) use ($uniqueNickname) {
+                return $userData['nickname'] === $uniqueNickname;
+            }));
+
+        $this->pirate_model->save([
+            'phone' => $this->test_user->phone,
+            'password' => $this->test_user->password,
+        ]);
     }
 
     public function tearDown() : void
