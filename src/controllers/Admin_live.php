@@ -22,9 +22,9 @@ class Admin_live extends Controller
     {
         $since = $this->input->get('since');
         if ($since) {
-            $response = $this->Mytreasure->getNewFound($since);
+            $response = $this->Mytreasure->getFound($since);
         } else {
-            $response = $this->Mytreasure->getAllFound();
+            $response = $this->Mytreasure->getFound();
         }
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }

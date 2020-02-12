@@ -136,6 +136,5 @@ define('LONG_DATETIME', 'l, jS M Y H:i');  // Monday, 5th Feb 2018 00:36
 define('APP_TITLE', getenv('APP_TITLE'));
 define('APP_OWNER', getenv('APP_OWNER'));
 define('TREASURESALT', sha1('TREASURE'));
-define('PIRATESALT', sha1('USER'));
 
 define('ASSET_PATH', 'src/assets/');
