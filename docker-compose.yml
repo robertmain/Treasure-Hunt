@@ -5,6 +5,8 @@ services:
       context: './'
     ports:
       - "80:80"
+    environment:
+      TZ: "America/New_York"
     volumes:
       - ./:/var/www/html
     links:
@@ -18,6 +20,7 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+      TZ: "America/New_York"
     volumes:
       - "mysql_data:/var/lib/mysql"
 volumes:
