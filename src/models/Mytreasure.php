@@ -54,7 +54,7 @@ class Mytreasure extends Model
             $this->db->where('found.id >', $since);
         }
 
-        return $this->db->select('treasure.title, pirates.nickname')
+        return $this->db->select('treasure.title, pirates.nickname, ' . $this->table . '.' . self::CREATED)
             ->from($this->table)
             ->join('pirates', 'pirates.id = found.pirate')
             ->join('treasure', 'treasure.id = found.treasure')

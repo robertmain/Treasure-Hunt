@@ -17,7 +17,7 @@ setInterval(async() => {
 
     ([{f_id: lastId}] = treasure.slice(-1));
 
-    newTreasure.forEach(({ nickname, title }) => {
+    newTreasure.forEach(({ nickname, title, created_at }) => {
         $(`<div class="card text-white bg-info mb-3" style="max-width: 25rem;">
             <div class="card-body">
                 <h5 class="card-title text-white">Treasure Found</h5>
@@ -25,6 +25,12 @@ setInterval(async() => {
                     <strong>User:</strong> ${nickname}<br />
                     <strong>Found Treasure:</strong> ${title}
                 </p>
+            </div>
+            <div class="card-footer">
+                ${formatDistanceToNow(parseISO(created_at), {
+                    addSuffix: true,
+                    includeSeconds: true,
+                })}
             </div>
         </div>`).prependTo('.card-columns');
     });
