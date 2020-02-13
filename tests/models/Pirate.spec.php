@@ -210,6 +210,21 @@ class PirateModel extends TestCase
         ]);
     }
 
+    /**
+     * @test
+     */
+    public function nickname_can_be_changed_via_update() : void
+    {
+        $newNickNameValue = 'fubar1234';
+
+        $this->pirate_model->shouldReceive('update')
+            ->with(2, ['nickname' => $newNickNameValue]);
+
+        $this->pirate_model->save([
+            'nickname' => $newNickNameValue,
+        ], 2);
+    }
+
     public function tearDown() : void
     {
         Mockery::close();
