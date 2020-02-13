@@ -117,7 +117,7 @@ $this->layout('layouts/default', [
     $('tr').on('click', '.ban', async (event) => {
         const { target } = event;
 
-        await updateDetails(target.dataset.id, { banned: '0' });
+        await update(target.dataset.id, { banned: '0' });
         target.classList.remove('ban');
         target.classList.add('unban');
 

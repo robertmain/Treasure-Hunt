@@ -40,6 +40,7 @@ class Admin_pirates extends Admin_Controller
                 'authorised',
                 'phone',
                 'password',
+                'nickname',
             ];
 
             $postData = json_decode($this->input->raw_input_stream, true);

@@ -9,11 +9,15 @@ $this->layout('layouts/default', [
 <?= form_hidden('id', $Pirate->id) ?>
 <div class="form-group">
     <label class="control-label">Phone Number</label>
-    <?= form_input('phone', $Pirate->phone, 'maxlength="11" class="form-control"') ?>
+    <?= form_input('phone', $Pirate->phone, 'maxlength="11" class="form-control" autocomplete="username"') ?>
+</div>
+<div class="form-group">
+    <label class="control-label">Nickname</label>
+    <?= form_input('nickname', $Pirate->nickname, 'class="form-control" autocomplete="username"') ?>
 </div>
 <div class="form-group">
     <label class="control-label">Password</label>
-    <?= form_password('password', null, 'class="form-control"') ?>
+    <?= form_password('password', null, 'class="form-control" autocomplete="new-password"') ?>
     <span><em>(Un-Changed If Left Blank)</em></span>
 </div>
 <div class="form-group">
@@ -21,31 +25,27 @@ $this->layout('layouts/default', [
         <?php if ($Pirate->authorised == '1') : ?>
             <button
                 type="button"
-                class="btn authorise active"
+                class="btn btn-secondary authorise active"
                 data-authorise="0"
                 data-id="<?= $Pirate->id ?>"
             >
-                De-Authorise Account
+                De-Authorize Account
             </button>
         <?php else : ?>
             <button
                 type="button"
-                class="btn authorise"
+                class="btn btn-secondary authorise"
                 data-authorise="1"
                 data-id="<?= $Pirate->id ?>"
             >
-                Authorise Account
+                Authorize Account
             </button>
         <?php endif; ?>
     <?php endif; ?>
 </div>
 
 <div class="form-group">
-    <button
-        id="submit"
-        type="button"
-        class="btn btn-success"
-    >
+    <button type="submit" class="btn btn-success">
         <i class="fas fa-save"></i> Update Pirate
     </button>
 </div>
@@ -54,19 +54,22 @@ $this->layout('layouts/default', [
 <?php $this->push('scripts'); ?>
 <script src="<?= base_url(ASSET_PATH . $this->asset('dist/js/admin-pirates.js')) ?>"></script>
 <script>
-    document.querySelector('#submit')
-        .addEventListener('click', async () => {
-            const formData = new FormData(document.querySelector('#updatePirate'));
+    document.querySelector('#updatePirate')
+        .addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const { target } = event;
+
+            const formData = new FormData(target);
             const id = formData.get('id');
             formData.delete('id');
-            await updateDetails(id, Object.fromEntries(formData.entries()));
+            await update(id, Object.fromEntries(formData.entries()));
+            return false;
         });
 
     document.querySelector('.authorise')
         .addEventListener('click', async (event) => {
-            const {
-                target
-            } = event;
+            event.preventDefault();
+            const { target } = event;
 
             let authorize;
             if(target.classList.contains('active')){
@@ -80,7 +83,7 @@ $this->layout('layouts/default', [
             }
 
             await toggleAuthorization(target.dataset.id, authorize);
-            event.preventDefault();
+            return false;
         });
 </script>
 <?php $this->end(); ?>
