@@ -50,7 +50,7 @@
     <div class="row">
         <div class="col col-xs-12">
             <?php if (isLoggedIn()) : ?>
-                <p>My ID:<?= md5(PIRATESALT . $me->phone) ?></p>
+                <p>My Nickname: <code><?= $me->nickname; ?></code></p>
             <?php endif; ?>
                 <?= $this->section('content') ?>
         </div>

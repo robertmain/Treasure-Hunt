@@ -48,31 +48,19 @@ class Mytreasure extends Model
         return $this->db->get()->result();
     }
 
-    public function getAllFound()
+    public function getFound(int $since = null)
     {
-        $this->db->select('found.id as f_id, found.treasure, treasure.title, pirates.phone');
-        $this->db->from($this->table);
-        $this->db->join('pirates', 'pirates.id = found.pirate');
-        $this->db->join('treasure', 'treasure.id = found.treasure');
-        $this->db->order_by($this->table . '.' . self::CREATED);
-        return array_map(function ($found) {
-            $found->phone = md5(PIRATESALT . $found->phone);
-            return $found;
-        }, $this->db->get()->result());
-    }
+        if ($since !== null) {
+            $this->db->where('found.id >', $since);
+        }
 
-    public function getNewFound($id)
-    {
-        $this->db->select('found.id as f_id, found.treasure, treasure.title, pirates.phone');
-        $this->db->from($this->table);
-        $this->db->where('found.id >', $id);
-        $this->db->join('pirates', 'pirates.id = found.pirate');
-        $this->db->join('treasure', 'treasure.id = found.treasure');
-        $this->db->order_by($this->table . '.' . self::CREATED);
-        return array_map(function ($found) {
-            $found->phone = md5(PIRATESALT, $found->phone);
-            return $found;
-        }, $this->db->get()->result());
+        return $this->db->select('treasure.title, pirates.nickname, ' . $this->table . '.' . self::CREATED)
+            ->from($this->table)
+            ->join('pirates', 'pirates.id = found.pirate')
+            ->join('treasure', 'treasure.id = found.treasure')
+            ->order_by($this->table . '.' . self::CREATED)
+            ->get()
+            ->result();
     }
 
     public function stripTreasure($pirateID)

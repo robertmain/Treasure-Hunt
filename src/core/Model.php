@@ -205,9 +205,7 @@ abstract class Model extends CI_Model
     */
     public function save($data, $id = null)
     {
-        $date = new \DateTime();
-
-        $data[static::UPDATED] = $date->format(MYSQL_DATETIME);
+        unset($data[self::CREATED], $data[self::UPDATED]);
 
         if ($id) {
             $success = $this->update($id, $data);
@@ -217,7 +215,6 @@ abstract class Model extends CI_Model
                 return false;
             }
         } else {
-            $data[static::CREATED] = $date->format(MYSQL_DATETIME);
             return $this->insert($data);
         }
     }

@@ -31,10 +31,18 @@ class User extends CI_Controller
 
         $this->load->model(['Pirate']);
 
-        $this->Pirate->save([
+        $newUserID = $this->Pirate->save([
             'phone' => $phone,
             'password' => $password,
             'admin' => $admin,
         ]);
+
+        $newUser = $this->Pirate->get($newUserID);
+
+
+        $this->output->append_output('New user created' . PHP_EOL)
+            ->append_output('Login: ' . $newUser->phone . PHP_EOL)
+            ->append_output('Nickname: ' . $newUser->nickname . PHP_EOL)
+            ->append_output('Admin Access: ' . [ '1' => 'true', '0' => 'false'][$newUser->admin] . PHP_EOL);
     }
 }

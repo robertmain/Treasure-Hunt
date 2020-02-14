@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Core\Model;
-use Exception;
+use ProbablyRational\RandomNameGenerator\All;
+use ProbablyRational\RandomNameGenerator\Alliteration;
 
 class Pirate extends Model
 {
@@ -45,6 +46,25 @@ class Pirate extends Model
         if (array_key_exists('password', $data)) {
             $data['password'] = $this->password_hash($data['password']);
         }
+
+        if ($id === null) {
+            $nicknameGenerator = new All([
+                new Alliteration()
+            ]);
+            $found = true;
+            while ($found == true) {
+                $nickname = $nicknameGenerator->getName();
+                $result = $this->get_by(['nickname' => $nickname]);
+
+                if ($result) {
+                    $found = true;
+                } else {
+                    $found = false;
+                }
+            }
+            $data['nickname'] = $nickname;
+        }
+
         return parent::save($data, $id);
     }
 

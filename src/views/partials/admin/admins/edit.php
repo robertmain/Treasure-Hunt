@@ -37,7 +37,7 @@ $this->layout('layouts/default', [
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary" id="addadmin" type="button">
+            <button class="btn btn-primary" id="addadmin" type="submit">
                 <i class="fas fa-save"></i> Save Changes
             </button>
         </div>

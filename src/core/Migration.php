@@ -34,8 +34,8 @@ abstract class Migration extends CI_Migration
     public function __construct($config = [])
     {
         $this->date_stamps = [
-            static::CREATED . ' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()',
-            static::UPDATED . ' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()',
+            static::CREATED . ' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            static::UPDATED . ' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
             static::DELETED => [
                 'type' => 'DATETIME',
                 'null' => true
