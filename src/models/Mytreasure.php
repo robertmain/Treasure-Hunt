@@ -58,6 +58,7 @@ class Mytreasure extends Model
             ->from($this->table)
             ->join('pirates', 'pirates.id = found.pirate')
             ->join('treasure', 'treasure.id = found.treasure')
+            ->where($this->table . '.' . self::DELETED, null)
             ->order_by($this->table . '.' . self::CREATED);
 
         return array_map(function ($data) {
