@@ -23,72 +23,19 @@ $this->layout('layouts/two-one', [
 <?php $this->end(); ?>
 
 <?php $this->start('two'); ?>
-<h3>User Registration</h3>
-<div id="signup_div"></div>
+<div class="card">
+    <div class="card-header text-center">Signup Metrics</div>    <div class="card-body">
+        <h4 class="text-center">Coming Soon...</h4>
+    </div>
+    <i style="background: linear-gradient(cyan, blue);  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" class="fas fa-chart-line text-center fa-10x"></i>
+</div>
 <?php $this->end(); ?>
 
 <?php $this->start('three'); ?>
 <h3><?= APP_TITLE ?> Activity</h3>
-<div id="found_div"></div>
+<canvas id="found_treasure"></canvas>
 <?php $this->end(); ?>
 
 <?php $this->push('scripts'); ?>
-    <script src="https://www.google.com/jsapi"></script>
-    <script>
-        google.load('visualization', '1', { packages:['corechart'] });
-        google.setOnLoadCallback(() => {
-            const {
-                visualization: {
-                    arrayToDataTable,
-                    LineChart,
-                },
-            } = google;
-            const toTouples = (
-                headings = ['Time', 'Count'],
-                data = []
-            ) => ([
-                headings,
-                ...data.map(({ key, value }) => ([key, value]))
-            ])
-
-
-            const signUpData = toTouples(
-                ['Time', 'Registrations'],
-                <?= json_encode($signupData); ?>.map(
-                    ({ created_at, signups}) => ({
-                        key: new Date(created_at),
-                        value: parseInt(signups),
-                    })
-                )
-            );
-
-            const foundData = toTouples(
-                ['Time', 'Treasure Found'],
-                <?= json_encode($treasureFoundData); ?>.map(
-                    ({ created_at, treasure_found }) => ({
-                        key: new Date(created_at),
-                        value: parseInt(treasure_found),
-                    })
-                )
-            );
-
-            const options = {
-                curveType: 'function',
-                legend: { position: 'none' }
-            }
-
-            new LineChart(document.getElementById('signup_div'))
-                .draw(arrayToDataTable(signUpData), {
-                    ...options,
-                    hAxis:{'title': signUpData[0][0]},
-                    vAxis:{'title': signUpData[0][1]},
-                });
-            new LineChart(document.getElementById('found_div'))
-                .draw(arrayToDataTable(foundData), {
-                    ...options,
-                    hAxis:{'title': foundData[0][0]},
-                    vAxis:{'title': foundData[0][1]},
-                });
-        });
-    </script>
+    <script src="<?= base_url(ASSET_PATH . $this->asset('dist/js/admin-dashboard.js')) ?>"></script>
 <?php $this->end(); ?>

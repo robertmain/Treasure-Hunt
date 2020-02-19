@@ -22,6 +22,7 @@ module.exports = ({ mode = 'development' }) => ({
         ['admin-admins']: `${join(__dirname, SRC.BASE, SRC.JS)}/admin/admins`,
         ['admin-settings']: `${join(__dirname, SRC.BASE, SRC.JS)}/admin/settings`,
         ['admin-pirates']: `${join(__dirname, SRC.BASE, SRC.JS)}/admin/pirates`,
+        ['admin-dashboard']: `${join(__dirname, SRC.BASE, SRC.JS)}/admin/dashboard`,
         live: `${join(__dirname, SRC.BASE, SRC.JS)}/admin/live`,
     },
     output: {
