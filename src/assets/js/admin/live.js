@@ -2,12 +2,12 @@ import { get } from 'js/utils/api';
 import 'css/live.scss';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
-let lastId;
+let since;
 const treasure = [];
 
 setInterval(async() => {
     const { data: body } = await get('live/socket', {
-        params: (lastId > 0) ? { since: lastId } : {},
+        params: (!!since) ? { since } : {},
     });
 
     const newTreasure = body.filter(({ f_id }) =>
@@ -15,7 +15,7 @@ setInterval(async() => {
 
     treasure.push(...newTreasure);
 
-    ([{f_id: lastId}] = treasure.slice(-1));
+    ([{created_at: since}] = treasure.slice(-1));
 
     newTreasure.forEach(({ nickname, title, created_at }) => {
         $(`<div class="card text-white bg-info mb-3" style="max-width: 25rem;">

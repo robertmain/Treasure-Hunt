@@ -48,10 +48,10 @@ class Mytreasure extends Model
         return $this->db->get()->result();
     }
 
-    public function getFound(int $since = null)
+    public function getFound($since = null)
     {
         if ($since !== null) {
-            $this->db->where('found.id >', $since);
+            $this->db->where($this->table . '.' . self::CREATED . ' >', $since);
         }
 
         return $this->db->select('treasure.title, pirates.nickname, ' . $this->table . '.' . self::CREATED)
