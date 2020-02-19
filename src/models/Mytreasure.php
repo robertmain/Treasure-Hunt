@@ -54,13 +54,24 @@ class Mytreasure extends Model
             $this->db->where($this->table . '.' . self::CREATED . ' >', $since);
         }
 
-        return $this->db->select('treasure.title, pirates.nickname, ' . $this->table . '.' . self::CREATED)
+        $this->db->select('treasure.id, treasure.title, pirates.nickname, ' . $this->table . '.' . self::CREATED)
             ->from($this->table)
             ->join('pirates', 'pirates.id = found.pirate')
             ->join('treasure', 'treasure.id = found.treasure')
-            ->order_by($this->table . '.' . self::CREATED)
-            ->get()
-            ->result();
+            ->order_by($this->table . '.' . self::CREATED);
+
+        return array_map(function ($data) {
+            return (object)[
+                'treasure' => [
+                    'id' => $data->id,
+                    'title' => $data->title,
+                ],
+                'pirate' => [
+                    'nickname' => $data->nickname,
+                ],
+                self::CREATED => $data->{self::CREATED},
+            ];
+        }, $this->db->get()->result());
     }
 
     public function stripTreasure($pirateID)
