@@ -5,7 +5,7 @@ const api = create({
   headers: { ['X-Requested-With']: 'XMLHttpRequest' },
   transformRequest: [
     (data) => Object.fromEntries(
-        Object.entries(data).filter(([, value]) => `${value}`.length > 0)
+        Object.entries({...data}).filter(([, value]) => `${value}`.length > 0)
     ),
     JSON.stringify,
   ]
