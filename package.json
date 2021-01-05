@@ -32,7 +32,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@openfonts/open-sans_all": "^1.44.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "jquery-slim": "^3.0.0",
     "popper.js": "^1.16.1"
